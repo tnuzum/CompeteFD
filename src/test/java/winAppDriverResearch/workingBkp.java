@@ -1,24 +1,17 @@
 package winAppDriverResearch;
 
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Collection;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import io.appium.java_client.windows.WindowsDriver;
-import io.appium.java_client.windows.WindowsElement;
 import junit.framework.Assert;
 
 public class workingBkp {
 	
-    private static WindowsDriver<WindowsElement> Session = null;
-    private static WebElement CalculatorResult = null;
+  //  private static WindowsDriver<WindowsElement> Session = null;
+  //  private static WebElement CalculatorResult = null;
     
     @Test
 
