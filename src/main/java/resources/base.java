@@ -17,7 +17,7 @@ public class base {
 
 	static WindowsDriver driver;
 	public static Properties prop;
-	static String projectPath = System.getenv("WinApp_HOME");
+	static String projectPath = System.getenv("CompeteFD_HOME");
 
 	public static WindowsDriver initializeDriver() throws Throwable {
 		
