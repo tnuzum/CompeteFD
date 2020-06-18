@@ -1,5 +1,5 @@
 # CompeteFD
-Compete Front Desk  
+Compete Front Desk Automated Test Suite
 
 Setup Instructions:
 1. Configure Windows System Environment Variable
