@@ -7,11 +7,11 @@ Setup Instructions:
   Path "C:\Users\[username]\eclipse-workspace\CompeteFD"
     Replace 'username' with your own Windows username
   Reboot computer
-2. Get latest WinAppDriver.msi from https://github.com/Microsoft/WinAppDriver/releases
+2. Download and install latest stable WinAppDriver.msi from https://github.com/Microsoft/WinAppDriver/releases
 3. Download and install Accessibility Insights from https://aka.ms/accessibilityinsights-windows/download
 
 To Run Test:
 1. Start WinAppDriver
-2. Execute test in Eclipse as normal
+2. Execute tests in Eclipse as normal
 
     
