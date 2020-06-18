@@ -14,4 +14,6 @@ To Run Test:
 1. Start WinAppDriver
 2. Execute tests in Eclipse as normal
 
+For more information, https://github.com/microsoft/WinAppDriver/blob/master/README.md
+
     
