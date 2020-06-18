@@ -7,10 +7,10 @@ Setup Instructions:
 2. Run the installer on a Windows 10 machine where your application under test is installed and will be tested
 3. Enable Developer Mode in Windows settings
 4. Configure Windows System Environment Variable
-  Value "CompeteFD_HOME"
-  Path "C:\Users\[username]\eclipse-workspace\CompeteFD"
-    Replace 'username' with your own Windows username
-  Reboot computer
+  - Value "CompeteFD_HOME"
+  - Path "C:\Users\[username]\eclipse-workspace\CompeteFD"
+    * Replace 'username' with your own Windows username
+  - Reboot computer
 5. Download and install Accessibility Insights from https://aka.ms/accessibilityinsights-windows/download
 
 To Run Test:
