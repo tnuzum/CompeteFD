@@ -14,7 +14,7 @@ public class LoginPage extends base {
 
     
     @BeforeClass
-    public static void initialize() {
+    public void initialize() {
     	try {
 			driver = initializeDriver();
 		} catch (Throwable e) {
