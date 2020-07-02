@@ -11,15 +11,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.windows.WindowsDriver;
+import io.appium.java_client.windows.WindowsElement;
 import junit.framework.Assert;
 
 public class base {
 
-	static WindowsDriver driver;
+	public static WindowsDriver driver;
 	public static Properties prop;
 	static String projectPath = System.getenv("CompeteFD_HOME");
 
-	public static WindowsDriver initializeDriver() throws Throwable {
+	public WindowsDriver initializeDriver() throws Throwable {
 		
 		prop = new Properties();
 		FileInputStream fis=new FileInputStream(projectPath + "\\src\\main\\java\\resources\\properties");
@@ -34,9 +35,9 @@ public class base {
 
 		DesiredCapabilities Appcapabilities = new DesiredCapabilities();
 		Appcapabilities.setCapability("app", "Root");
-		driver = new WindowsDriver(new URL("http://127.0.0.1:4723"), Appcapabilities);
+		driver = new WindowsDriver<WindowsElement>(new URL("http://127.0.0.1:4723"), Appcapabilities);
 		
-        WebDriverWait wait=new WebDriverWait(driver, 10);
+        WebDriverWait wait=new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Employee Login")));
         
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
