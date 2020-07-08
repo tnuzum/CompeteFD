@@ -35,14 +35,17 @@ public class MyActions{
     	int natWinHandleInt = Integer.parseInt(NativeWindowHandle);
     	String natWinHandleStr = Integer.toHexString(natWinHandleInt);
     	natWinHandle = "0x"+natWinHandleStr;
-		System.out.println(natWinHandle);
+		//System.out.println(natWinHandle);
         
 		return natWinHandle;
 	}
 	
 	public void focusOnLandingPage(String NativeWindowHandle) throws Exception {
 		
-		//String NativeWindowHandle = driver.findElementByAccessibilityId("ShellForm").getAttribute("NativeWindowHandle");
+		/* Use this in test class to get NativeWindowHandle:
+		   String NativeWindowHandle = driver.findElementByAccessibilityId("ShellForm").getAttribute("NativeWindowHandle");
+		*/
+		
     	int natWinHandleInt = Integer.parseInt(NativeWindowHandle);
     	String natWinHandleStr = Integer.toHexString(natWinHandleInt);
     	String natWinHandle = "0x"+natWinHandleStr;
