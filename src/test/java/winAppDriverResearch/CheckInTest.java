@@ -3,13 +3,13 @@ package winAppDriverResearch;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import io.appium.java_client.windows.WindowsDriver;
 import pageObjects.CheckInPagePO;
 import pageObjects.LandingPagePO;
+import pageObjects.MemberSearchPO;
 import resources.MyActions;
 import resources.base;
 
@@ -41,32 +41,58 @@ public class CheckInTest extends base {
 		String natWinHandle = MyActions.convertNativeWindowHandle(NativeWindowHandle);
 
 		la.getCheckInButton(natWinHandle).click();
-		
-		CheckInPagePO ci = new CheckInPagePO(driver);
-		ci.getMemberInputField().sendKeys("Manny");
-		ci.getSearchButton().click();
+
 
 	}
 
-	@Test(priority = 2, enabled = true)
+	@Test(priority = 2)
+	public void validatePageObjects() {
+		
+		CheckInPagePO ci = new CheckInPagePO(driver);
+		
+		Assert.assertTrue(ci.getCheckInModeLabel().isDisplayed());
+		Assert.assertEquals(ci.getCheckInModeLabel().getText(), "Check In | Attended");
+		Assert.assertTrue(ci.getMemberInputLabel().isDisplayed());
+		Assert.assertEquals(ci.getMemberInputLabel().getText(), "Member ID / Last Name");
+		Assert.assertTrue(ci.getMemberInputField().isEnabled());
+		Assert.assertTrue(ci.getSearchButton().isEnabled());
+		// Assert.assertEquals(ci.getSearchButton().getText(), "Search");
+		Assert.assertTrue(ci.getClearMemberButton().isEnabled());
+		//Assert.assertEquals(ci.getClearMemberButton().getText(), "Clear Member");
+		Assert.assertTrue(!ci.getTakePictureButton().isEnabled()); //disabled prior to adding member
+		//Assert.assertEquals(ci.getTakePictureButton().getText(), "Take Picture");
+		Assert.assertTrue(!ci.getMemberInfoButton().isEnabled()); //disabled prior to adding member
+		//Assert.assertEquals(ci.getMemberInfoButton().getText(), "Member Info");
+		Assert.assertTrue(!ci.getMemberNotesButton().isEnabled()); //disabled prior to adding member
+		//Assert.assertEquals(ci.getMemberNotesButton().getText(), "Member Notes");
+		Assert.assertTrue(!ci.getChangeRequestButton().isEnabled()); //disabled prior to adding member
+		//Assert.assertEquals(ci.getChangeRequestButton().getText(), "Change Request");
+		Assert.assertTrue(ci.getTodaysCheckInsButton().isEnabled());
+		//Assert.assertEquals(ci.getTodaysCheckInsButton().getText(), "Today's Check-ins");
+		Assert.assertTrue(ci.getCheckInModeButton().isEnabled());
+		//Assert.assertEquals(ci.getCheckInModeButton().getText(), "Check-In Mode");
+		Assert.assertTrue(ci.getAddGuestButton().isEnabled());
+		//Assert.assertEquals(ci.getAddGuestButton().getText(), "Add Guest");
+		
+	}
+	
+	@Test(priority = 3, enabled = true)
 	public void searchMember() throws Exception {
 
 		CheckInPagePO ci = new CheckInPagePO(driver);
 		
-		String NativeWindowHandle = ci.getCheckInViewLocator().getAttribute("NativeWindowHandle");
-		String natWinHandle = MyActions.convertNativeWindowHandle(NativeWindowHandle);
-
-//        String NativeWindowHandle = ci.getToolBar().getAttribute("NativeWindowHandle");
-//        	System.out.println(NativeWindowHandle);
-//        String natWinHandle = MyActions.convertNativeWindowHandle(NativeWindowHandle);
-//        	System.out.println(natWinHandle);
-//        DesiredCapabilities appCapabilities = new DesiredCapabilities();
-//        appCapabilities.setCapability("appTopLevelWindow", natWinHandle);
-//        driver = new WindowsDriver<WindowsElement> (new URL("http://127.0.0.1:4723"), appCapabilities);
-		//driver.switchTo().frame(ci.getToolBar());
-		//ci.getMemberInputField(natWinHandle).sendKeys("Manny");
-		//driver.findElementByAccessibilityId("txtBarcodeId").sendKeys("Manny");
-
+		ci.getMemberInputField().sendKeys("Manny");
+		ci.getSearchButton().click();
+		MemberSearchPO ms = new MemberSearchPO(driver);
+		Assert.assertTrue(ms.getMemberSearchPageLocator().isDisplayed());
+		ms.getOKButton().click();
+	}
+	@Test(priority = 4)
+	public void clearMember() {
+		CheckInPagePO ci = new CheckInPagePO(driver);
+		ci.getMemberInputField().sendKeys("Manny");
+		ci.getClearMemberButton().click();
+		Assert.assertNotEquals(ci.getMemberInputField().getText(), "Manny");
 	}
 
 	@AfterClass

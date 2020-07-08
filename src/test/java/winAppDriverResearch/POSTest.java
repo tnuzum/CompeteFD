@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.Assert;
 
 import io.appium.java_client.windows.WindowsDriver;
 import io.appium.java_client.windows.WindowsElement;
@@ -19,10 +20,7 @@ import resources.base;
 public class POSTest extends base {
 
 	String natWinHandle;
-	String natWinHandle2;
 	String NativeWindowHandle;
-	String NativeWindowHandle2;
-	// public MyActions ma;
 
 	@BeforeClass
 	public void initialize() throws Throwable {
