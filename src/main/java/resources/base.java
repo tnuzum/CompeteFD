@@ -16,7 +16,7 @@ import junit.framework.Assert;
 
 public class base {
 
-	public static WindowsDriver driver;
+	public WindowsDriver driver;
 	public static Properties prop;
 	static String projectPath = System.getenv("CompeteFD_HOME");
 
@@ -39,6 +39,7 @@ public class base {
 		
         WebDriverWait wait=new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Employee Login")));
+        MyWaits m = new MyWaits(driver);
         
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		return driver;
