@@ -8,17 +8,15 @@ import io.appium.java_client.windows.WindowsDriver;
 import io.appium.java_client.windows.WindowsElement;
 import pageObjects.LoginPO;
 
-public class MyActions{
+public class MyActions extends base{
 	
-		WindowsDriver driver;
-	
-	public MyActions(WindowsDriver driver) {
+	public void setDriver(WindowsDriver driver) {
 			// TODO Auto-generated constructor stub
 		
-			this.driver = driver;
+			base.driver = driver;
 		}
 	
-	public String loginEmployee(String barcodeId, String password) {
+	public static String loginEmployee(String barcodeId, String password) {
 		
     	LoginPO l = new LoginPO(driver);
     	l.getUserNameInputField().sendKeys(barcodeId);
@@ -27,12 +25,14 @@ public class MyActions{
     	return null;
 	}
 
-	public static String convertNativeWindowHandle(String NativeWindowHandle){
+	public static String convertnativeWindowHandle(String nativeWindowHandle){
 		
 		String natWinHandle;
 		
-        //String NativeWindowHandle = driver.findElementByAccessibilityId("ShellForm").getAttribute("NativeWindowHandle");
-    	int natWinHandleInt = Integer.parseInt(NativeWindowHandle);
+		/* Use this in test class to get nativeWindowHandle:
+		   String nativeWindowHandle = la.getLandingPageLocator().getAttribute("NativeWindowHandle");
+		*/
+		int natWinHandleInt = Integer.parseInt(nativeWindowHandle);
     	String natWinHandleStr = Integer.toHexString(natWinHandleInt);
     	natWinHandle = "0x"+natWinHandleStr;
 		//System.out.println(natWinHandle);
@@ -40,18 +40,19 @@ public class MyActions{
 		return natWinHandle;
 	}
 	
-	public void focusOnLandingPage(String NativeWindowHandle) throws Exception {
+	public static String focusOnLandingPage(String nativeWindowHandle) throws Exception {
 		
-		/* Use this in test class to get NativeWindowHandle:
-		   String NativeWindowHandle = driver.findElementByAccessibilityId("ShellForm").getAttribute("NativeWindowHandle");
+		/* Use this in test class to get nativeWindowHandle:
+		   String nativeWindowHandle = la.getLandingPageLocator().getAttribute("NativeWindowHandle");
 		*/
-		
-    	int natWinHandleInt = Integer.parseInt(NativeWindowHandle);
+		System.out.println("MyActions: "+nativeWindowHandle);
+    	int natWinHandleInt = Integer.parseInt(nativeWindowHandle);
     	String natWinHandleStr = Integer.toHexString(natWinHandleInt);
     	String natWinHandle = "0x"+natWinHandleStr;
         DesiredCapabilities appCapabilities = new DesiredCapabilities();
         appCapabilities.setCapability("appTopLevelWindow", natWinHandle);
         driver = new WindowsDriver<WindowsElement> (new URL("http://127.0.0.1:4723"), appCapabilities);
+		return null;
 	}
 	
 	

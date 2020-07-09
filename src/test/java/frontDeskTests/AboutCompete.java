@@ -1,4 +1,4 @@
-package winAppDriverResearch;
+package frontDeskTests;
 
 import java.net.URL;
 import org.openqa.selenium.By;
@@ -12,15 +12,15 @@ import org.testng.Assert;
 
 import io.appium.java_client.windows.WindowsDriver;
 import io.appium.java_client.windows.WindowsElement;
-import pageObjects.AboutPagePO;
+import pageObjects.AboutCompetePO;
 import pageObjects.LandingPagePO;
 import resources.MyActions;
 import resources.base;
 
-public class POSTest extends base {
+public class AboutCompete extends base {
 
 	String natWinHandle;
-	String NativeWindowHandle;
+	String nativeWindowHandle;
 
 	@BeforeClass
 	public void initialize() throws Throwable {
@@ -29,38 +29,46 @@ public class POSTest extends base {
 	}
 
 	@Test(enabled = true)
-	public void launchPOS() throws Exception {
+	public void CompeteAboutView() throws Exception {
 
 		String barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		String password = prop.getProperty("activeEmployeePassword");
 
-		MyActions ma = new MyActions(driver);
-		ma.loginEmployee(barcodeId, password);
+		MyActions.loginEmployee(barcodeId, password);
 
 		LandingPagePO la = new LandingPagePO(driver);
 
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("deckWorkspace1")));
 
-		String NativeWindowHandle = la.getLandingPageLocator().getAttribute("NativeWindowHandle");
-		// String NativeWindowHandle =
-		// driver.findElementByAccessibilityId("ShellForm").getAttribute("NativeWindowHandle");
-		natWinHandle = MyActions.convertNativeWindowHandle(NativeWindowHandle);
+		String nativeWindowHandle = la.getLandingPageLocator().getAttribute("NativeWindowHandle");
 
-		DesiredCapabilities appCapabilities = new DesiredCapabilities();
-		appCapabilities.setCapability("appTopLevelWindow", natWinHandle);
-		driver = new WindowsDriver<WindowsElement>(new URL("http://127.0.0.1:4723"), appCapabilities);
-		System.out.println(driver.getTitle());
+		la.getCompeteInfoButton(nativeWindowHandle).click();
 
-		// la.getCompeteInfoButton().click();
-		driver.findElementByXPath("//Button[@LocalizedControlType='button'][3]").click();
+		AboutCompetePO a = new AboutCompetePO(driver);
+
+		Assert.assertTrue(a.getAboutPageLocator().isDisplayed());
+		a.getCloseButton().click();
+	}
+
+	@Test(priority = 2, enabled = false)
+	public void PrivacyPolicy() throws InterruptedException, Exception {
+
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("deckWorkspace1")));
+
+		driver.findElementByName("Privacy Policy").click();
 	}
 
 	@AfterClass
 	public void TearDown() throws Throwable {
-		Thread.sleep(10000);
-		driver.close();
 
+		DesiredCapabilities appCapabilities = new DesiredCapabilities();
+		appCapabilities.setCapability("appTopLevelWindow", natWinHandle);
+		driver = new WindowsDriver<WindowsElement>(new URL("http://127.0.0.1:4723"), appCapabilities);
+
+		driver.close();
+		driver.quit();
 	}
 
 }

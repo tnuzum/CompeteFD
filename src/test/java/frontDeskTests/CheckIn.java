@@ -1,4 +1,4 @@
-package winAppDriverResearch;
+package frontDeskTests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -7,15 +7,13 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pageObjects.CheckInPagePO;
+import pageObjects.CheckInPO;
 import pageObjects.LandingPagePO;
 import pageObjects.MemberSearchPO;
 import resources.MyActions;
 import resources.base;
 
-public class CheckInTest extends base {
-
-	// public MyActions ma;
+public class CheckIn extends base {
 
 	@BeforeClass
 	public void initialize() throws Throwable {
@@ -29,18 +27,16 @@ public class CheckInTest extends base {
 		String barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		String password = prop.getProperty("activeEmployeePassword");
 
-		MyActions ma = new MyActions(driver);
-		ma.loginEmployee(barcodeId, password);
-
+		MyActions.loginEmployee(barcodeId, password);
+		
 		LandingPagePO la = new LandingPagePO(driver);
 
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("deckWorkspace1")));
 
-		String NativeWindowHandle = la.getLandingPageLocator().getAttribute("NativeWindowHandle");
-		String natWinHandle = MyActions.convertNativeWindowHandle(NativeWindowHandle);
+		String nativeWindowHandle = la.getLandingPageLocator().getAttribute("NativeWindowHandle");
 
-		la.getCheckInButton(natWinHandle).click();
+		la.getCheckInButton(nativeWindowHandle).click();
 
 
 	}
@@ -48,7 +44,7 @@ public class CheckInTest extends base {
 	@Test(priority = 2)
 	public void validatePageObjects() {
 		
-		CheckInPagePO ci = new CheckInPagePO(driver);
+		CheckInPO ci = new CheckInPO(driver);
 		
 		Assert.assertTrue(ci.getCheckInModeLabel().isDisplayed());
 		Assert.assertEquals(ci.getCheckInModeLabel().getText(), "Check In | Attended");
@@ -79,7 +75,7 @@ public class CheckInTest extends base {
 	@Test(priority = 3, enabled = true)
 	public void searchMember() throws Exception {
 
-		CheckInPagePO ci = new CheckInPagePO(driver);
+		CheckInPO ci = new CheckInPO(driver);
 		
 		ci.getMemberInputField().sendKeys("Manny");
 		ci.getSearchButton().click();
@@ -89,14 +85,14 @@ public class CheckInTest extends base {
 	}
 	@Test(priority = 4)
 	public void clearMember() {
-		CheckInPagePO ci = new CheckInPagePO(driver);
+		CheckInPO ci = new CheckInPO(driver);
 		ci.getMemberInputField().sendKeys("Manny");
 		ci.getClearMemberButton().click();
 		Assert.assertNotEquals(ci.getMemberInputField().getText(), "Manny");
 	}
 
 	@AfterClass
-	public void TearDown(){
+	public void TearDown() throws Exception{
 		driver.close();
 		driver.quit();
 	}

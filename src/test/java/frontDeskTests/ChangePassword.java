@@ -1,4 +1,4 @@
-package winAppDriverResearch;
+package frontDeskTests;
 
 import java.net.URL;
 
@@ -19,10 +19,10 @@ import pageObjects.LoginPO;
 import resources.MyActions;
 import resources.base;
 
-public class ChangePasswordPage extends base {
+public class ChangePassword extends base {
 
 	String natWinHandle;
-	String NativeWindowHandle;
+	String nativeWindowHandle;
 	static String barcodeId;
 	static String password;
 
@@ -63,8 +63,8 @@ public class ChangePasswordPage extends base {
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("deckWorkspace1")));
 		
 		LandingPagePO la = new LandingPagePO(driver);
-		String NativeWindowHandle = la.getLandingPageLocator().getAttribute("NativeWindowHandle");
-		natWinHandle = MyActions.convertNativeWindowHandle(NativeWindowHandle);
+		String nativeWindowHandle = la.getLandingPageLocator().getAttribute("NativeWindowHandle");
+		natWinHandle = MyActions.convertnativeWindowHandle(nativeWindowHandle);
 
 		DesiredCapabilities appCapabilities = new DesiredCapabilities();
 		appCapabilities.setCapability("appTopLevelWindow", natWinHandle);
