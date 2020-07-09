@@ -1,15 +1,13 @@
 package pageObjects;
 
 import org.openqa.selenium.WebElement;
-
 import io.appium.java_client.windows.WindowsDriver;
 
-public class AboutPagePO{
+public class AboutCompetePO{
 	
 	WindowsDriver driver;
 		// ** Constructor **
-	public AboutPagePO(WindowsDriver driver) {
-		// TODO Auto-generated constructor stub
+	public AboutCompetePO(WindowsDriver driver) {
 		this.driver = driver;
 	}
 	
@@ -18,5 +16,10 @@ public class AboutPagePO{
 	{
 		return driver.findElementByAccessibilityId("AboutView");
 	}
+	
+	public WebElement getCloseButton() throws Exception {
+		return driver.findElementByXPath("//Button[@Name='Close'][1]");
+	}
+	
 	
 }

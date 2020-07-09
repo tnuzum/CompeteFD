@@ -1,4 +1,4 @@
-package winAppDriverResearch;
+package frontDeskTests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,10 +14,11 @@ import pageObjects.LoginPO;
 import resources.MyActions;
 import resources.base;
 
-public class LoginPage extends base {
+public class Login extends base {
 
 	static WindowsDriver driver;
 
+	
 	@BeforeTest
 	public void initialize() throws Throwable {
 
@@ -103,8 +104,7 @@ public class LoginPage extends base {
 		String barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		String password = prop.getProperty("activeEmployeePassword");
 
-		MyActions ma = new MyActions(driver);
-		ma.loginEmployee(barcodeId, password);
+		MyActions.loginEmployee(barcodeId, password);
 
 		LandingPagePO la = new LandingPagePO(driver);
 
@@ -137,10 +137,13 @@ public class LoginPage extends base {
 		}
 	}
 
+	
 	@AfterTest()
 	public void TearDown() {
-//		driver.findElementByName("Close").click();
-		driver.close();
+		
+//		** driver.close() not needed if last test is validateCancelLogin because that test closes that window
+		
+		driver.quit();
 	}
 
 }
