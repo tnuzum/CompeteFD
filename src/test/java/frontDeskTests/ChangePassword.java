@@ -7,8 +7,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import io.appium.java_client.windows.WindowsDriver;
@@ -21,33 +21,38 @@ import resources.base;
 
 public class ChangePassword extends base {
 
+	ChangePasswordPO cp;
+	LandingPagePO lp;
 	String natWinHandle;
 	String nativeWindowHandle;
 	static String barcodeId;
 	static String password;
 
-	@BeforeTest
+	@BeforeClass
 	public void initialize() throws Throwable {
 
+		System.out.println("Class: "+getClass().getName());
 		driver = initializeDriver();
 
 		barcodeId = prop.getProperty("changeEmployeeBarcodeId");
 		password = prop.getProperty("changeEmployeePassword");
 
-		LoginPO l = new LoginPO(driver);
+		cp = new ChangePasswordPO();
+		lp = new LandingPagePO();
+		LoginPO l = new LoginPO();
 
 		l.getPromptCheckbox().click();
 
-		l.getUserNameInputField().sendKeys(barcodeId);
-		l.getPasswordInputField().sendKeys(password);
-		l.getLoginButton().click();
+		MyActions.loginEmployee(barcodeId, password);
 
 	}
 
 	@Test(priority = 1, description = "Validate Page Objects")
 	public void ValidatePageObjects() throws Exception{
-
-		ChangePasswordPO cp = new ChangePasswordPO(driver);
+		
+		
+        WebDriverWait wait=new WebDriverWait(driver, 60);
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Change Employee Password")));
 
 		Assert.assertEquals(cp.getNewPasswordlabel().getText(), "Please enter the new password value");
 		Assert.assertTrue(cp.getNewPasswordInputField().isEnabled());
@@ -59,40 +64,34 @@ public class ChangePassword extends base {
 		
 		cp.getCancelButton().click();
 
-		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("deckWorkspace1")));
 		
-		LandingPagePO la = new LandingPagePO(driver);
-		String nativeWindowHandle = la.getLandingPageLocator().getAttribute("NativeWindowHandle");
+		String nativeWindowHandle = lp.getLandingPageLocator().getAttribute("NativeWindowHandle");
 		natWinHandle = MyActions.convertnativeWindowHandle(nativeWindowHandle);
 
 		DesiredCapabilities appCapabilities = new DesiredCapabilities();
 		appCapabilities.setCapability("appTopLevelWindow", natWinHandle);
 		driver = new WindowsDriver<WindowsElement>(new URL("http://127.0.0.1:4723"), appCapabilities);
 
-		Assert.assertTrue(la.getLandingPageLocator().isDisplayed()); // Employee logged in; landing page displayed
+		Assert.assertTrue(lp.getLandingPageLocator().isDisplayed()); // Employee logged in; landing page displayed
 	}
 
 	@Test(priority = 2, description = "Change Password", enabled = false)
 	// disabled because employee cannot use same password as previous 5 or any used
 	// in last 6 months
 	public void changePassword() {
-
-		ChangePasswordPO cp = new ChangePasswordPO(driver);
 		cp.getNewPasswordInputField().sendKeys(password);
 		cp.getConfirmPasswordInputField().sendKeys(password);
 		cp.getOKButton().click();
 
-		LandingPagePO la = new LandingPagePO(driver);
-
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("deckWorkspace1")));
 
-		Assert.assertTrue(la.getLandingPageLocator().isDisplayed()); // Employee logged in; landing page displayed
+		Assert.assertTrue(lp.getLandingPageLocator().isDisplayed()); // Employee logged in; landing page displayed
 
 	}
 
-	@AfterTest()
+	@AfterClass()
 	public void TearDown() {
 		driver.close();
 		driver.quit();

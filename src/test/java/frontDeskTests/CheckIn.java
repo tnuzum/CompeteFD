@@ -7,6 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import pageObjects.CheckInPO;
 import pageObjects.LandingPagePO;
 import pageObjects.MemberSearchPO;
@@ -14,11 +15,20 @@ import resources.MyActions;
 import resources.base;
 
 public class CheckIn extends base {
+	
+	LandingPagePO la;
+	CheckInPO ci;
+	MemberSearchPO ms;
 
 	@BeforeClass
 	public void initialize() throws Throwable {
 
+		System.out.println("Class: "+getClass().getName());
 		driver = initializeDriver();
+		
+		la = new LandingPagePO();
+		ci = new CheckInPO();
+		ms = new MemberSearchPO();
 	}
 
 	@Test(priority = 1, enabled = true)
@@ -28,24 +38,17 @@ public class CheckIn extends base {
 		String password = prop.getProperty("activeEmployeePassword");
 
 		MyActions.loginEmployee(barcodeId, password);
-		
-		LandingPagePO la = new LandingPagePO(driver);
 
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("deckWorkspace1")));
 
-		String nativeWindowHandle = la.getLandingPageLocator().getAttribute("NativeWindowHandle");
-
-		la.getCheckInButton(nativeWindowHandle).click();
-
+		la.getCheckInButton().click();
 
 	}
 
 	@Test(priority = 2)
 	public void validatePageObjects() {
-		
-		CheckInPO ci = new CheckInPO(driver);
-		
+
 		Assert.assertTrue(ci.getCheckInModeLabel().isDisplayed());
 		Assert.assertEquals(ci.getCheckInModeLabel().getText(), "Check In | Attended");
 		Assert.assertTrue(ci.getMemberInputLabel().isDisplayed());
@@ -74,18 +77,19 @@ public class CheckIn extends base {
 	
 	@Test(priority = 3, enabled = true)
 	public void searchMember() throws Exception {
-
-		CheckInPO ci = new CheckInPO(driver);
 		
 		ci.getMemberInputField().sendKeys("Manny");
 		ci.getSearchButton().click();
-		MemberSearchPO ms = new MemberSearchPO(driver);
+		
+        WebDriverWait wait=new WebDriverWait(driver, 60);
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Member Quick Search")));
+
 		Assert.assertTrue(ms.getMemberSearchPageLocator().isDisplayed());
 		ms.getOKButton().click();
 	}
 	@Test(priority = 4)
 	public void clearMember() {
-		CheckInPO ci = new CheckInPO(driver);
+		
 		ci.getMemberInputField().sendKeys("Manny");
 		ci.getClearMemberButton().click();
 		Assert.assertNotEquals(ci.getMemberInputField().getText(), "Manny");

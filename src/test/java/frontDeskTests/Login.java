@@ -17,19 +17,22 @@ import resources.base;
 public class Login extends base {
 
 	static WindowsDriver driver;
-
+	static String barcodeId;
+	static String password;
+	public LoginPO l;
 	
 	@BeforeTest
 	public void initialize() throws Throwable {
 
+		System.out.println("Class: "+getClass().getName());
 		driver = initializeDriver();
-
+		l = new LoginPO();
+		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
+		password = prop.getProperty("activeEmployeePassword");
 	}
 
 	@Test(priority = 1, description = "Validate Page Objects")
 	public void ValidatePageObjects() {
-
-		LoginPO l = new LoginPO(driver);
 
 		Assert.assertEquals(l.getUserNameLabel().getText(), "User ID");
 		Assert.assertTrue(l.getUserNameInputField().isEnabled());
@@ -48,8 +51,6 @@ public class Login extends base {
 
 	@Test(priority = 2, description = "Validate Input Required Error Message")
 	public void ValidateInputRequiredErrorMessage() {
-
-		LoginPO l = new LoginPO(driver);
 
 		l.getLoginButton().click();
 
@@ -73,8 +74,6 @@ public class Login extends base {
 	@Test(priority = 3, description = "Validate Input Invalid Error Message")
 	public void ValidateInputInvalidErrorMessage() {
 
-		LoginPO l = new LoginPO(driver);
-
 		l.getUserNameInputField().sendKeys("99999");
 		l.getPasswordInputField().sendKeys("99999");
 		l.getLoginButton().click();
@@ -94,22 +93,18 @@ public class Login extends base {
 		}
 		l.getUserNameInputField().clear();
 		l.getPasswordInputField().clear();
-		// l.getCancelButton().click();
 
 	}
 
 	@Test(priority = 4, description = "Validate Successful Login")
 	public void validateSuccessfulLogin() {
 
-		String barcodeId = prop.getProperty("activeEmployeeBarcodeId");
-		String password = prop.getProperty("activeEmployeePassword");
-
 		MyActions.loginEmployee(barcodeId, password);
 
-		LandingPagePO la = new LandingPagePO(driver);
+			LandingPagePO la = new LandingPagePO();
 
-		WebDriverWait wait = new WebDriverWait(driver, 60);
-		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("deckWorkspace1")));
+			WebDriverWait wait = new WebDriverWait(driver, 60);
+			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("deckWorkspace1")));
 
 		Assert.assertTrue(la.getLandingPageLocator().isDisplayed()); // Employee logged in; landing page displayed
 
@@ -119,12 +114,7 @@ public class Login extends base {
 	@Test(priority = 5, description = "Validate Cancel Login")
 	public void validateCancelLogin() throws Throwable {
 
-		driver = initializeDriver();
-
-		LoginPO l = new LoginPO(driver);
-
-		String barcodeId = prop.getProperty("activeEmployeeBarcodeId");
-		String password = prop.getProperty("activeEmployeePassword");
+			driver = initializeDriver();
 
 		l.getUserNameInputField().sendKeys(barcodeId);
 		l.getPasswordInputField().sendKeys(password);

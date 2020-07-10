@@ -1,24 +1,25 @@
 package resources;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import io.appium.java_client.windows.WindowsDriver;
 import io.appium.java_client.windows.WindowsElement;
+import pageObjects.LandingPagePO;
 import pageObjects.LoginPO;
 
 public class MyActions extends base{
 	
 	public void setDriver(WindowsDriver driver) {
-			// TODO Auto-generated constructor stub
 		
 			base.driver = driver;
 		}
 	
 	public static String loginEmployee(String barcodeId, String password) {
 		
-    	LoginPO l = new LoginPO(driver);
+    	LoginPO l = new LoginPO();
     	l.getUserNameInputField().sendKeys(barcodeId);
     	l.getPasswordInputField().sendKeys(password);
     	l.getLoginButton().click(); 
@@ -40,12 +41,13 @@ public class MyActions extends base{
 		return natWinHandle;
 	}
 	
-	public static String focusOnLandingPage(String nativeWindowHandle) throws Exception {
+	public static String focusOnLandingPage() throws MalformedURLException{
 		
 		/* Use this in test class to get nativeWindowHandle:
 		   String nativeWindowHandle = la.getLandingPageLocator().getAttribute("NativeWindowHandle");
 		*/
-		System.out.println("MyActions: "+nativeWindowHandle);
+		LandingPagePO la = new LandingPagePO();
+		String nativeWindowHandle = la.getLandingPageLocator().getAttribute("NativeWindowHandle");
     	int natWinHandleInt = Integer.parseInt(nativeWindowHandle);
     	String natWinHandleStr = Integer.toHexString(natWinHandleInt);
     	String natWinHandle = "0x"+natWinHandleStr;
