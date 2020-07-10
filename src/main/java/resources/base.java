@@ -40,7 +40,7 @@ public class base {
         WebDriverWait wait=new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Employee Login")));
         
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		return driver;
 
 	}

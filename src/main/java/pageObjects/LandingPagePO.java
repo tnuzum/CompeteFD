@@ -3,14 +3,13 @@ package pageObjects;
 import org.openqa.selenium.WebElement;
 import io.appium.java_client.windows.WindowsDriver;
 import resources.MyActions;
+import resources.base;
 
-public class LandingPagePO {
-
-	WindowsDriver driver;
+public class LandingPagePO extends base {
 
 	// ** Constructor **
-	public LandingPagePO(WindowsDriver driver) {
-		this.driver = driver;
+	public void landPage(WindowsDriver driver) {
+		base.driver = driver;
 	}
 
 	// ** Objects **
@@ -18,34 +17,33 @@ public class LandingPagePO {
 		return driver.findElementByAccessibilityId("ShellForm");
 	}
 
-	public WebElement getCompeteInfoButton(String nativeWindowHandle) throws Exception {
-		MyActions.focusOnLandingPage(nativeWindowHandle);
+	public WebElement getCompeteInfoButton() throws Exception {
+		MyActions.focusOnLandingPage();
 		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][1]");
 	}
 
-	public WebElement getCheckInButton(String nativeWindowHandle) throws Exception {
-		MyActions.focusOnLandingPage(nativeWindowHandle);
+	public WebElement getCheckInButton() throws Exception {
+		MyActions.focusOnLandingPage();
 		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][2]");
 	}
 
-	public WebElement getPOSButton(String nativeWindowHandle) throws Exception {
-		System.out.println("LandingPagePO: "+nativeWindowHandle);
-		MyActions.focusOnLandingPage(nativeWindowHandle);
+	public WebElement getPOSButton() throws Exception {
+		MyActions.focusOnLandingPage();
 		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][3]");
 	}
 
-	public WebElement getAgreementsButton(String nativeWindowHandle) throws Exception {
-		MyActions.focusOnLandingPage(nativeWindowHandle);
+	public WebElement getAgreementsButton() throws Exception {
+		MyActions.focusOnLandingPage();
 		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][4]");
 	}
 
-	public WebElement getInfoTrackerButton(String nativeWindowHandle) throws Exception {
-		MyActions.focusOnLandingPage(nativeWindowHandle);
+	public WebElement getInfoTrackerButton() throws Exception {
+		MyActions.focusOnLandingPage();
 		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][5]");
 	}
 
-	public WebElement getMoreButton(String nativeWindowHandle) throws Exception {
-		MyActions.focusOnLandingPage(nativeWindowHandle);
+	public WebElement getMoreButton() throws Exception {
+		MyActions.focusOnLandingPage();
 		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][6]");
 	}
 

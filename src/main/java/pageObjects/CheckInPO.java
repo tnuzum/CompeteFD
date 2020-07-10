@@ -2,15 +2,14 @@ package pageObjects;
 
 import org.openqa.selenium.WebElement;
 import io.appium.java_client.windows.WindowsDriver;
+import resources.base;
 
-public class CheckInPO {
+public class CheckInPO extends base {
 
-	WindowsDriver driver;
 
 	// ** Constructor **
-	public CheckInPO(WindowsDriver driver) {
-		// TODO Auto-generated constructor stub
-		this.driver = driver;
+	public void checkIn(WindowsDriver driver) {
+		base.driver = driver;
 	}
 
 	// ** Objects **

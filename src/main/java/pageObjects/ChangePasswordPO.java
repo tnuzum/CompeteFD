@@ -3,20 +3,18 @@ package pageObjects;
 import org.openqa.selenium.WebElement;
 
 import io.appium.java_client.windows.WindowsDriver;
+import resources.base;
 
-public class ChangePasswordPO {
-
-	WindowsDriver driver;
+public class ChangePasswordPO extends base {
 
 	// ** Constructor **
-	public ChangePasswordPO(WindowsDriver driver) {
-		// TODO Auto-generated constructor stub
-		this.driver = driver;
+	public void changePassword(WindowsDriver driver) {
+		base.driver = driver;
 	}
 
 	// ** Objects **
 	public WebElement getChangePasswordPageLocator() {
-		return driver.findElementByAccessibilityId("ChangeEmployeePasswordView");
+		return driver.findElementByName("Change Employee Password");
 	}
 
 	public WebElement getNewPasswordlabel() {

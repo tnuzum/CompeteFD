@@ -3,15 +3,15 @@ package pageObjects;
 import org.openqa.selenium.WebElement;
 
 import io.appium.java_client.windows.WindowsDriver;
+import resources.base;
 
-public class LoginPO{
+public class LoginPO extends base{
 	
-	WindowsDriver driver;
 	
 		// ** Constructor **
-	public LoginPO(WindowsDriver driver) {
+	public void login(WindowsDriver driver) {
 		
-		this.driver = driver;
+		base.driver = driver;
 	}
 	
 		// ** Objects ** 

@@ -2,13 +2,13 @@ package pageObjects;
 
 import org.openqa.selenium.WebElement;
 import io.appium.java_client.windows.WindowsDriver;
+import resources.base;
 
-public class POSPO{
+public class POSPO extends base{
 	
-	WindowsDriver driver;
 		// ** Constructor **
-	public POSPO(WindowsDriver driver) {
-		this.driver = driver;
+	public void POS(WindowsDriver driver) {
+		base.driver = driver;
 	}
 	
 		// ** Objects ** 

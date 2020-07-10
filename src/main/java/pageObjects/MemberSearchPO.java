@@ -3,15 +3,13 @@ package pageObjects;
 import org.openqa.selenium.WebElement;
 
 import io.appium.java_client.windows.WindowsDriver;
+import resources.base;
 
-public class MemberSearchPO {
-
-	WindowsDriver driver;
+public class MemberSearchPO extends base{
 
 	// ** Constructor **
-	public MemberSearchPO(WindowsDriver driver) {
-		// TODO Auto-generated constructor stub
-		this.driver = driver;
+	public void memberSearch(WindowsDriver driver) {
+		base.driver = driver;
 	}
 
 	// ** Objects **
