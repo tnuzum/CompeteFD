@@ -1,8 +1,5 @@
 package frontDeskTests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -26,11 +23,11 @@ public class AboutCompete extends base {
 	@BeforeClass
 	public void initialize() throws Throwable {
 		
-		System.out.println("Class: "+getClass().getName());
+		System.out.println("Test Class: "+getClass().getName());
 		driver = initializeDriver();
 		
 		la = new LandingPagePO();
-		a = new AboutCompetePO(driver);
+		a = new AboutCompetePO();
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		password = prop.getProperty("activeEmployeePassword");
 	}
@@ -40,10 +37,7 @@ public class AboutCompete extends base {
 
 		MyActions.loginEmployee(barcodeId, password);
 
-			WebDriverWait wait = new WebDriverWait(driver, 60);
-			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("deckWorkspace1")));
-
-			nativeWindowHandle = la.getLandingPageLocator().getAttribute("NativeWindowHandle");
+		MyActions.myWait(30, "deckWorkspace1");
 
 		la.getCompeteInfoButton().click();
 
@@ -51,20 +45,10 @@ public class AboutCompete extends base {
 		a.getCloseButton().click();
 	}
 
-	@Test(priority = 2, enabled = false)
-	public void PrivacyPolicy() throws InterruptedException, Exception {
-
-			WebDriverWait wait = new WebDriverWait(driver, 60);
-			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("deckWorkspace1")));
-
-		driver.findElementByName("Privacy Policy").click();
-	}
-	
-	
 
 	@AfterClass
-	public void TearDown() throws Throwable {
-
+	public void TearDown(){
+		MyActions.focusByNativeWindowHandleIndex(0);
 		driver.close();
 		driver.quit();
 	}
