@@ -35,6 +35,7 @@ public class base {
 
 		DesiredCapabilities Appcapabilities = new DesiredCapabilities();
 		Appcapabilities.setCapability("app", "Root");
+		Appcapabilities.setCapability("ms:experimental-webdriver", true); //this is supposed to make XPath lookups faster
 		driver = new WindowsDriver<WindowsElement>(new URL("http://127.0.0.1:4723"), Appcapabilities);
 		
         WebDriverWait wait=new WebDriverWait(driver, 20);

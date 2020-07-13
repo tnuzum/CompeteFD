@@ -1,14 +1,10 @@
 package frontDeskTests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import io.appium.java_client.windows.WindowsDriver;
 import pageObjects.LandingPagePO;
 import pageObjects.LoginPO;
 import resources.MyActions;
@@ -16,15 +12,14 @@ import resources.base;
 
 public class Login extends base {
 
-	static WindowsDriver driver;
 	static String barcodeId;
 	static String password;
 	public LoginPO l;
-	
-	@BeforeTest
+
+	@BeforeClass
 	public void initialize() throws Throwable {
 
-		System.out.println("Class: "+getClass().getName());
+		System.out.println("Test Class: " + getClass().getName());
 		driver = initializeDriver();
 		l = new LoginPO();
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
@@ -96,25 +91,8 @@ public class Login extends base {
 
 	}
 
-	@Test(priority = 4, description = "Validate Successful Login")
-	public void validateSuccessfulLogin() {
-
-		MyActions.loginEmployee(barcodeId, password);
-
-			LandingPagePO la = new LandingPagePO();
-
-			WebDriverWait wait = new WebDriverWait(driver, 60);
-			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("deckWorkspace1")));
-
-		Assert.assertTrue(la.getLandingPageLocator().isDisplayed()); // Employee logged in; landing page displayed
-
-		driver.findElementByName("Close").click();
-	}
-
-	@Test(priority = 5, description = "Validate Cancel Login")
-	public void validateCancelLogin() throws Throwable {
-
-			driver = initializeDriver();
+	@Test(priority = 4, description = "Validate Cancel Login", enabled = true)
+	public void validateCancelLogin() {
 
 		l.getUserNameInputField().sendKeys(barcodeId);
 		l.getPasswordInputField().sendKeys(password);
@@ -127,12 +105,25 @@ public class Login extends base {
 		}
 	}
 
-	
-	@AfterTest()
-	public void TearDown() {
+	@Test(priority = 5, description = "Validate Successful Login")
+	public void validateSuccessfulLogin() throws Throwable {
 		
-//		** driver.close() not needed if last test is validateCancelLogin because that test closes that window
-		
+		driver = initializeDriver();
+
+		MyActions.loginEmployee(barcodeId, password);
+
+		LandingPagePO la = new LandingPagePO();
+
+		MyActions.myWait(30, "deckWorkspace1");
+
+		Assert.assertTrue(la.getLandingPageLocator().isDisplayed()); // Employee logged in; landing page displayed
+	}
+
+	@AfterClass()
+	public void TearDown() throws Exception {
+
+		MyActions.focusOnLandingPage();
+		driver.close();
 		driver.quit();
 	}
 

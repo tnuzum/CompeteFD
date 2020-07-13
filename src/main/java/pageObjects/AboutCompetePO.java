@@ -2,13 +2,13 @@ package pageObjects;
 
 import org.openqa.selenium.WebElement;
 import io.appium.java_client.windows.WindowsDriver;
+import resources.base;
 
-public class AboutCompetePO{
+public class AboutCompetePO extends base{
 	
-	WindowsDriver driver;
 		// ** Constructor **
-	public AboutCompetePO(WindowsDriver driver) {
-		this.driver = driver;
+	public void aboutCompete(WindowsDriver driver) {
+		base.driver = driver;
 	}
 	
 		// ** Objects ** 

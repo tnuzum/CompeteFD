@@ -5,33 +5,33 @@
 	<!-- ** Tests are split into separate test blocks to avoid multiple tests 
 		running at the same time -->
 
-	<test thread-count="1" name="Test1">
+	<test thread-count="1" name="About Compete">
 		<classes>
 			<class name="frontDeskTests.AboutCompete" />
 
 		</classes>
 	</test>
-	<test thread-count="1" name="Test2">
+	<test thread-count="1" name="Change Password">
 		<classes>
 			<class name="frontDeskTests.ChangePassword" />
 		</classes>
 	</test>
 
-	<test thread-count="1" name="Test3">
+	<test thread-count="1" name="CheckIn">
 		<classes>
 			<class name="frontDeskTests.CheckIn" />
 		</classes>
 	</test>
 
-	<test thread-count="1" name="Test4">
+	<test thread-count="1" name="Login">
 		<classes>
 			<class name="frontDeskTests.Login" />
 		</classes>
 	</test>
 
-	<test thread-count="1" name="Test5">
+	<test thread-count="1" name="Point Of Sale">
 		<classes>
-			<class name="frontDeskTests.POS" />
+			<class name="frontDeskTests.PointOfSale" />
 		</classes>
 	</test>
 </suite>
