@@ -11,6 +11,14 @@
 
 		</classes>
 	</test>
+
+	<test thread-count="1" name="Agreements">
+		<classes>
+			<class name="frontDeskTests.Agreements" />
+
+		</classes>
+	</test>
+
 	<test thread-count="1" name="Change Password">
 		<classes>
 			<class name="frontDeskTests.ChangePassword" />
