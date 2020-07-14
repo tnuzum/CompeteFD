@@ -272,83 +272,94 @@ public class PointOfSalePO extends base {
 	public WebElement getCancelButton() {
 		return driver.findElementByAccessibilityId("pbCancel");
 	}
-	
-	public WebElement getPayAmtPageLocator() {
-		return driver.findElementByName("Enter Payment Amount");
-		//return driver.findElementByAccessibilityId("CashPaymentView");
+
+	public WebElement getMemberNameLabel() {
+		return driver.findElementByAccessibilityId("lblMemberName");
 	}
 	
-	public WebElement getPayAmt1Button() {
-		return driver.findElementByAccessibilityId("pb1");
+	public WebElement getMemberNameValue() {
+		return driver.findElementByAccessibilityId("lblName");
 	}
 	
-	public WebElement getPayAmt2Button() {
-		return driver.findElementByAccessibilityId("pb2");
+	public WebElement getMemberIDLabel() {
+		return driver.findElementByAccessibilityId("lblMemberID");
 	}
 	
-	public WebElement getPayAmt3Button() {
-		return driver.findElementByAccessibilityId("pb3");
+	public WebElement getMemberIDValue() {
+		return driver.findElementByAccessibilityId("lblMemberBarcode");
 	}
 	
-	public WebElement getPayAmt4Button() {
-		return driver.findElementByAccessibilityId("pb4");
+	public WebElement getMembershipTypeLabel() {
+		return driver.findElementByAccessibilityId("MemberShipTypelbl");
 	}
 	
-	public WebElement getPayAmt5Button() {
-		return driver.findElementByAccessibilityId("pb5");
+	public WebElement getMembershipTypeValue() {
+		return driver.findElementByAccessibilityId("lblMembershipType");
 	}
 	
-	public WebElement getPayAmt6Button() {
-		return driver.findElementByAccessibilityId("pb6");
+	public WebElement getMemberStatusLabel() {
+		return driver.findElementByAccessibilityId("lblStatus");
 	}
 	
-	public WebElement getPayAmt7Button() {
-		return driver.findElementByAccessibilityId("pb7");
+	public WebElement getMemberStatusValue() {
+		return driver.findElementByAccessibilityId("lblMemberStatus");
 	}
 	
-	public WebElement getPayAmt8Button() {
-		return driver.findElementByAccessibilityId("pb8");
+	public WebElement getMemberCurrentBalanceLabel() {
+		return driver.findElementByAccessibilityId("lblAccountBal");
 	}
 	
-	public WebElement getPayAmt9Button() {
-		return driver.findElementByAccessibilityId("pb9");
+	public WebElement getMemberCurrentBalanceValue() {
+		return driver.findElementByAccessibilityId("lblBalanceDue");
 	}
 	
-	public WebElement getPayAmt0Button() {
-		return driver.findElementByAccessibilityId("pb0");
+	public WebElement getMemberAddressLabel() {
+		return driver.findElementByAccessibilityId("lblAddresses");
 	}
 	
-	public WebElement getPayAmtDecimalButton() {
-		return driver.findElementByAccessibilityId("pbdp");
+	public WebElement getMemberAddressValue() {
+		return driver.findElementByAccessibilityId("lblAddress");
 	}
 	
-	public WebElement getPayAmt1DollarButton() {
-		return driver.findElementByAccessibilityId("pb1d");
+	public WebElement getMemberCityStateLabel() {
+		return driver.findElementByAccessibilityId("lblCityState");
 	}
 	
-	public WebElement getPayAmt5DollarsButton() {
-		return driver.findElementByAccessibilityId("pb5d");
+	public WebElement getMemberCityStateValue() {
+		return driver.findElementByAccessibilityId("lblMemberCityState");
 	}
 	
-	public WebElement getPayAmt10DollarsButton() {
-		return driver.findElementByAccessibilityId("pb10d");
+	public WebElement getMemberZipCodeLabel() {
+		return driver.findElementByAccessibilityId("lblZip");
 	}
 	
-	public WebElement getPayAmt20DollarsButton() {
-		return driver.findElementByAccessibilityId("pb20d");
+	public WebElement getMemberZipCodeValue() {
+		return driver.findElementByAccessibilityId("lblMemberZip");
 	}
 	
-	public WebElement getBackspace() {
-		return driver.findElementByAccessibilityId("pbBackspace");
+	public WebElement getMemberHomePhoneLabel() {
+		return driver.findElementByAccessibilityId("lblHomePhone");
 	}
 	
-	public WebElement getClear() {
-		return driver.findElementByAccessibilityId("pbClear");
+	public WebElement getMemberHomePhoneValue() {
+		return driver.findElementByAccessibilityId("lblPhone");
 	}
 	
-	public WebElement getChangeDueLabel() {
-		return driver.findElementByAccessibilityId("lblChangeDue");
-	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

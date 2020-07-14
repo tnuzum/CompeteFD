@@ -66,6 +66,7 @@ public class MyActions extends base {
 		DesiredCapabilities appCapabilities = new DesiredCapabilities();
 		appCapabilities.setCapability("appTopLevelWindow", natWinHandle);
 		driver = new WindowsDriver<WindowsElement>(new URL("http://127.0.0.1:4723"), appCapabilities);
+		//System.out.println("Native Window Handle: "+natWinHandle);
 		return null;
 	}
 

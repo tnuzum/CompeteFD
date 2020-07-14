@@ -18,6 +18,7 @@ public class CheckIn extends base {
 	MemberSearchPO ms;
 	String barcodeId;
 	String password;
+	String searchString;
 
 	@BeforeClass
 	public void initialize() throws Throwable {
@@ -27,6 +28,7 @@ public class CheckIn extends base {
 		
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		password = prop.getProperty("activeEmployeePassword");
+		searchString = "Manny";
 
 		la = new LandingPagePO();
 		ci = new CheckInPO();
@@ -70,7 +72,7 @@ public class CheckIn extends base {
 	@Test(priority = 3, enabled = true)
 	public void searchMember() {
 
-		ci.getMemberInputField().sendKeys("Manny");
+		ci.getMemberInputField().sendKeys(searchString);
 		ci.getSearchButton().click();
 
 		MyActions.myWait(30, "Member Quick Search");
