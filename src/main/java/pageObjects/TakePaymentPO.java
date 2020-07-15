@@ -23,6 +23,7 @@ public class TakePaymentPO extends base {
 	
 	public WebElement getAmountInput() {
 		return driver.findElementByAccessibilityId("txtAmount");
+		//return driver.findElementByName("Text Area");
 	}
 	
 	public WebElement getReferenceLabel() {

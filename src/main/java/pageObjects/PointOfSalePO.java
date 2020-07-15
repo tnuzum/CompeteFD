@@ -12,7 +12,7 @@ public class PointOfSalePO extends base {
 	}
 
 	// ** Objects **
-	public WebElement getAboutPageLocator() {
+	public WebElement getPOSPageLocator() {
 		//return driver.findElementByAccessibilityId("PointOfSaleMainView");
 		return driver.findElementByName("Point Of Sale");
 	}
@@ -74,7 +74,7 @@ public class PointOfSalePO extends base {
 	}
 
 	public WebElement getCategoriesLabel() {
-		return driver.findElementByAccessibilityId("lblCategories");
+		return driver.findElementByAccessibilityId("lbCategories");
 	}
 
 	public WebElement getCategoryChoice1() {
