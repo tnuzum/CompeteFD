@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import pageObjects.AgreementSearchPO;
 import pageObjects.AgreementsPO;
@@ -12,6 +13,8 @@ import resources.MyActions;
 import resources.base;
 
 public class Agreements extends base {
+	
+	public static SoftAssert softAssertion= new SoftAssert();
 
 	LandingPagePO la;
 	AgreementsPO a;
@@ -43,6 +46,8 @@ public class Agreements extends base {
 		MyActions.myWait(30, "deckWorkspace1");
 
 		la.getAgreementsButton().click();
+		
+		Assert.assertEquals(a.getAgreementsPageHeaderLabel().getText(), "Agreements");
 
 	}
 
@@ -52,16 +57,16 @@ public class Agreements extends base {
 		// Button text is not available for these buttons, so it is not possible to
 		// assert that the text is correct
 
-		Assert.assertEquals(a.getAgreementsPageHeaderLabel().getText(), "Agreements");
-		Assert.assertTrue(a.getSearchAgreementsButton().isEnabled());
-		Assert.assertTrue(a.getNewAgreementButton().isEnabled());
-		Assert.assertTrue(a.getModifyAgreementButton().isEnabled());
-		Assert.assertTrue(a.getRewriteAgreementButton().isEnabled());
-		Assert.assertTrue(a.getRenewAgreementButton().isEnabled());
-		Assert.assertTrue(a.getAddGuestButton().isEnabled());
-		Assert.assertEquals(a.getSellClubLabel().getText(), "Sell Club");
-		Assert.assertTrue(a.getSellClubComboBox().isEnabled());
-
+		softAssertion.assertEquals(a.getAgreementsPageHeaderLabel().getText(), "Agreements");
+		softAssertion.assertTrue(a.getSearchAgreementsButton().isEnabled());
+		softAssertion.assertTrue(a.getNewAgreementButton().isEnabled());
+		softAssertion.assertTrue(a.getModifyAgreementButton().isEnabled());
+		softAssertion.assertTrue(a.getRewriteAgreementButton().isEnabled());
+		softAssertion.assertTrue(a.getRenewAgreementButton().isEnabled());
+		softAssertion.assertTrue(a.getAddGuestButton().isEnabled());
+		softAssertion.assertEquals(a.getSellClubLabel().getText(), "Sell Club");
+		softAssertion.assertTrue(a.getSellClubComboBox().isEnabled());
+		softAssertion.assertAll();
 	}
 	
 	@Test(priority = 3)

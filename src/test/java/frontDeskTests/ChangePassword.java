@@ -10,6 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import io.appium.java_client.windows.WindowsDriver;
 import io.appium.java_client.windows.WindowsElement;
@@ -20,6 +21,8 @@ import resources.MyActions;
 import resources.base;
 
 public class ChangePassword extends base {
+	
+	public static SoftAssert softAssertion= new SoftAssert();
 
 	ChangePasswordPO cp;
 	LandingPagePO lp;
@@ -47,20 +50,21 @@ public class ChangePassword extends base {
 
 	}
 
-	@Test(priority = 1, description = "Validate Page Objects")
+	@Test(priority = 1)
 	public void ValidatePageObjects() throws Exception{
 		
 		
         WebDriverWait wait=new WebDriverWait(driver, 60);
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Change Employee Password")));
 
-		Assert.assertEquals(cp.getNewPasswordlabel().getText(), "Please enter the new password value");
-		Assert.assertTrue(cp.getNewPasswordInputField().isEnabled());
-		Assert.assertEquals(cp.getConfirmPasswordlabel().getText(), "Please enter the password again for confirmation");
-		Assert.assertTrue(cp.getNewPasswordInputField().isEnabled());
-		Assert.assertTrue(cp.getHelpButton().isEnabled());
-		Assert.assertTrue(cp.getOKButton().isEnabled());
-		Assert.assertTrue(cp.getCancelButton().isEnabled());
+		softAssertion.assertEquals(cp.getNewPasswordlabel().getText(), "Please enter the new password value");
+		softAssertion.assertTrue(cp.getNewPasswordInputField().isEnabled());
+		softAssertion.assertEquals(cp.getConfirmPasswordlabel().getText(), "Please enter the password again for confirmation");
+		softAssertion.assertTrue(cp.getNewPasswordInputField().isEnabled());
+		softAssertion.assertTrue(cp.getHelpButton().isEnabled());
+		softAssertion.assertTrue(cp.getOKButton().isEnabled());
+		softAssertion.assertTrue(cp.getCancelButton().isEnabled());
+		softAssertion.assertAll();
 		
 		cp.getCancelButton().click();
 
@@ -76,7 +80,7 @@ public class ChangePassword extends base {
 		Assert.assertTrue(lp.getLandingPageLocator().isDisplayed()); // Employee logged in; landing page displayed
 	}
 
-	@Test(priority = 2, description = "Change Password", enabled = false)
+	@Test(priority = 2, enabled = false)
 	// disabled because employee cannot use same password as previous 5 or any used
 	// in last 6 months
 	public void changePassword() {

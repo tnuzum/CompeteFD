@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import pageObjects.LandingPagePO;
 import pageObjects.LoginPO;
@@ -11,6 +12,8 @@ import resources.MyActions;
 import resources.base;
 
 public class Login extends base {
+	
+	public static SoftAssert softAssertion= new SoftAssert();
 
 	static String barcodeId;
 	static String password;
@@ -26,25 +29,22 @@ public class Login extends base {
 		password = prop.getProperty("activeEmployeePassword");
 	}
 
-	@Test(priority = 1, description = "Validate Page Objects")
+	@Test(priority = 1)
 	public void ValidatePageObjects() {
 
-		Assert.assertEquals(l.getUserNameLabel().getText(), "User ID");
-		Assert.assertTrue(l.getUserNameInputField().isEnabled());
-
-		Assert.assertEquals(l.getPasswordLabel().getText(), "Password");
-		Assert.assertTrue(l.getPasswordInputField().isEnabled());
-
-		Assert.assertTrue(l.getPromptCheckbox().isEnabled());
-		Assert.assertTrue(!l.getPromptCheckbox().isSelected());
-		Assert.assertEquals(l.getPromptLabel().getText(), "Prompt for password change");
-
-		Assert.assertTrue(l.getLoginButton().isEnabled());
-		Assert.assertTrue(l.getCancelButton().isEnabled());
-
+		softAssertion.assertEquals(l.getUserNameLabel().getText(), "User ID");
+		softAssertion.assertTrue(l.getUserNameInputField().isEnabled());
+		softAssertion.assertEquals(l.getPasswordLabel().getText(), "Password");
+		softAssertion.assertTrue(l.getPasswordInputField().isEnabled());
+		softAssertion.assertTrue(l.getPromptCheckbox().isEnabled());
+		softAssertion.assertTrue(!l.getPromptCheckbox().isSelected());
+		softAssertion.assertEquals(l.getPromptLabel().getText(), "Prompt for password change");
+		softAssertion.assertTrue(l.getLoginButton().isEnabled());
+		softAssertion.assertTrue(l.getCancelButton().isEnabled());
+		softAssertion.assertAll();
 	}
 
-	@Test(priority = 2, description = "Validate Input Required Error Message")
+	@Test(priority = 2)
 	public void ValidateInputRequiredErrorMessage() {
 
 		l.getLoginButton().click();
@@ -66,7 +66,7 @@ public class Login extends base {
 
 	}
 
-	@Test(priority = 3, description = "Validate Input Invalid Error Message")
+	@Test(priority = 3)
 	public void ValidateInputInvalidErrorMessage() {
 
 		l.getUserNameInputField().sendKeys("99999");
@@ -91,7 +91,7 @@ public class Login extends base {
 
 	}
 
-	@Test(priority = 4, description = "Validate Cancel Login", enabled = true)
+	@Test(priority = 4)
 	public void validateCancelLogin() {
 
 		l.getUserNameInputField().sendKeys(barcodeId);
@@ -105,7 +105,7 @@ public class Login extends base {
 		}
 	}
 
-	@Test(priority = 5, description = "Validate Successful Login")
+	@Test(priority = 5)
 	public void validateSuccessfulLogin() throws Throwable {
 		
 		driver = initializeDriver();
