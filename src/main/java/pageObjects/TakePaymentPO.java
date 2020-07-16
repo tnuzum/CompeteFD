@@ -17,6 +17,10 @@ public class TakePaymentPO extends base {
 		return driver.findElementByName("GetPaymentsDetailView");
 	}
 	
+	public WebElement getPaymentSectionLabel() {
+		return driver.findElementByName("Payment");
+	}
+	
 	public WebElement getAmountLabel() {
 		return driver.findElementByAccessibilityId("lblAmount");
 	}

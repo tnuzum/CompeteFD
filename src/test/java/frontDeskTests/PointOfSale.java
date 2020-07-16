@@ -1,8 +1,5 @@
 package frontDeskTests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -59,7 +56,7 @@ public class PointOfSale extends base {
 
 		la.getPOSButton().click();
 		
-		Assert.assertEquals(p.getPOSPageLabel().getText(), "Point Of Sale");
+		Assert.assertTrue(p.getPOSPageLabel().isDisplayed());
 
 	}
 	
@@ -159,12 +156,8 @@ public class PointOfSale extends base {
 		ms.getOKButton().click();
 
 		p.getTakePaymentButton().click();
-		
-			Thread.sleep(10000);
-			// Work in progress...
-//			WebDriverWait wait = new WebDriverWait(driver, 20);
-//			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy((By) driver.findElementByAccessibilityId("lblAmount")));
-			
+
+			MyActions.myWait(30, "Payment");
 
 		tp.getAmountInput().sendKeys("0.01");
 
