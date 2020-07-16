@@ -30,7 +30,7 @@ public class base {
 		WindowsDriver Session = new WindowsDriver(new URL("http://127.0.0.1:4723"), capabilities);
 
 		Assert.assertNotNull(Session);
-		Session.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Session.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
 
 		DesiredCapabilities Appcapabilities = new DesiredCapabilities();
 		Appcapabilities.setCapability("app", "Root");
@@ -39,7 +39,7 @@ public class base {
         WebDriverWait wait=new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Employee Login")));
         
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		return driver;
 
 	}

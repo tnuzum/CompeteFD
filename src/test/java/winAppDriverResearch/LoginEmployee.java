@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -44,14 +45,14 @@ public class LoginEmployee extends base {
 //        System.out.println(driver.findElementByXPath("(//button)[1]").getText());
     }
     
-   /*
+   
     @AfterClass
     public static void TearDown() throws Throwable
     {
-    	Thread.sleep(20000);
+    	Thread.sleep(2000);
     	driver.quit();
 
     }
-    */
+    
 }
 
