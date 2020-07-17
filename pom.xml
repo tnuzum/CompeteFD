@@ -7,7 +7,7 @@
 	<artifactId>WinAppDriverJava</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	
+
 	<name>WinAppDriverJava</name>
 	<!-- url>http://maven.apache.org</url -->
 	<url>https://repo.maven.apache.org/maven2</url>
@@ -15,9 +15,9 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
+
 	<build>
-			<resources>
+		<resources>
 			<resource>
 				<directory>src/main/java/resources</directory>
 				<filtering>true</filtering>
@@ -43,7 +43,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		
+
 	</build>
 
 	<dependencies>
