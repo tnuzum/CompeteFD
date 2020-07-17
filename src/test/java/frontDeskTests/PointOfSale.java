@@ -170,7 +170,7 @@ public class PointOfSale extends base {
 	}
 
 	@AfterClass
-	public void TearDown() {
+	public void tearDown() {
 			MyActions.focusByNativeWindowHandleIndex(0);
 		driver.close();
 		driver.quit();

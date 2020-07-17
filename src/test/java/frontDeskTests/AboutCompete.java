@@ -45,7 +45,6 @@ public class AboutCompete extends base {
 		a.getCloseButton().click();
 	}
 
-
 	@AfterClass
 	public void TearDown(){
 		MyActions.focusByNativeWindowHandleIndex(0);

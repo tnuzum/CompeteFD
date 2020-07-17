@@ -87,7 +87,6 @@ public class CheckIn extends base {
 		ms.getOKButton().click();
 	}
 
-
 	@Test(priority = 4)
 	public void clearMember() {
 

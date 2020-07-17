@@ -30,7 +30,7 @@ public class Login extends base {
 	}
 
 	@Test(priority = 1)
-	public void ValidatePageObjects() {
+	public void validatePageObjects() {
 
 		softAssertion.assertEquals(l.getUserNameLabel().getText(), "User ID");
 		softAssertion.assertTrue(l.getUserNameInputField().isEnabled());
@@ -45,7 +45,7 @@ public class Login extends base {
 	}
 
 	@Test(priority = 2)
-	public void ValidateInputRequiredErrorMessage() {
+	public void validateInputRequiredErrorMessage() {
 
 		l.getLoginButton().click();
 
@@ -67,7 +67,7 @@ public class Login extends base {
 	}
 
 	@Test(priority = 3)
-	public void ValidateInputInvalidErrorMessage() {
+	public void validateInputInvalidErrorMessage() {
 
 		l.getUserNameInputField().sendKeys("99999");
 		l.getPasswordInputField().sendKeys("99999");
@@ -120,7 +120,7 @@ public class Login extends base {
 	}
 
 	@AfterClass()
-	public void TearDown() throws Exception {
+	public void tearDown() throws Exception {
 
 		MyActions.focusOnLandingPage();
 		driver.close();
