@@ -23,7 +23,7 @@ public class BookingsPO extends base{
 	}
 	
 	public WebElement getMemberInputLabel() {
-		return driver.findElementByAccessibilityId("lblSearchValue");
+		return driver.findElementByAccessibilityId("lblSeachValue");
 	}
 
 	public WebElement getMemberInputField() {
@@ -115,6 +115,10 @@ public class BookingsPO extends base{
 		return driver.findElementByAccessibilityId("pbBookView");
 	}
 	
+	public WebElement getBreadCrum() {
+		// label at top of large calendar
+		return driver.findElementByAccessibilityId("lblBreadCrum");
+	}
 	
 	
 	

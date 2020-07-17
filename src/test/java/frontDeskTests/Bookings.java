@@ -1,25 +1,13 @@
 package frontDeskTests;
 
-import java.net.URL;
-
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import io.appium.java_client.windows.WindowsDriver;
-import io.appium.java_client.windows.WindowsElement;
 import pageObjects.BookingsPO;
-import pageObjects.CheckInPO;
 import pageObjects.LandingPagePO;
-import pageObjects.MemberSearchPO;
-import pageObjects.PaymentAmountPO;
-import pageObjects.PointOfSalePO;
-import pageObjects.TakePaymentPO;
 import resources.MyActions;
 import resources.base;
 
@@ -60,20 +48,32 @@ public class Bookings extends base {
 
 	}
 	
-	@Test(priority = 2, enabled = false)
+	@Test(priority = 2, enabled = true)
 	public void validatePageObjects(){
 
-		softAssertion.assertEquals(b.getBookingsPageLabel().getText(), "Bookings: Service View");
-		softAssertion.assertTrue(b.getClearButton().isEnabled());
-		softAssertion.assertEquals(b.getMemberInputLabel(), "Member ID/ Last Name");
-		softAssertion.assertTrue(b.getMemberInputField().isEnabled());
-		softAssertion.assertTrue(b.getBrowseButton().isEnabled());
-
+		softAssertion.assertEquals(b.getBookingsPageLabel().getText(), "Bookings : Service View");
+		softAssertion.assertTrue(!b.getClearButton().isEnabled(),"Clear Button is Enabled"); // not enabled because a member has not yet been selected
+		softAssertion.assertEquals(b.getMemberInputLabel().getText(), "Member ID/ Last Name");
+		softAssertion.assertTrue(b.getMemberInputField().isEnabled(), "Member Input Field is Enabled");
+		softAssertion.assertTrue(b.getBrowseButton().isEnabled(), "Browse Button is Enabled");
+		softAssertion.assertEquals(b.getClubLabel().getText(), "Club");
+		softAssertion.assertTrue(b.getClubCombobox().isEnabled(), "Club Combobox is Enabled");
+		softAssertion.assertEquals(b.getServiceCategoryLabel().getText(), "Service Category");
+		softAssertion.assertTrue(b.getServiceCategoryCombobox().isEnabled(), "Service Category Combobox is Enabled");
+		softAssertion.assertEquals(b.getServiceLabel().getText(), "Service");
+		softAssertion.assertTrue(b.getServiceCombobox().isEnabled(), "Service Combobox is Enabled");
+		softAssertion.assertEquals(b.getResourcesLabel().getText(), "Resources");
+		softAssertion.assertEquals(b.getResourceTypeHeader().getText(), "Resource Type");
+		softAssertion.assertEquals(b.getBookHeader().getText(), "Book");
+		softAssertion.assertTrue(b.getCalendarView().isDisplayed(), "Calendar is Displayed");
+		softAssertion.assertTrue(!b.getShowCalendarButton().isEnabled(), "Show Calendar Button is Enabled");// not enabled because resources have not yet been selected
+		softAssertion.assertTrue(b.getBookViewButton().isEnabled(), "Bookview Button is Enabled");
+		softAssertion.assertTrue(b.getSearchAppointmentsButton().isEnabled(), "Search Appointment Button is Enabled");
 		softAssertion.assertAll();
 		
 	}
 	
-	@Test(priority = 3, enabled = false)
+	@Test(priority = 3, enabled = true)
 	public void showCalendar() throws Exception{
 
 		
@@ -92,25 +92,28 @@ public class Bookings extends base {
 		b.getResourceTypeValue(0);
 		
 		b.getShowCalendarButton().click();
-		// ** In progress
+		
+		Assert.assertTrue(b.getBreadCrum().isDisplayed());
+		
+		// ** In progress - click on small calendar
 		//driver.findElementByXPath("//DataItem[contains(@Name,'17,')]").click();
 		//driver.findElementByName("Thursday, July 16, 2020").click(); this works but not sustainable
 		//b.getCalendarDateButton(0).click();
 		
 	}
 	
-	@Test(priority = 4, enabled = false)
+	@Test(priority = 4, enabled = true)
 	public void bookView() throws Exception{
 		
+		b.getBookViewButton().click();
 		
-		
-		Assert.assertEquals(b.getBookingsPageLabel().getText(), "Bookings: Book View");	
+		Assert.assertEquals(b.getBookingsPageLabel().getText(), "Bookings : Book View");	
 	}
 	
 
 
-	@AfterClass (enabled = false)
-	public void TearDown() {
+	@AfterClass (enabled = true)
+	public void tearDown() {
 			MyActions.focusByNativeWindowHandleIndex(0);
 		driver.close();
 		driver.quit();
