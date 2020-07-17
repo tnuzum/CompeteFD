@@ -57,6 +57,25 @@ public class Bookings extends base {
 		la.getMoreButton2().click();
 		
 		Assert.assertTrue(b.getBookingsPageLabel().isDisplayed());
+
+	}
+	
+	@Test(priority = 2, enabled = false)
+	public void validatePageObjects(){
+
+		softAssertion.assertEquals(b.getBookingsPageLabel().getText(), "Bookings: Service View");
+		softAssertion.assertTrue(b.getClearButton().isEnabled());
+		softAssertion.assertEquals(b.getMemberInputLabel(), "Member ID/ Last Name");
+		softAssertion.assertTrue(b.getMemberInputField().isEnabled());
+		softAssertion.assertTrue(b.getBrowseButton().isEnabled());
+
+		softAssertion.assertAll();
+		
+	}
+	
+	@Test(priority = 3, enabled = false)
+	public void showCalendar() throws Exception{
+
 		
 		b.getClubCombobox().click();
 		
@@ -72,35 +91,22 @@ public class Bookings extends base {
 		
 		b.getResourceTypeValue(0);
 		
-//		Actions a = new Actions(driver);
-//		a.sendKeys(Keys.TAB)
-//		.sendKeys(Keys.TAB)
-//		.sendKeys(Keys.TAB)
-//		.sendKeys(Keys.ARROW_RIGHT)
-//		.build()
-//		.perform();
-		driver.findElementByXPath("//DataItem[contains(@Name,'17,')]").click();
+		b.getShowCalendarButton().click();
+		// ** In progress
+		//driver.findElementByXPath("//DataItem[contains(@Name,'17,')]").click();
+		//driver.findElementByName("Thursday, July 16, 2020").click(); this works but not sustainable
+		//b.getCalendarDateButton(0).click();
 		
-		//driver.findElementByName("Thursday, July 16, 2020").click();
-
-//		String nativeWindowHandle = b.getCalendarView().getAttribute("NativeWindowHandle");
-//		int natWinHandleInt = Integer.parseInt(nativeWindowHandle);
-//		String natWinHandleStr = Integer.toHexString(natWinHandleInt);
-//		String natWinHandle = "0x" + natWinHandleStr;
-//		DesiredCapabilities appCapabilities = new DesiredCapabilities();
-//		appCapabilities.setCapability("appTopLevelWindow", natWinHandle);
-//		driver = new WindowsDriver<WindowsElement>(new URL("http://127.0.0.1:4723"), appCapabilities);
-//		b.getCalendarDateButton(0).click();
 	}
 	
-	@Test(priority = 2, enabled = false)
-	public void validatePageObjects(){
-
-		softAssertion.assertEquals(b.getBookingsPageLabel().getText(), "Bookings");
-
-		softAssertion.assertAll();
+	@Test(priority = 4, enabled = false)
+	public void bookView() throws Exception{
 		
+		
+		
+		Assert.assertEquals(b.getBookingsPageLabel().getText(), "Bookings: Book View");	
 	}
+	
 
 
 	@AfterClass (enabled = false)

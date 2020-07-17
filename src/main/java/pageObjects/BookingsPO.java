@@ -30,7 +30,7 @@ public class BookingsPO extends base{
 		return driver.findElementByAccessibilityId("txtSearchValue");
 	}
 
-	public WebElement getSearchButton() {
+	public WebElement getBrowseButton() {
 		return driver.findElementByAccessibilityId("pnlBrowse");
 	}
 
