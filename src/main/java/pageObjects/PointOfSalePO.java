@@ -77,8 +77,8 @@ public class PointOfSalePO extends base {
 		return driver.findElementByAccessibilityId("lbCategories");
 	}
 
-	public WebElement getCategoryChoice1() {
-		return driver.findElementByAccessibilityId("pbCategoryChoice1");
+	public WebElement getCategoryChoice(int index) {
+		return driver.findElementByAccessibilityId("pbCategoryChoice"+index);
 	}
 
 	public WebElement getCategoryChoice2() {
@@ -133,8 +133,8 @@ public class PointOfSalePO extends base {
 		return driver.findElementByAccessibilityId("lblPointOfSalePayment");
 	}
 
-	public WebElement getPosChoice1() {
-		return driver.findElementByAccessibilityId("pbPosChoice1");
+	public WebElement getPosChoice(int index) {
+		return driver.findElementByAccessibilityId("pbPosChoice"+index);
 	}
 
 	public WebElement getPosChoice2() {

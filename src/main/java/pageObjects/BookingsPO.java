@@ -42,7 +42,7 @@ public class BookingsPO extends base{
 		return driver.findElementByAccessibilityId("cmbClub");
 	}
 	
-	public WebElement getListItem(int index) throws Exception {
+	public WebElement getListItem(int index){
 		// *** This method is used to locate items in the 
 		// Club, Service Category and Service drop down lists. ***
 		return driver.findElementByXPath("//ListItem[@LocalizedControlType='list item']["+index+"]");
