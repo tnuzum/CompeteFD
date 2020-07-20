@@ -61,7 +61,7 @@ public class PointOfSale extends base {
 	}
 	
 	@Test(priority = 2, enabled = true)
-	public void validatePageObjects() throws Exception{
+	public void validatePageObjects(){
 
 		softAssertion.assertEquals(p.getPOSPageLabel().getText(), "Point Of Sale");
 		softAssertion.assertEquals(p.getMemberInputLabel().getText(), "Member ID / Last Name");
@@ -80,7 +80,7 @@ public class PointOfSale extends base {
 		softAssertion.assertEquals(p.getCategoriesLabel().getText(), "Categories");
 		softAssertion.assertTrue(p.getCategoryPreviousButton().isEnabled());
 		softAssertion.assertTrue(p.getCategoryNextButton().isEnabled());
-		softAssertion.assertTrue(p.getCategoryChoice1().isEnabled());
+		softAssertion.assertTrue(p.getCategoryChoice(1).isEnabled());
 		softAssertion.assertTrue(p.getCategoryChoice2().isEnabled());
 		softAssertion.assertTrue(p.getCategoryChoice3().isEnabled());
 		softAssertion.assertTrue(p.getCategoryChoice4().isEnabled());
@@ -92,7 +92,7 @@ public class PointOfSale extends base {
 		softAssertion.assertTrue(p.getCategoryChoice10().isEnabled());
 		softAssertion.assertEquals(p.getCategoryPageNumberLabel().getText(), "1 / 3");
 		softAssertion.assertEquals(p.getPaymentSectionLabel().getText(), "Point of Sale:  Fees");
-		softAssertion.assertTrue(p.getPosChoice1().isEnabled());
+		softAssertion.assertTrue(p.getPosChoice(1).isEnabled());
 		softAssertion.assertTrue(p.getPosChoice2().isEnabled());
 		softAssertion.assertTrue(p.getPosChoice3().isEnabled());
 		softAssertion.assertTrue(p.getPosChoice4().isEnabled());
@@ -122,13 +122,13 @@ public class PointOfSale extends base {
 	}
 
 	@Test(priority = 3, enabled = true)
-	public void purchaseInventoryItem() throws InterruptedException {
+	public void purchaseWithCash() throws InterruptedException {
 
-		p.getPosChoice1().click();
+		p.getPosChoice(1).click();
 		
 		p.getTotalButton().click();
 		
-		p.getCategoryChoice2().click();
+		p.getCategoryChoice(2).click();
 
 			MyActions.focusByNativeWindowHandleIndex(0);
 
@@ -143,8 +143,45 @@ public class PointOfSale extends base {
 		p.getOKButton().click();
 	}
 
-	@Test(priority = 4, enabled = true)
-	public void takePayment() throws InterruptedException {
+	@Test(priority = 4, enabled = false)
+	// IN PROGRESS
+	public void purchaseWithCreditCard() throws InterruptedException {
+
+		p.getPosChoice(1).click();
+		
+		p.getTotalButton().click();
+		
+		p.getCategoryChoice(1).click();
+
+			MyActions.focusByNativeWindowHandleIndex(0);
+
+		pa.getCCSwipeMessageCancelButton().click();
+		
+		pa.getCCTypeDropdownButton().click();
+		
+		pa.getCCCardTypeDropdownList(3).click();
+		
+		pa.getCCNumberInputField().sendKeys(prop.getProperty("changeCCMember1AccountNumber"));
+		
+		pa.getCCExpMonthDropdownButton().click();
+		
+		pa.getCCExpMonthDropdownList(4);
+		
+		pa.getCCExpYearDropdownButton().click();
+		
+		pa.getCCExpYearDropdownList(3);
+		
+		p.getOKButton().click();
+		
+			Thread.sleep(2000); 
+		
+			MyActions.focusByNativeWindowHandleIndex(0);
+		
+		p.getOKButton().click();
+	}
+
+	@Test(priority = 5, enabled = true)
+	public void takePayment(){
 		
 			MyActions.focusByNativeWindowHandleIndex(0);
 

@@ -90,6 +90,125 @@ public class PaymentAmountPO extends base {
 		return driver.findElementByAccessibilityId("lblChangeDue");
 	}
 
+	public WebElement getCCSwipeMessageCancelButton() {
+		return driver.findElementByName("pbCancel");
+	}
+	
+	public WebElement getCCChargeLabelLine1() { //returns text "Charge"
+		return driver.findElementByAccessibilityId("lblChargeAmount");
+	}
+	
+	public WebElement getCCChargeLabelLine2() { //returns text "Amount"
+		return driver.findElementByAccessibilityId("lblAmount");
+	}
+	
+	public WebElement getCCChargeAmount() {
+		return driver.findElementByAccessibilityId("txtChargeAmount");
+	}
+	
+	public WebElement getCCTypeLabelLine1() { // returns text "Card"
+		return driver.findElementByAccessibilityId("lblCCType");
+	}
+	
+	public WebElement getCCTypeLabelLine2() { // returns text "Type"
+		return driver.findElementByAccessibilityId("lblType");
+	}
+	
+	public WebElement getCCTypeDropdownButton() {
+		return driver.findElementByName("pbCardType");
+	}
+	
+	public WebElement getCCCardTypeDropdownList(int index) {
+		// must call getCCDropdownButton() method first so this element is visible
+		return driver.findElementByXPath("//ListItem[@LocalizedControlType='list item']["+index+"]");
+	}
+	
+	public WebElement getCCNumberLabelLine1() { // returns text "Card"
+		return driver.findElementByAccessibilityId("lblCard");
+	}
+	
+	public WebElement getCCNumberLabelLine2() { // returns text "Number"
+		return driver.findElementByAccessibilityId("lblNumber");
+	}
+	
+	public WebElement getCCNumberInputField() {
+		return driver.findElementByAccessibilityId("InputBox");
+	}
+	
+	public WebElement getCCExpLabelLine1() { // returns text "Expiration"
+		return driver.findElementByAccessibilityId("lblExpiration");
+	}
+	
+	public WebElement getCCExpLabelLine2() { // returns text "Date"
+		return driver.findElementByAccessibilityId("lblDate"); 
+	}
+	
+	public WebElement getCCExpMonthDropdownButton() {
+		return driver.findElementByAccessibilityId("pbExpMonth");
+	}	
+	
+	public WebElement getCCExpMonthDropdownList(int index) {
+		// must call getCCExpMonthDropdownButton() method first so this element is visible
+		return driver.findElementByXPath("//ListItem[@LocalizedControlType='list item']["+index+"]");
+	}
+	
+	public WebElement getCCExpYearDropdownButton() {
+		return driver.findElementByAccessibilityId("pbExpYear");
+	}
+	
+	public WebElement getCCExpYearDropdownList(int index) {
+		// must call getCCExpYearDropdownButton() method first so this element is visible
+		return driver.findElementByXPath("//ListItem[@LocalizedControlType='list item']["+index+"]");
+	}
+	
+	public WebElement getCCZipLabel() {
+		return driver.findElementByAccessibilityId("lblZipCode");
+	}
+	
+	public WebElement getCCZipInputField() {
+		return driver.findElementByAccessibilityId("txtZip");
+	}
+	
+	public WebElement getCCSwipCardButton() {
+		return driver.findElementByAccessibilityId("pbSwipeCard");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
