@@ -8,7 +8,7 @@ import resources.base;
 public class BookingsPO extends base{
 	
 		// ** Constructor **
-	public void aboutCompete(WindowsDriver driver) {
+	public void setDriver(WindowsDriver driver) {
 		base.driver = driver;
 	}
 	
