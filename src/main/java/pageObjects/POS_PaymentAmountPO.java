@@ -4,7 +4,7 @@ import org.openqa.selenium.WebElement;
 import io.appium.java_client.windows.WindowsDriver;
 import resources.base;
 
-public class PaymentAmountPO extends base {
+public class POS_PaymentAmountPO extends base {
 
 	// ** Constructor **
 	public void POS(WindowsDriver driver) {
