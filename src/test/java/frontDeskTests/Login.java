@@ -12,8 +12,8 @@ import resources.MyActions;
 import resources.base;
 
 public class Login extends base {
-	
-	public static SoftAssert softAssertion= new SoftAssert();
+
+	public static SoftAssert softAssertion = new SoftAssert();
 
 	static String barcodeId;
 	static String password;
@@ -107,7 +107,7 @@ public class Login extends base {
 
 	@Test(priority = 5)
 	public void validateSuccessfulLogin() throws Throwable {
-		
+
 		driver = initializeDriver();
 
 		MyActions.loginEmployee(barcodeId, password);
@@ -122,7 +122,7 @@ public class Login extends base {
 	@AfterClass()
 	public void tearDown() throws Exception {
 
-		MyActions.focusOnLandingPage();
+		MyActions.focusOnLandingPage(); // fails if validateSuccessfulLogin method is not called prior
 		driver.close();
 		driver.quit();
 	}
