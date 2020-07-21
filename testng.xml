@@ -19,12 +19,12 @@
 		</classes>
 	</test>
 
-	<test thread-count="1" name="Bookings">
+	<!-- test thread-count="1" name="Bookings">
 		<classes>
 			<class name="frontDeskTests.Bookings" />
 
 		</classes>
-	</test>
+	</test-->
 
 	<test thread-count="1" name="Change Password">
 		<classes>

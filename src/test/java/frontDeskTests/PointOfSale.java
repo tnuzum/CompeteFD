@@ -9,9 +9,9 @@ import org.testng.asserts.SoftAssert;
 import pageObjects.CheckInPO;
 import pageObjects.LandingPagePO;
 import pageObjects.MemberSearchPO;
-import pageObjects.PaymentAmountPO;
-import pageObjects.PointOfSalePO;
-import pageObjects.TakePaymentPO;
+import pageObjects.POS_PaymentAmountPO;
+import pageObjects.POS_MainPagePO;
+import pageObjects.POS_TakePaymentPO;
 import resources.MyActions;
 import resources.base;
 
@@ -19,12 +19,12 @@ public class PointOfSale extends base {
 	
 	public static SoftAssert softAssertion= new SoftAssert();
 
-	PointOfSalePO p;
+	POS_MainPagePO p;
 	LandingPagePO la;
 	CheckInPO ci;
 	MemberSearchPO ms;
-	PaymentAmountPO pa;
-	TakePaymentPO tp;
+	POS_PaymentAmountPO pa;
+	POS_TakePaymentPO tp;
 	String natWinHandle;
 	String nativeWindowHandle;
 	String barcodeId;
@@ -36,12 +36,12 @@ public class PointOfSale extends base {
 
 		System.out.println("Test Class: " + getClass().getName());
 		driver = initializeDriver();
-		p = new PointOfSalePO();
+		p = new POS_MainPagePO();
 		la = new LandingPagePO();
 		ci = new CheckInPO();
 		ms = new MemberSearchPO();
-		pa = new PaymentAmountPO();
-		tp = new TakePaymentPO();
+		pa = new POS_PaymentAmountPO();
+		tp = new POS_TakePaymentPO();
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		password = prop.getProperty("activeEmployeePassword");
 		searchString = "Manny";
