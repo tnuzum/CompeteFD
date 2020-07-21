@@ -43,7 +43,7 @@ public class base {
 
 		try {
 
-			WebDriverWait waitForUpdateFound = new WebDriverWait(driver, 15);
+			WebDriverWait waitForUpdateFound = new WebDriverWait(driver, 7);
 			waitForUpdateFound.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Update Found")));
 			
 			try {
