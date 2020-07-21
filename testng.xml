@@ -43,6 +43,12 @@
 			<class name="frontDeskTests.Login" />
 		</classes>
 	</test>
+	
+		<test thread-count="1" name="Member Management">
+		<classes>
+			<class name="frontDeskTests.MemberMgmt" />
+		</classes>
+	</test>
 
 	<test thread-count="1" name="Point Of Sale">
 		<classes>
