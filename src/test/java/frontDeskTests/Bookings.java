@@ -42,7 +42,7 @@ public class Bookings extends base {
 
 		la.getMoreButton().click();
 		
-		la.getMoreButton2().click();
+		la.getMoreButtons(2).click();
 		
 		Assert.assertTrue(b.getBookingsPageLabel().isDisplayed());
 
