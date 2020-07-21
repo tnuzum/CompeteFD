@@ -38,19 +38,14 @@ public class base {
 
 		DesiredCapabilities Appcapabilities = new DesiredCapabilities();
 		Appcapabilities.setCapability("app", "Root");
-		Appcapabilities.setCapability("ms:experimental-webdriver", true); // this is supposed to make XPath lookups
-																			// faster
+		Appcapabilities.setCapability("ms:experimental-webdriver", true); // performance improvement for XPath
 		driver = new WindowsDriver<WindowsElement>(new URL("http://127.0.0.1:4723"), Appcapabilities);
 
 		try {
-			//System.out.println("INFO: Checking for a Compete update...");
-			WebDriverWait waitForUpdateFound = new WebDriverWait(driver, 20);
-			waitForUpdateFound.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Update Found")));
-		} catch (TimeoutException to) {
-			//System.out.println("INFO: Update not found");
-			// to.printStackTrace();
-			// } // moved this to the end of update check block
 
+			WebDriverWait waitForUpdateFound = new WebDriverWait(driver, 15);
+			waitForUpdateFound.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Update Found")));
+			
 			try {
 				if (uf.getUpdateFoundPageLocator().isDisplayed()) {
 					System.out.println("INFO: Update Found");
@@ -65,14 +60,16 @@ public class base {
 						}
 					} catch (NoSuchElementException e) {
 
-						// e.printStackTrace();
-					}
+					} 
 					System.out.println("INFO: Update Complete");
 					initializeDriver(); // launch Front Desk again after update is complete
 				}
 			} catch (NoSuchElementException ne) {
-				// ne.printStackTrace();
+
 			}
+			
+		} catch (TimeoutException to) {
+
 		}
 
 		WebDriverWait waitForLogin = new WebDriverWait(driver, 30);
