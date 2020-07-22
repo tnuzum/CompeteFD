@@ -81,42 +81,6 @@ public class POS_MainPagePO extends base {
 		return driver.findElementByAccessibilityId("pbCategoryChoice"+index);
 	}
 
-	public WebElement getCategoryChoice2() {
-		return driver.findElementByAccessibilityId("pbCategoryChoice2");
-	}
-
-	public WebElement getCategoryChoice3() {
-		return driver.findElementByAccessibilityId("pbCategoryChoice3");
-	}
-
-	public WebElement getCategoryChoice4() {
-		return driver.findElementByAccessibilityId("pbCategoryChoice4");
-	}
-
-	public WebElement getCategoryChoice5() {
-		return driver.findElementByAccessibilityId("pbCategoryChoice5");
-	}
-
-	public WebElement getCategoryChoice6() {
-		return driver.findElementByAccessibilityId("pbCategoryChoice6");
-	}
-
-	public WebElement getCategoryChoice7() {
-		return driver.findElementByAccessibilityId("pbCategoryChoice7");
-	}
-
-	public WebElement getCategoryChoice8() {
-		return driver.findElementByAccessibilityId("pbCategoryChoice8");
-	}
-
-	public WebElement getCategoryChoice9() {
-		return driver.findElementByAccessibilityId("pbCategoryChoice9");
-	}
-
-	public WebElement getCategoryChoice10() {
-		return driver.findElementByAccessibilityId("pbCategoryChoice10");
-	}
-
 	public WebElement getCategoryPreviousButton() {
 		return driver.findElementByAccessibilityId("pbPrevTop");
 	}
@@ -137,38 +101,6 @@ public class POS_MainPagePO extends base {
 		return driver.findElementByAccessibilityId("pbPosChoice"+index);
 	}
 
-	public WebElement getPosChoice2() {
-		return driver.findElementByAccessibilityId("pbPosChoice2");
-	}
-
-	public WebElement getPosChoice3() {
-		return driver.findElementByAccessibilityId("pbPosChoice3");
-	}
-
-	public WebElement getPosChoice4() {
-		return driver.findElementByAccessibilityId("pbPosChoice4");
-	}
-
-	public WebElement getPosChoice5() {
-		return driver.findElementByAccessibilityId("pbPosChoice5");
-	}
-
-	public WebElement getPosChoice6() {
-		return driver.findElementByAccessibilityId("pbPosChoice6");
-	}
-
-	public WebElement getPosChoice7() {
-		return driver.findElementByAccessibilityId("pbPosChoice7");
-	}
-
-	public WebElement getPosChoice8() {
-		return driver.findElementByAccessibilityId("pbPosChoice8");
-	}
-
-	public WebElement getPosChoice9() {
-		return driver.findElementByAccessibilityId("pbPosChoice9");
-	}
-	
 	public WebElement getPosChoicePreviousButton() {
 		return driver.findElementByAccessibilityId("pbPrevBottom");
 	}
