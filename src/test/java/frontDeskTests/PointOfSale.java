@@ -10,6 +10,7 @@ import pageObjects.LandingPagePO;
 import pageObjects.MemberSearchPO;
 import pageObjects.POS_EditItemPO;
 import pageObjects.POS_PaymentAmountPO;
+import pageObjects.POS_ProductSearchPO;
 import pageObjects.POS_MainPagePO;
 import pageObjects.POS_TakePaymentPO;
 import pageObjects.POS_TaxDetailPO;
@@ -25,6 +26,7 @@ public class PointOfSale extends base {
 	POS_TaxDetailPO td;
 	LandingPagePO la;
 	MemberSearchPO ms;
+	POS_ProductSearchPO ps;
 	POS_PaymentAmountPO pa;
 	POS_TakePaymentPO tp;
 	String natWinHandle;
@@ -43,6 +45,7 @@ public class PointOfSale extends base {
 		ei = new POS_EditItemPO();
 		td = new POS_TaxDetailPO();
 		ms = new MemberSearchPO();
+		ps = new POS_ProductSearchPO();
 		pa = new POS_PaymentAmountPO();
 		tp = new POS_TakePaymentPO();
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
@@ -55,7 +58,7 @@ public class PointOfSale extends base {
 
 		MyActions.loginEmployee(barcodeId, password);
 
-			MyActions.myWait(30, "deckWorkspace1");
+		MyActions.myWait(30, "deckWorkspace1");
 
 		la.getPOSButton().click();
 
@@ -125,36 +128,68 @@ public class PointOfSale extends base {
 	}
 
 	@Test(priority = 3, enabled = true)
-	public void purchaseWithCash(){
+	public void clearMember() {
 
-		p.getPosChoice(1).click();
+		p.getMemberInputField().sendKeys(searchString);
+
+		p.getSearchButton().click();
+
+		MyActions.myWait(30, "Member Quick Search");
+
+		ms.getOKButton().click();
+
+		p.getClearMemberButton().click();
+
+		Assert.assertNotEquals(p.getMemberInputField().getText(), searchString);
+	}
+
+	@Test(priority = 4, enabled = true)
+	public void purchaseWithCash() {
+
+		String searchString = "water";
+
+		p.getProductSearchInputField().sendKeys(searchString);
+
+		p.getProductSearchSearchButton().click();
+
+		MyActions.focusByNativeWindowHandleIndex(0);
+
+		ps.getSearchInputField().sendKeys(searchString);
+
+		ps.getSearchButton().click();
+
+		Assert.assertEquals(ps.getSearchInputField().getText(), searchString);
+
+		ps.getOKButton().click();
+
+		MyActions.focusByNativeWindowHandleIndex(0);
 
 		p.getTotalButton().click();
 
 		p.getCategoryChoice(2).click();
 
-			MyActions.focusByNativeWindowHandleIndex(0);
+		MyActions.focusByNativeWindowHandleIndex(0);
 
 		pa.getPayAmt5DollarsButton().click();
 
 		p.getOKButton().click();
 
-			MyActions.focusByNativeWindowHandleIndex(0);
+		MyActions.focusByNativeWindowHandleIndex(0);
 
 		p.getOKButton().click();
 	}
 
-	@Test(priority = 4, enabled = true)
-	public void purchaseWithCreditCard() throws InterruptedException{
-		
-			MyActions.focusByNativeWindowHandleIndex(0);
-		
+	@Test(priority = 5, enabled = true)
+	public void purchaseWithCreditCard() {
+
+		MyActions.focusByNativeWindowHandleIndex(0);
+
 		p.getPosChoice(1).click();
 
 		// Edit Item to match amount needed for CSIPay to approve transaction
 		p.getEditButton().click();
 
-			MyActions.focusByNativeWindowHandleIndex(0);
+		MyActions.focusByNativeWindowHandleIndex(0);
 
 		ei.getQuantityInputField().sendKeys("5");
 
@@ -162,17 +197,17 @@ public class PointOfSale extends base {
 
 		ei.getOKButton().click();
 
-			MyActions.focusByNativeWindowHandleIndex(0);
+		MyActions.focusByNativeWindowHandleIndex(0);
 
 		p.getTotalButton().click();
 
 		p.getCategoryChoice(1).click();
 
-			MyActions.focusByNativeWindowHandleIndex(0);
+		MyActions.focusByNativeWindowHandleIndex(0);
 
 		pa.getCCSwipeMessageCancelButton().click();
 
-			MyActions.focusByNativeWindowHandleIndex(0);
+		MyActions.focusByNativeWindowHandleIndex(0);
 
 		pa.getCCTypeDropdownButton().click();
 
@@ -187,31 +222,32 @@ public class PointOfSale extends base {
 		pa.getCCExpYearDropdownButton().click();
 
 		pa.getCCExpYearDropdownList(3).click();
-		
+
 		pa.getCCZipInputField().sendKeys("43215");
 
 		p.getOKButton().click();
 
-			MyActions.focusByNativeWindowHandleIndex(0);
+		MyActions.focusByNativeWindowHandleIndex(0);
 
 		p.getOKButton().click();
 	}
 
-	@Test(priority = 5, enabled = false)
+	@Test(priority = 6, enabled = true)
 	public void takePayment() {
 
-			MyActions.focusByNativeWindowHandleIndex(0);
+		MyActions.focusByNativeWindowHandleIndex(0);
 
 		p.getMemberInputField().sendKeys(searchString);
+
 		p.getSearchButton().click();
 
-			MyActions.myWait(30, "Member Quick Search");
+		MyActions.myWait(30, "Member Quick Search");
 
 		ms.getOKButton().click();
 
 		p.getTakePaymentButton().click();
 
-			MyActions.myWait(30, "Payment");
+		MyActions.myWait(30, "Payment");
 
 		tp.getAmountInput().sendKeys("0.01");
 
@@ -225,10 +261,10 @@ public class PointOfSale extends base {
 
 	@AfterClass
 	public void tearDown() {
-			MyActions.focusByNativeWindowHandleIndex(0);
-			
+		MyActions.focusByNativeWindowHandleIndex(0);
+
 		driver.close();
-		
+
 		driver.quit();
 	}
 
