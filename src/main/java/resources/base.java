@@ -46,7 +46,7 @@ public class base {
 			WebDriverWait waitForUpdateFound = new WebDriverWait(driver, 7);
 			waitForUpdateFound.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Update Found")));
 			
-			try {
+			//try {
 				if (uf.getUpdateFoundPageLocator().isDisplayed()) {
 					System.out.println("INFO: Update Found");
 					uf.getOKButton().click();
@@ -64,9 +64,9 @@ public class base {
 					System.out.println("INFO: Update Complete");
 					initializeDriver(); // launch Front Desk again after update is complete
 				}
-			} catch (NoSuchElementException ne) {
+			//} catch (NoSuchElementException ne) {
 
-			}
+			//}
 			
 		} catch (TimeoutException to) {
 

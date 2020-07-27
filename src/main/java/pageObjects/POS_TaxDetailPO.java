@@ -7,7 +7,7 @@ import resources.base;
 public class POS_TaxDetailPO extends base{
 	
 		// ** Constructor **
-	public void getDriver(WindowsDriver driver) {
+	public void setDriver(WindowsDriver driver) {
 		base.driver = driver;
 	}
 	

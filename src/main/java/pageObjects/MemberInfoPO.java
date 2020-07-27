@@ -8,7 +8,7 @@ import resources.base;
 public class MemberInfoPO extends base{
 
 	// ** Constructor **
-	public void memberInfo(WindowsDriver driver) {
+	public void setDriver(WindowsDriver driver) {
 		base.driver = driver;
 	}
 

@@ -9,7 +9,7 @@ public class LoginPO extends base{
 	
 	
 		// ** Constructor **
-	public void login(WindowsDriver driver) {
+	public void setDriver(WindowsDriver driver) {
 		
 		base.driver = driver;
 	}

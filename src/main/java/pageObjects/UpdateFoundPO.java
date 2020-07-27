@@ -7,7 +7,7 @@ import resources.base;
 public class UpdateFoundPO extends base{
 	
 		// ** Constructor **
-	public void updateFound(WindowsDriver driver) {
+	public void setDriver(WindowsDriver driver) {
 		base.driver = driver;
 	}
 	
