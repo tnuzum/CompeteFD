@@ -49,14 +49,14 @@ public class Login extends base {
 
 		l.getLoginButton().click();
 
-		Assert.assertTrue(!l.getLoginPageLocator().isEnabled()); // login page is disabled while box is open
+		Assert.assertTrue(!l.getPageLocator().isEnabled()); // login page is disabled while box is open
 		Assert.assertTrue(l.getErrorMessageBox().isDisplayed());
 		Assert.assertTrue(l.getErrorMessages().getText().contains("Password is required"));
 		Assert.assertTrue(l.getErrorMessages().getText().contains("User Id is required"));
 
 		l.getErrorMessageOKButton().click();
 
-		Assert.assertTrue(l.getLoginPageLocator().isEnabled()); // login page is enabled after box is closed
+		Assert.assertTrue(l.getPageLocator().isEnabled()); // login page is enabled after box is closed
 
 		try {
 			Assert.assertTrue(l.getErrorMessageBox().isDisplayed());
@@ -73,13 +73,13 @@ public class Login extends base {
 		l.getPasswordInputField().sendKeys("99999");
 		l.getLoginButton().click();
 
-		Assert.assertTrue(!l.getLoginPageLocator().isEnabled()); // login page is disabled while box is open
+		Assert.assertTrue(!l.getPageLocator().isEnabled()); // login page is disabled while box is open
 		Assert.assertTrue(l.getErrorMessageBox().isDisplayed());
 		Assert.assertTrue(l.getErrorMessages().getText().contains("Invalid User ID or Password"));
 
 		l.getErrorMessageOKButton().click();
 
-		Assert.assertTrue(l.getLoginPageLocator().isEnabled()); // login page is enabled after box is closed
+		Assert.assertTrue(l.getPageLocator().isEnabled()); // login page is enabled after box is closed
 
 		try {
 			Assert.assertTrue(l.getErrorMessageBox().isDisplayed());
@@ -99,7 +99,7 @@ public class Login extends base {
 		l.getCancelButton().click();
 
 		try {
-			Assert.assertTrue(l.getLoginPageLocator().isDisplayed()); // Employee not logged in; login page closed
+			Assert.assertTrue(l.getPageLocator().isDisplayed()); // Employee not logged in; login page closed
 		} catch (org.openqa.selenium.NoSuchElementException e) {
 
 		}
@@ -116,7 +116,7 @@ public class Login extends base {
 
 		MyActions.myWait(30, "deckWorkspace1");
 
-		Assert.assertTrue(la.getLandingPageLocator().isDisplayed()); // Employee logged in; landing page displayed
+		Assert.assertTrue(la.getPageLocator().isDisplayed()); // Employee logged in; landing page displayed
 	}
 
 	@AfterClass()

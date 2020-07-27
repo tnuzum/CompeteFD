@@ -14,7 +14,7 @@ public class MemberSearchPO extends base{
 
 	// ** Objects **
 	
-	public WebElement getMemberSearchPageLocator() {
+	public WebElement getPageLocator() {
 		return driver.findElementByAccessibilityId("MemberQuickSearchView");
 	}
 	

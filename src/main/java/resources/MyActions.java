@@ -19,26 +19,19 @@ public class MyActions extends base {
 
 		base.driver = driver;
 	}
-	/*
-	public static String launchFrontDesk() throws MalformedURLException {
-		// NOT WORKING YET; WORK IN PROGRESS
-		DesiredCapabilities Appcapabilities = new DesiredCapabilities();
-		Appcapabilities.setCapability("app", "Root");
-		Appcapabilities.setCapability("ms:experimental-webdriver", true); //this is supposed to make XPath lookups faster
-		driver = new WindowsDriver<WindowsElement>(new URL("http://127.0.0.1:4723"), Appcapabilities);
-		
-        WebDriverWait wait=new WebDriverWait(driver, 20);
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Employee Login")));
-		
-		return null;
-	} */
 
 	public static String loginEmployee(String barcodeId, String password) {
 
-		LoginPO l = new LoginPO();
+			LoginPO l = new LoginPO();
+		
 		l.getUserNameInputField().sendKeys(barcodeId);
+		
 		l.getPasswordInputField().sendKeys(password);
+		
 		l.getLoginButton().click();
+		
+			MyActions.myWait(30, "deckWorkspace1");
+			
 		return null;
 	}
 
@@ -65,20 +58,25 @@ public class MyActions extends base {
 		return natWinHandle;
 	}
 
-	public static String focusOnLandingPage() throws MalformedURLException {
+	public static String focusOnLandingPage(){
 
 		/*
 		 * Use this in test class to get nativeWindowHandle: String nativeWindowHandle =
 		 * la.getLandingPageLocator().getAttribute("NativeWindowHandle");
 		 */
 		LandingPagePO la = new LandingPagePO();
-		String nativeWindowHandle = la.getLandingPageLocator().getAttribute("NativeWindowHandle");
+		String nativeWindowHandle = la.getPageLocator().getAttribute("NativeWindowHandle");
 		int natWinHandleInt = Integer.parseInt(nativeWindowHandle);
 		String natWinHandleStr = Integer.toHexString(natWinHandleInt);
 		String natWinHandle = "0x" + natWinHandleStr;
 		DesiredCapabilities appCapabilities = new DesiredCapabilities();
 		appCapabilities.setCapability("appTopLevelWindow", natWinHandle);
-		driver = new WindowsDriver<WindowsElement>(new URL("http://127.0.0.1:4723"), appCapabilities);
+		try {
+			driver = new WindowsDriver<WindowsElement>(new URL("http://127.0.0.1:4723"), appCapabilities);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//System.out.println("Native Window Handle: "+natWinHandle);
 		return null;
 	}

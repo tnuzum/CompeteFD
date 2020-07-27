@@ -13,7 +13,7 @@ public class POS_PaymentAmountPO extends base {
 
 	// ** Objects **
 	
-	public WebElement getPayAmtPageLocator() {
+	public WebElement getPageLocator() {
 		return driver.findElementByName("Enter Payment Amount");
 		//return driver.findElementByAccessibilityId("CashPaymentView");
 	}

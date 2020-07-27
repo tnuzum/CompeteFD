@@ -41,7 +41,7 @@ public class AboutCompete extends base {
 
 		la.getCompeteInfoButton().click();
 
-		Assert.assertTrue(a.getAboutPageLocator().isDisplayed());
+		Assert.assertTrue(a.getPageLocator().isDisplayed());
 		a.getCloseButton().click();
 	}
 

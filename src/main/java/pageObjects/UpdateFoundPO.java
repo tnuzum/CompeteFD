@@ -12,7 +12,7 @@ public class UpdateFoundPO extends base{
 	}
 	
 		// ** Objects ** 
-	public WebElement getUpdateFoundPageLocator()
+	public WebElement getPageLocator()
 	{
 		return driver.findElementByName("Update Found");
 //		return driver.findElementByAccessibilityId("HFMessageBox;") // Alternative locator

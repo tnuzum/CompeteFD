@@ -12,7 +12,7 @@ public class POS_MainPagePO extends base {
 	}
 
 	// ** Objects **
-	public WebElement getPOSPageLocator() {
+	public WebElement getPageLocator() {
 		//return driver.findElementByAccessibilityId("PointOfSaleMainView");
 		return driver.findElementByName("Point Of Sale");
 	}

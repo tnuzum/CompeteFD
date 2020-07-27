@@ -15,7 +15,7 @@ public class LoginPO extends base{
 	}
 	
 		// ** Objects ** 
-	public WebElement getLoginPageLocator() {
+	public WebElement getPageLocator() {
 		return driver.findElementByAccessibilityId("FrontDeskEmployeeLogin");
 	}
 	

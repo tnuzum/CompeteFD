@@ -14,7 +14,7 @@ public class CheckInPO extends base {
 
 	// ** Objects **
 
-	public WebElement getCheckInViewLocator() {
+	public WebElement getPageLocator() {
 		return driver.findElementByAccessibilityId("pnlToolBar");
 	}
 

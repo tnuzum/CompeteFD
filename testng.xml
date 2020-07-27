@@ -37,6 +37,12 @@
 			<class name="frontDeskTests.CheckIn" />
 		</classes>
 	</test>
+	
+	<test thread-count="5" name="Class Enrollment">
+		<classes>
+			<class name="frontDeskTests.ClassEnrollment" />
+		</classes>
+	</test>
 
 	<test thread-count="5" name="Login">
 		<classes>

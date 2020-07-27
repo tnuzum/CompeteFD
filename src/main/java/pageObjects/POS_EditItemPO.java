@@ -12,7 +12,7 @@ public class POS_EditItemPO extends base{
 	}
 	
 		// ** Objects ** 
-	public WebElement getEditItemPageLocator()
+	public WebElement getPageLocator()
 	{
 		return driver.findElementByAccessibilityId("EditItemView");
 	}
