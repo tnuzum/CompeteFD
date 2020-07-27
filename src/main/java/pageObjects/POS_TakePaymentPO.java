@@ -7,7 +7,7 @@ import resources.base;
 public class POS_TakePaymentPO extends base {
 
 	// ** Constructor **
-	public void POS(WindowsDriver driver) {
+	public void setDriver(WindowsDriver driver) {
 		base.driver = driver;
 	}
 

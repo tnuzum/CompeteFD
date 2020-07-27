@@ -8,7 +8,7 @@ public class CheckInPO extends base {
 
 
 	// ** Constructor **
-	public void checkIn(WindowsDriver driver) {
+	public void setDriver(WindowsDriver driver) {
 		base.driver = driver;
 	}
 

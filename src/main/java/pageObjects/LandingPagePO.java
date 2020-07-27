@@ -8,7 +8,7 @@ import resources.base;
 public class LandingPagePO extends base {
 
 	// ** Constructor **
-	public void landPage(WindowsDriver driver) {
+	public void setDriver(WindowsDriver driver) {
 		base.driver = driver;
 	}
 

@@ -4,7 +4,7 @@ import org.openqa.selenium.WebElement;
 import io.appium.java_client.windows.WindowsDriver;
 import resources.base;
 
-public class AboutCompetePO extends base{
+public class ClassEnrollmentPO extends base{
 	
 		// ** Constructor **
 	public void setDriver(WindowsDriver driver) {
@@ -14,11 +14,11 @@ public class AboutCompetePO extends base{
 		// ** Objects ** 
 	public WebElement getAboutPageLocator()
 	{
-		return driver.findElementByAccessibilityId("AboutView");
+		return driver.findElementByAccessibilityId("SelectClassForEnrollmentView");
 	}
 	
-	public WebElement getCloseButton() throws Exception {
-		return driver.findElementByXPath("//Button[@Name='Close'][1]");
+	public WebElement getMemberInputLabel() throws Exception {
+		return driver.findElementByName("Member ID / Last Name");
 	}
 	
 	

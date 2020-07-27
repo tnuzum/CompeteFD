@@ -13,6 +13,12 @@ import resources.base;
 
 public class Bookings extends base {
 	
+	/*
+	 *  !! This test assumes the station is configured to show Service View by default
+	 *  Compete Back Office > Configuration > Station > Bookings; test will return
+	 *  Element Not Found exception if this is set to Book View
+	 */
+	
 	public static SoftAssert softAssertion= new SoftAssert();
 
 	BookingsPO b;

@@ -8,7 +8,7 @@ import resources.base;
 public class ChangePasswordPO extends base {
 
 	// ** Constructor **
-	public void changePassword(WindowsDriver driver) {
+	public void setDriver(WindowsDriver driver) {
 		base.driver = driver;
 	}
 

@@ -8,7 +8,7 @@ import resources.base;
 public class AgreementSearchPO extends base{
 
 	// ** Constructor **
-	public void agreements(WindowsDriver driver) {
+	public void setDriver(WindowsDriver driver) {
 		base.driver = driver;
 	}
 
@@ -78,76 +78,40 @@ public class AgreementSearchPO extends base{
 		return driver.findElementByName("Agreement Number");
 	}
 	
-	public WebElement getQSResult1MemberID() {
-		return driver.findElementByName("Member ID Row 0, Not sorted.");
+	public WebElement getQSResultMemberID(int index) {
+		return driver.findElementByName("Member ID Row "+index+", Not sorted.");
 	}
 	
-	public WebElement getQSResult1LastName() {
-		return driver.findElementByName("Last Name Row 0, Not sorted.");
+	public WebElement getQSResultLastName(int index) {
+		return driver.findElementByName("Last Name Row "+index+", Not sorted.");
 	}
 	
-	public WebElement getQSResult1FirstName() {
-		return driver.findElementByName("First Name Row 0, Not sorted.");
+	public WebElement getQSResultFirstName(int index) {
+		return driver.findElementByName("First Name Row "+index+", Not sorted.");
 	}
 	
-	public WebElement getQSResult1PlanActive() {
-		return driver.findElementByName("PA Row 0, Not sorted.");
+	public WebElement getQSResultPlanActive(int index) {
+		return driver.findElementByName("PA Row "+index+", Not sorted.");
 	}
 	
-	public WebElement getQSResult1PlanDescription() {
-		return driver.findElementByName("Plan Description Row 0, Not sorted.");
+	public WebElement getQSResultPlanDescription(int index) {
+		return driver.findElementByName("Plan Description Row "+index+", Not sorted.");
 	}
 	
-	public WebElement getQSResult1ExpirationDate() {
-		return driver.findElementByName("Exp. Date Row 0, Not sorted.");
+	public WebElement getQSResultExpirationDate(int index) {
+		return driver.findElementByName("Exp. Date Row "+index+", Not sorted.");
 	}
 	
-	public WebElement getQSResult1Status() {
-		return driver.findElementByName("Status Row 0, Not sorted.");
+	public WebElement getQSResultStatus(int index) {
+		return driver.findElementByName("Status Row "+index+", Not sorted.");
 	}
 	
-	public WebElement getQSResult1SaleDate() {
-		return driver.findElementByName("Sale Date Row 0, Not sorted.");
+	public WebElement getQSResultSaleDate(int index) {
+		return driver.findElementByName("Sale Date Row "+index+", Not sorted.");
 	}
 	
-	public WebElement getQSResult1AgreementNumber() {
-		return driver.findElementByName("Agreement Number Row 0, Not sorted.");
-	}
-	
-	public WebElement getQSResult2MemberID() {
-		return driver.findElementByName("Member ID Row 1, Not sorted.");
-	}
-	
-	public WebElement getQSResult2LastName() {
-		return driver.findElementByName("Last Name Row 1, Not sorted.");
-	}
-	
-	public WebElement getQSResult2FirstName() {
-		return driver.findElementByName("First Name Row 1, Not sorted.");
-	}
-	
-	public WebElement getQSResult2PlanActive() {
-		return driver.findElementByName("PA Row 1, Not sorted.");
-	}
-	
-	public WebElement getQSResult2PlanDescription() {
-		return driver.findElementByName("Plan Description Row 1, Not sorted.");
-	}
-	
-	public WebElement getQSResult2ExpirationDate() {
-		return driver.findElementByName("Exp. Date Row 1, Not sorted.");
-	}
-	
-	public WebElement getQSResult2Status() {
-		return driver.findElementByName("Status Row 1, Not sorted.");
-	}
-	
-	public WebElement getQSResult2SaleDate() {
-		return driver.findElementByName("Sale Date Row 1, Not sorted.");
-	}
-	
-	public WebElement getQSResult2AgreementNumber() {
-		return driver.findElementByName("Agreement Number Row 1, Not sorted.");
+	public WebElement getQSResultAgreementNumber(int index) {
+		return driver.findElementByName("Agreement Number Row "+index+", Not sorted.");
 	}
 	
 	public WebElement getQSMemberClubLabel() {

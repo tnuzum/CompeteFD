@@ -8,7 +8,7 @@ import resources.base;
 public class AgreementsPO extends base{
 
 	// ** Constructor **
-	public void agreements(WindowsDriver driver) {
+	public void setDriver(WindowsDriver driver) {
 		base.driver = driver;
 	}
 
