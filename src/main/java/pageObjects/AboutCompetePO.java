@@ -12,7 +12,7 @@ public class AboutCompetePO extends base{
 	}
 	
 		// ** Objects ** 
-	public WebElement getAboutPageLocator()
+	public WebElement getPageLocator()
 	{
 		return driver.findElementByAccessibilityId("AboutView");
 	}

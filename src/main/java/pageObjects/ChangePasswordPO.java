@@ -13,7 +13,7 @@ public class ChangePasswordPO extends base {
 	}
 
 	// ** Objects **
-	public WebElement getChangePasswordPageLocator() {
+	public WebElement getPageLocator() {
 		return driver.findElementByName("Change Employee Password");
 	}
 
@@ -43,6 +43,7 @@ public class ChangePasswordPO extends base {
 	
 	public WebElement getCancelButton() {
 		return driver.findElementByXPath("//Pane[@AutomationId='pbCancel'][1]");
+		//return driver.findElementByAccessibilityId("pbCancel");
 	}
 
 }

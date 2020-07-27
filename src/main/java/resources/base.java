@@ -45,29 +45,25 @@ public class base {
 
 			WebDriverWait waitForUpdateFound = new WebDriverWait(driver, 7);
 			waitForUpdateFound.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Update Found")));
-			
-			//try {
-				if (uf.getUpdateFoundPageLocator().isDisplayed()) {
-					System.out.println("INFO: Update Found");
-					uf.getOKButton().click();
-					WebDriverWait waitForCancelButton = new WebDriverWait(driver, 20);
-					waitForCancelButton.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Cancel")));
-					uf.getNextButton().click();
 
-					try {
-						while (uf.getInstallingUpdatesLabel().isDisplayed()) {
-							Thread.sleep(1000);
-						}
-					} catch (NoSuchElementException e) {
+			if (uf.getPageLocator().isDisplayed()) {
+				System.out.println("INFO: Update Found");
+				uf.getOKButton().click();
+				WebDriverWait waitForCancelButton = new WebDriverWait(driver, 20);
+				waitForCancelButton.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Cancel")));
+				uf.getNextButton().click();
 
-					} 
-					System.out.println("INFO: Update Complete");
-					initializeDriver(); // launch Front Desk again after update is complete
+				try {
+					while (uf.getInstallingUpdatesLabel().isDisplayed()) {
+						Thread.sleep(1000);
+					}
+				} catch (NoSuchElementException e) {
+
 				}
-			//} catch (NoSuchElementException ne) {
+				System.out.println("INFO: Update Complete");
+				initializeDriver(); // launch Front Desk again after update is complete
+			}
 
-			//}
-			
 		} catch (TimeoutException to) {
 
 		}
@@ -75,7 +71,7 @@ public class base {
 		WebDriverWait waitForLogin = new WebDriverWait(driver, 30);
 		waitForLogin.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Employee Login")));
 
-		driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		return driver;
 
 	}

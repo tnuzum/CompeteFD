@@ -42,11 +42,11 @@ public class CheckIn extends base {
 	}
 
 	@Test(priority = 1, enabled = true)
-	public void launchCheckIn() throws Exception {
+	public void launchCheckIn(){
 
 		MyActions.loginEmployee(barcodeId, password);
 
-		MyActions.myWait(30, "deckWorkspace1");
+		//MyActions.myWait(30, "deckWorkspace1");
 
 		la.getCheckInButton().click();
 
@@ -83,7 +83,7 @@ public class CheckIn extends base {
 
 		MyActions.myWait(30, "Member Quick Search");
 
-		Assert.assertTrue(ms.getMemberSearchPageLocator().isDisplayed());
+		Assert.assertTrue(ms.getPageLocator().isDisplayed());
 		ms.getOKButton().click();
 	}
 
@@ -96,7 +96,7 @@ public class CheckIn extends base {
 	}
 	
 	@Test(priority = 5)
-	public void memberInfo() throws Exception {
+	public void memberInfo(){
 		
 		ci.getMemberInputField().sendKeys(searchString);
 		ci.getSearchButton().click();
@@ -104,7 +104,10 @@ public class CheckIn extends base {
 		ms.getOKButton().click();
 
 		ci.getMemberInfoButton().click();
-			Thread.sleep(2000);
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+			}
 			MyActions.focusByNativeWindowHandleIndex(0);
 		Assert.assertTrue(mi.getMemberNameLabel().getText().contains(searchString));
 		Assert.assertTrue(mi.getMemberPaneMemberNameValue().getText().contains(searchString));

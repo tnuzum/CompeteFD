@@ -40,7 +40,7 @@ public class Bookings extends base {
 	}
 
 	@Test(priority = 1, enabled = true)
-	public void launchBookings() throws Exception{
+	public void launchBookings() {
 
 		MyActions.loginEmployee(barcodeId, password);
 
@@ -50,14 +50,14 @@ public class Bookings extends base {
 		
 		la.getMoreButtons(2).click();
 		
-		Assert.assertTrue(b.getBookingsPageLabel().isDisplayed());
+		Assert.assertTrue(b.getPageLabel().isDisplayed());
 
 	}
 	
 	@Test(priority = 2, enabled = true)
 	public void validatePageObjects(){
 
-		softAssertion.assertEquals(b.getBookingsPageLabel().getText(), "Bookings : Service View");
+		softAssertion.assertEquals(b.getPageLabel().getText(), "Bookings : Service View");
 		softAssertion.assertTrue(!b.getClearButton().isEnabled(),"Clear Button is Enabled"); // not enabled because a member has not yet been selected
 		softAssertion.assertEquals(b.getMemberInputLabel().getText(), "Member ID/ Last Name");
 		softAssertion.assertTrue(b.getMemberInputField().isEnabled(), "Member Input Field is Enabled");
@@ -80,7 +80,7 @@ public class Bookings extends base {
 	}
 	
 	@Test(priority = 3, enabled = true)
-	public void showCalendar() throws Exception{
+	public void showCalendar(){
 
 		
 		b.getClubCombobox().click();
@@ -109,15 +109,13 @@ public class Bookings extends base {
 	}
 	
 	@Test(priority = 4, enabled = true)
-	public void bookView() throws Exception{
+	public void bookView(){
 		
 		b.getBookViewButton().click();
 		
-		Assert.assertEquals(b.getBookingsPageLabel().getText(), "Bookings : Book View");	
+		Assert.assertEquals(b.getPageLabel().getText(), "Bookings : Book View");	
 	}
 	
-
-
 	@AfterClass (enabled = true)
 	public void tearDown() {
 			MyActions.focusByNativeWindowHandleIndex(0);

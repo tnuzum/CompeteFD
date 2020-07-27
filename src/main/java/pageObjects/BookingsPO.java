@@ -14,7 +14,7 @@ public class BookingsPO extends base{
 	
 		// ** Objects ** 
 	
-	public WebElement getBookingsPageLabel() {
+	public WebElement getPageLabel() {
 		return driver.findElementByAccessibilityId("lblModule"); // upper left, below Compete logo
 	}
 

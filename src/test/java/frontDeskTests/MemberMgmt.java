@@ -82,7 +82,7 @@ public class MemberMgmt extends base {
 
 		MyActions.myWait(30, "Member Quick Search");
 
-		Assert.assertTrue(ms.getMemberSearchPageLocator().isDisplayed());
+		Assert.assertTrue(ms.getPageLocator().isDisplayed());
 		ms.getOKButton().click();
 	}
 
