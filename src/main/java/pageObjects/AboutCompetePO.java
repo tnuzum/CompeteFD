@@ -17,7 +17,7 @@ public class AboutCompetePO extends base{
 		return driver.findElementByAccessibilityId("AboutView");
 	}
 	
-	public WebElement getCloseButton() throws Exception {
+	public WebElement getCloseButton(){
 		return driver.findElementByXPath("//Button[@Name='Close'][1]");
 	}
 	
