@@ -23,13 +23,14 @@ public class Login extends base {
 	public void initialize() throws Throwable {
 
 		System.out.println("Test Class: " + getClass().getName());
+		
 		driver = initializeDriver();
 		l = new LoginPO();
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		password = prop.getProperty("activeEmployeePassword");
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1, enabled = true)
 	public void validatePageObjects() {
 
 		softAssertion.assertEquals(l.getUserNameLabel().getText(), "User ID");
@@ -58,15 +59,9 @@ public class Login extends base {
 
 		Assert.assertTrue(l.getPageLocator().isEnabled()); // login page is enabled after box is closed
 
-		try {
-			Assert.assertTrue(l.getErrorMessageBox().isDisplayed());
-		} catch (org.openqa.selenium.NoSuchElementException e) {
-
-		}
-
 	}
 
-	@Test(priority = 3)
+	@Test(priority = 3, enabled = true)
 	public void validateInputInvalidErrorMessage() {
 
 		l.getUserNameInputField().sendKeys("99999");
@@ -80,32 +75,27 @@ public class Login extends base {
 		l.getErrorMessageOKButton().click();
 
 		Assert.assertTrue(l.getPageLocator().isEnabled()); // login page is enabled after box is closed
-
-		try {
-			Assert.assertTrue(l.getErrorMessageBox().isDisplayed());
-		} catch (org.openqa.selenium.NoSuchElementException e) {
-
-		}
+ 
 		l.getUserNameInputField().clear();
 		l.getPasswordInputField().clear();
 
 	}
 
-	@Test(priority = 4)
+	@Test(priority = 4, enabled = true)
 	public void validateCancelLogin() {
 
 		l.getUserNameInputField().sendKeys(barcodeId);
 		l.getPasswordInputField().sendKeys(password);
 		l.getCancelButton().click();
 
-		try {
-			Assert.assertTrue(l.getPageLocator().isDisplayed()); // Employee not logged in; login page closed
+		/* try { //takes a long time to timeout, might not be necessary
+			Assert.assertTrue(!l.getPageLocator().isDisplayed()); // Employee not logged in; login page closed
 		} catch (org.openqa.selenium.NoSuchElementException e) {
 
-		}
+		} */
 	}
 
-	@Test(priority = 5)
+	@Test(priority = 5, enabled = true)
 	public void validateSuccessfulLogin() throws Throwable {
 
 		driver = initializeDriver();
@@ -120,7 +110,7 @@ public class Login extends base {
 	}
 
 	@AfterClass()
-	public void tearDown() throws Exception {
+	public void tearDown(){
 
 		MyActions.focusOnLandingPage(); // fails if validateSuccessfulLogin method is not called prior
 		driver.close();
