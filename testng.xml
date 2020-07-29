@@ -37,7 +37,7 @@
 			<class name="frontDeskTests.CheckIn" />
 		</classes>
 	</test>
-	
+
 	<test thread-count="5" name="Class Enrollment">
 		<classes>
 			<class name="frontDeskTests.ClassEnrollment" />
@@ -49,8 +49,8 @@
 			<class name="frontDeskTests.Login" />
 		</classes>
 	</test>
-	
-		<test thread-count="5" name="Member Management">
+
+	<test thread-count="5" name="Member Management">
 		<classes>
 			<class name="frontDeskTests.MemberMgmt" />
 		</classes>
@@ -59,6 +59,12 @@
 	<test thread-count="5" name="Point Of Sale">
 		<classes>
 			<class name="frontDeskTests.PointOfSale" />
+		</classes>
+	</test>
+
+	<test thread-count="5" name="Reports">
+		<classes>
+			<class name="frontDeskTests.Reports" />
 		</classes>
 	</test>
 </suite>

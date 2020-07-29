@@ -14,6 +14,8 @@ import pageObjects.LandingPagePO;
 import pageObjects.LoginPO;
 
 public class MyActions extends base {
+	
+	public static LandingPagePO la = new LandingPagePO();
 
 	public void setDriver(WindowsDriver driver) {
 
@@ -64,7 +66,7 @@ public class MyActions extends base {
 		 * Use this in test class to get nativeWindowHandle: String nativeWindowHandle =
 		 * la.getLandingPageLocator().getAttribute("NativeWindowHandle");
 		 */
-		LandingPagePO la = new LandingPagePO();
+		
 		String nativeWindowHandle = la.getPageLocator().getAttribute("NativeWindowHandle");
 		int natWinHandleInt = Integer.parseInt(nativeWindowHandle);
 		String natWinHandleStr = Integer.toHexString(natWinHandleInt);
@@ -109,6 +111,23 @@ public class MyActions extends base {
 		System.out.println("WindowHandles: " + driver.getWindowHandles());
 		System.out.println("Page Source: " + driver.getPageSource());
 
+		return;
+	}
+	
+	public static void performanceTestLoop() {
+		// STRESS TEST EXAMPLE
+				int i = 1;
+				while (i<=2) {
+					la.getCheckInButton().click();
+					try {
+						Thread.sleep(10000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					la.getPOSButton().click();
+				}
+		
 		return;
 	}
 

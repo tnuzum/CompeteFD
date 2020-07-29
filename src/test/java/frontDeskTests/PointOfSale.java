@@ -54,7 +54,7 @@ public class PointOfSale extends base {
 	}
 
 	@Test(priority = 1, enabled = true)
-	public void launchPOS() throws Exception {
+	public void launchPOS(){
 
 		MyActions.loginEmployee(barcodeId, password);
 
@@ -173,8 +173,16 @@ public class PointOfSale extends base {
 		pa.getPayAmt5DollarsButton().click();
 
 		p.getOKButton().click();
-
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		MyActions.focusByNativeWindowHandleIndex(0);
+
+		MyActions.myWait(30, "Change Due");
 
 		p.getOKButton().click();
 	}
@@ -226,8 +234,16 @@ public class PointOfSale extends base {
 		pa.getCCZipInputField().sendKeys("43215");
 
 		p.getOKButton().click();
+		
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 
 		MyActions.focusByNativeWindowHandleIndex(0);
+
+		MyActions.myWait(30, "Change Due");
 
 		p.getOKButton().click();
 	}
