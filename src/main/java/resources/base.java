@@ -43,13 +43,13 @@ public class base {
 
 		try {
 
-			WebDriverWait waitForUpdateFound = new WebDriverWait(driver, 7);
+			WebDriverWait waitForUpdateFound = new WebDriverWait(driver, 30);
 			waitForUpdateFound.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Update Found")));
 
 			if (uf.getPageLocator().isDisplayed()) {
 				System.out.println("INFO: Update Found");
 				uf.getOKButton().click();
-				WebDriverWait waitForCancelButton = new WebDriverWait(driver, 20);
+				WebDriverWait waitForCancelButton = new WebDriverWait(driver, 30);
 				waitForCancelButton.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Cancel")));
 				uf.getNextButton().click();
 
@@ -71,7 +71,7 @@ public class base {
 		WebDriverWait waitForLogin = new WebDriverWait(driver, 30);
 		waitForLogin.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Employee Login")));
 
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		return driver;
 
 	}
