@@ -46,7 +46,7 @@ public class MyActions extends base {
 
 	public static void myWaitByAccessibilityId(int duration, String accessibilityId) {
 
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, duration);
 		wait.until(ExpectedConditions.visibilityOf(driver.findElementByAccessibilityId(accessibilityId)));
 
 	}
