@@ -1,35 +1,235 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+<testng-results ignored="3" total="34" passed="31" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-06-11T17:05:53 EDT" name="Suite" finished-at="2020-06-11T17:06:43 EDT" duration-ms="49478">
+  <suite started-at="2020-08-07T17:48:16 EDT" name="Suite" finished-at="2020-08-07T18:00:51 EDT" duration-ms="754806">
     <groups>
     </groups>
-    <test started-at="2020-06-11T17:05:53 EDT" name="Test" finished-at="2020-06-11T17:06:43 EDT" duration-ms="49478">
-      <class name="winAppDriverResearch.LoginEmployee">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:winAppDriverResearch.LoginEmployee@e7edb54]" started-at="2020-06-11T17:06:13 EDT" name="initialize" finished-at="2020-06-11T17:06:20 EDT" duration-ms="6097" status="PASS">
+    <test started-at="2020-08-07T17:48:16 EDT" name="About Compete" finished-at="2020-08-07T18:00:51 EDT" duration-ms="754806">
+      <class name="frontDeskTests.ClassEnrollment">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:frontDeskTests.ClassEnrollment@31e5415e]" started-at="2020-08-07T17:54:07 EDT" name="initialize" finished-at="2020-08-07T17:54:53 EDT" duration-ms="46533" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialize -->
-        <test-method signature="LoginEmployee1()[pri:0, instance:winAppDriverResearch.LoginEmployee@e7edb54]" started-at="2020-06-11T17:06:20 EDT" name="LoginEmployee1" finished-at="2020-06-11T17:06:43 EDT" duration-ms="23257" status="PASS">
+        <test-method signature="validatePageObjects()[pri:1, instance:frontDeskTests.ClassEnrollment@31e5415e]" started-at="2020-08-07T17:54:53 EDT" name="validatePageObjects" finished-at="2020-08-07T17:55:00 EDT" duration-ms="6835" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- LoginEmployee1 -->
-      </class> <!-- winAppDriverResearch.LoginEmployee -->
-      <class name="winAppDriverResearch.LoginPage">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:winAppDriverResearch.LoginPage@74455848]" started-at="2020-06-11T17:05:53 EDT" name="initialize" finished-at="2020-06-11T17:06:05 EDT" duration-ms="11725" status="PASS">
+        </test-method> <!-- validatePageObjects -->
+        <test-method signature="closeWindow()[pri:2, instance:frontDeskTests.ClassEnrollment@31e5415e]" started-at="2020-08-07T17:55:00 EDT" name="closeWindow" finished-at="2020-08-07T17:55:00 EDT" duration-ms="310" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeWindow -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:frontDeskTests.ClassEnrollment@31e5415e]" started-at="2020-08-07T17:55:00 EDT" name="tearDown" finished-at="2020-08-07T17:55:03 EDT" duration-ms="2397" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- frontDeskTests.ClassEnrollment -->
+      <class name="frontDeskTests.Agreements">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:frontDeskTests.Agreements@4e096385]" started-at="2020-08-07T17:49:13 EDT" name="initialize" finished-at="2020-08-07T17:49:59 EDT" duration-ms="45503" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialize -->
-        <test-method signature="ValidateElements()[pri:0, instance:winAppDriverResearch.LoginPage@74455848]" started-at="2020-06-11T17:06:05 EDT" name="ValidateElements" finished-at="2020-06-11T17:06:10 EDT" duration-ms="5350" status="PASS">
+        <test-method signature="validatePageObjects()[pri:1, instance:frontDeskTests.Agreements@4e096385]" started-at="2020-08-07T17:49:59 EDT" name="validatePageObjects" finished-at="2020-08-07T17:50:00 EDT" duration-ms="1149" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- ValidateElements -->
-        <test-method is-config="true" signature="TearDown()[pri:0, instance:winAppDriverResearch.LoginPage@74455848]" started-at="2020-06-11T17:06:10 EDT" name="TearDown" finished-at="2020-06-11T17:06:13 EDT" duration-ms="3024" status="PASS">
+        </test-method> <!-- validatePageObjects -->
+        <test-method signature="searchAgreements()[pri:2, instance:frontDeskTests.Agreements@4e096385]" started-at="2020-08-07T17:50:00 EDT" name="searchAgreements" finished-at="2020-08-07T17:50:13 EDT" duration-ms="13231" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchAgreements -->
+        <test-method is-config="true" signature="TearDown()[pri:0, instance:frontDeskTests.Agreements@4e096385]" started-at="2020-08-07T17:50:13 EDT" name="TearDown" finished-at="2020-08-07T17:50:15 EDT" duration-ms="2340" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TearDown -->
-      </class> <!-- winAppDriverResearch.LoginPage -->
-    </test> <!-- Test -->
+      </class> <!-- frontDeskTests.Agreements -->
+      <class name="frontDeskTests.Reports">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:frontDeskTests.Reports@1b6e1eff]" started-at="2020-08-07T18:00:02 EDT" name="initialize" finished-at="2020-08-07T18:00:44 EDT" duration-ms="42061" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialize -->
+        <test-method signature="validatePageObjects()[pri:1, instance:frontDeskTests.Reports@1b6e1eff]" started-at="2020-08-07T18:00:44 EDT" name="validatePageObjects" finished-at="2020-08-07T18:00:51 EDT" duration-ms="6690" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validatePageObjects -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:frontDeskTests.Reports@1b6e1eff]" started-at="2020-08-07T18:00:51 EDT" name="tearDown" finished-at="2020-08-07T18:00:51 EDT" duration-ms="60" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- frontDeskTests.Reports -->
+      <class name="frontDeskTests.Login">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:frontDeskTests.Login@a2431d0]" started-at="2020-08-07T17:55:03 EDT" name="initialize" finished-at="2020-08-07T17:55:21 EDT" duration-ms="18145" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialize -->
+        <test-method signature="validatePageObjects()[pri:1, instance:frontDeskTests.Login@a2431d0]" started-at="2020-08-07T17:55:21 EDT" name="validatePageObjects" finished-at="2020-08-07T17:55:28 EDT" duration-ms="6685" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validatePageObjects -->
+        <test-method signature="validateInputRequiredErrorMessage()[pri:2, instance:frontDeskTests.Login@a2431d0]" started-at="2020-08-07T17:55:28 EDT" name="validateInputRequiredErrorMessage" finished-at="2020-08-07T17:55:32 EDT" duration-ms="4067" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateInputRequiredErrorMessage -->
+        <test-method signature="validateInputInvalidErrorMessage()[pri:3, instance:frontDeskTests.Login@a2431d0]" started-at="2020-08-07T17:55:32 EDT" name="validateInputInvalidErrorMessage" finished-at="2020-08-07T17:55:41 EDT" duration-ms="8973" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateInputInvalidErrorMessage -->
+        <test-method signature="validateCancelLogin()[pri:4, instance:frontDeskTests.Login@a2431d0]" started-at="2020-08-07T17:55:41 EDT" name="validateCancelLogin" finished-at="2020-08-07T17:55:44 EDT" duration-ms="2907" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateCancelLogin -->
+        <test-method signature="validateSuccessfulLogin()[pri:5, instance:frontDeskTests.Login@a2431d0]" started-at="2020-08-07T17:55:44 EDT" name="validateSuccessfulLogin" finished-at="2020-08-07T17:56:32 EDT" duration-ms="48182" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateSuccessfulLogin -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:frontDeskTests.Login@a2431d0]" started-at="2020-08-07T17:56:32 EDT" name="tearDown" finished-at="2020-08-07T17:56:32 EDT" duration-ms="144" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- frontDeskTests.Login -->
+      <class name="frontDeskTests.Bookings">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:frontDeskTests.Bookings@649bec2e]" started-at="2020-08-07T17:50:15 EDT" name="initialize" finished-at="2020-08-07T17:51:02 EDT" duration-ms="46369" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialize -->
+        <test-method signature="validatePageObjects()[pri:1, instance:frontDeskTests.Bookings@649bec2e]" started-at="2020-08-07T17:51:02 EDT" name="validatePageObjects" finished-at="2020-08-07T17:51:07 EDT" duration-ms="5006" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validatePageObjects -->
+        <test-method signature="showCalendar()[pri:2, instance:frontDeskTests.Bookings@649bec2e]" started-at="2020-08-07T17:51:07 EDT" name="showCalendar" finished-at="2020-08-07T17:51:15 EDT" duration-ms="8053" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- showCalendar -->
+        <test-method signature="bookView()[pri:4, instance:frontDeskTests.Bookings@649bec2e]" started-at="2020-08-07T17:51:15 EDT" name="bookView" finished-at="2020-08-07T17:51:18 EDT" duration-ms="3075" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- bookView -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:frontDeskTests.Bookings@649bec2e]" started-at="2020-08-07T17:51:18 EDT" name="tearDown" finished-at="2020-08-07T17:51:20 EDT" duration-ms="2429" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- frontDeskTests.Bookings -->
+      <class name="frontDeskTests.PointOfSale">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:frontDeskTests.PointOfSale@1a4013]" started-at="2020-08-07T17:57:35 EDT" name="initialize" finished-at="2020-08-07T17:58:22 EDT" duration-ms="46491" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialize -->
+        <test-method signature="validatePageObjects()[pri:1, instance:frontDeskTests.PointOfSale@1a4013]" started-at="2020-08-07T17:58:22 EDT" name="validatePageObjects" finished-at="2020-08-07T17:58:48 EDT" duration-ms="26392" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validatePageObjects -->
+        <test-method signature="clearMember()[pri:2, instance:frontDeskTests.PointOfSale@1a4013]" started-at="2020-08-07T17:58:48 EDT" name="clearMember" finished-at="2020-08-07T17:58:59 EDT" duration-ms="10944" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMember -->
+        <test-method signature="purchaseWithCash()[pri:3, instance:frontDeskTests.PointOfSale@1a4013]" started-at="2020-08-07T17:58:59 EDT" name="purchaseWithCash" finished-at="2020-08-07T17:59:17 EDT" duration-ms="18019" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- purchaseWithCash -->
+        <test-method signature="purchaseWithCreditCard()[pri:4, instance:frontDeskTests.PointOfSale@1a4013]" started-at="2020-08-07T17:59:17 EDT" name="purchaseWithCreditCard" finished-at="2020-08-07T17:59:45 EDT" duration-ms="27319" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- purchaseWithCreditCard -->
+        <test-method signature="takePayment()[pri:5, instance:frontDeskTests.PointOfSale@1a4013]" started-at="2020-08-07T17:59:45 EDT" name="takePayment" finished-at="2020-08-07T18:00:00 EDT" duration-ms="15515" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- takePayment -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:frontDeskTests.PointOfSale@1a4013]" started-at="2020-08-07T18:00:00 EDT" name="tearDown" finished-at="2020-08-07T18:00:02 EDT" duration-ms="2350" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- frontDeskTests.PointOfSale -->
+      <class name="frontDeskTests.AboutCompete">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:frontDeskTests.AboutCompete@27ff5d15]" started-at="2020-08-07T17:48:16 EDT" name="initialize" finished-at="2020-08-07T17:48:35 EDT" duration-ms="18663" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialize -->
+        <test-method signature="CompeteAboutView()[pri:0, instance:frontDeskTests.AboutCompete@27ff5d15]" started-at="2020-08-07T17:48:35 EDT" name="CompeteAboutView" finished-at="2020-08-07T17:49:11 EDT" duration-ms="35835" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CompeteAboutView -->
+        <test-method is-config="true" signature="TearDown()[pri:0, instance:frontDeskTests.AboutCompete@27ff5d15]" started-at="2020-08-07T17:49:11 EDT" name="TearDown" finished-at="2020-08-07T17:49:13 EDT" duration-ms="2339" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TearDown -->
+      </class> <!-- frontDeskTests.AboutCompete -->
+      <class name="frontDeskTests.CheckIn">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:frontDeskTests.CheckIn@34f5090e]" started-at="2020-08-07T17:52:45 EDT" name="initialize" finished-at="2020-08-07T17:53:30 EDT" duration-ms="45009" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialize -->
+        <test-method signature="validatePageObjects()[pri:1, instance:frontDeskTests.CheckIn@34f5090e]" started-at="2020-08-07T17:53:30 EDT" name="validatePageObjects" finished-at="2020-08-07T17:53:31 EDT" duration-ms="1650" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validatePageObjects -->
+        <test-method signature="memberCheckIn()[pri:2, instance:frontDeskTests.CheckIn@34f5090e]" started-at="2020-08-07T17:53:31 EDT" name="memberCheckIn" finished-at="2020-08-07T17:53:41 EDT" duration-ms="9772" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- memberCheckIn -->
+        <test-method signature="familyCheckIn()[pri:3, instance:frontDeskTests.CheckIn@34f5090e]" started-at="2020-08-07T17:53:41 EDT" name="familyCheckIn" finished-at="2020-08-07T17:53:49 EDT" duration-ms="7487" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- familyCheckIn -->
+        <test-method signature="clearMember()[pri:4, instance:frontDeskTests.CheckIn@34f5090e]" started-at="2020-08-07T17:53:49 EDT" name="clearMember" finished-at="2020-08-07T17:53:55 EDT" duration-ms="5970" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMember -->
+        <test-method signature="memberInfo()[pri:5, instance:frontDeskTests.CheckIn@34f5090e]" started-at="2020-08-07T17:53:55 EDT" name="memberInfo" finished-at="2020-08-07T17:54:04 EDT" duration-ms="9761" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- memberInfo -->
+        <test-method is-config="true" signature="TearDown()[pri:0, instance:frontDeskTests.CheckIn@34f5090e]" started-at="2020-08-07T17:54:04 EDT" name="TearDown" finished-at="2020-08-07T17:54:07 EDT" duration-ms="2361" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TearDown -->
+      </class> <!-- frontDeskTests.CheckIn -->
+      <class name="frontDeskTests.MemberMgmt">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:frontDeskTests.MemberMgmt@1cbb87f3]" started-at="2020-08-07T17:56:32 EDT" name="initialize" finished-at="2020-08-07T17:57:18 EDT" duration-ms="46068" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialize -->
+        <test-method signature="validatePageObjects()[pri:1, instance:frontDeskTests.MemberMgmt@1cbb87f3]" started-at="2020-08-07T17:57:18 EDT" name="validatePageObjects" finished-at="2020-08-07T17:57:19 EDT" duration-ms="849" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validatePageObjects -->
+        <test-method signature="searchMember()[pri:2, instance:frontDeskTests.MemberMgmt@1cbb87f3]" started-at="2020-08-07T17:57:19 EDT" name="searchMember" finished-at="2020-08-07T17:57:23 EDT" duration-ms="4290" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchMember -->
+        <test-method signature="clearMember()[pri:3, instance:frontDeskTests.MemberMgmt@1cbb87f3]" started-at="2020-08-07T17:57:23 EDT" name="clearMember" finished-at="2020-08-07T17:57:24 EDT" duration-ms="1029" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearMember -->
+        <test-method signature="memberInfo()[pri:4, instance:frontDeskTests.MemberMgmt@1cbb87f3]" started-at="2020-08-07T17:57:24 EDT" name="memberInfo" finished-at="2020-08-07T17:57:33 EDT" duration-ms="8844" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- memberInfo -->
+        <test-method is-config="true" signature="TearDown()[pri:0, instance:frontDeskTests.MemberMgmt@1cbb87f3]" started-at="2020-08-07T17:57:33 EDT" name="TearDown" finished-at="2020-08-07T17:57:35 EDT" duration-ms="2365" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TearDown -->
+      </class> <!-- frontDeskTests.MemberMgmt -->
+      <class name="frontDeskTests.ChangePassword">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:frontDeskTests.ChangePassword@693fe6c9]" started-at="2020-08-07T17:51:20 EDT" name="initialize" finished-at="2020-08-07T17:51:38 EDT" duration-ms="17838" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialize -->
+        <test-method signature="launchChangePassword()[pri:1, instance:frontDeskTests.ChangePassword@693fe6c9]" started-at="2020-08-07T17:51:38 EDT" name="launchChangePassword" finished-at="2020-08-07T17:51:57 EDT" duration-ms="18956" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchChangePassword -->
+        <test-method signature="validatePageObjects()[pri:2, instance:frontDeskTests.ChangePassword@693fe6c9]" started-at="2020-08-07T17:51:57 EDT" name="validatePageObjects" finished-at="2020-08-07T17:52:13 EDT" duration-ms="15939" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validatePageObjects -->
+        <test-method signature="cancelChange()[pri:3, instance:frontDeskTests.ChangePassword@693fe6c9]" started-at="2020-08-07T17:52:13 EDT" name="cancelChange" finished-at="2020-08-07T17:52:45 EDT" duration-ms="31498" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cancelChange -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:frontDeskTests.ChangePassword@693fe6c9]" started-at="2020-08-07T17:52:45 EDT" name="tearDown" finished-at="2020-08-07T17:52:45 EDT" duration-ms="59" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- frontDeskTests.ChangePassword -->
+    </test> <!-- About Compete -->
   </suite> <!-- Suite -->
 </testng-results>
