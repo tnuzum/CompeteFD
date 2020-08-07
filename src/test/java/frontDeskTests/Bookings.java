@@ -36,25 +36,14 @@ public class Bookings extends base {
 		la = new LandingPagePO();
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		password = prop.getProperty("activeEmployeePassword");
-
-	}
-
-	@Test(priority = 1, enabled = true)
-	public void launchBookings() {
-
+		
 		MyActions.loginEmployee(barcodeId, password);
-
-			MyActions.myWait(30, "deckWorkspace1");
-
 		la.getMoreButton().click();
-		
 		la.getMoreButtons(2).click();
-		
-		Assert.assertTrue(b.getPageLabel().isDisplayed());
 
 	}
 	
-	@Test(priority = 2, enabled = true)
+	@Test(priority = 1, enabled = true)
 	public void validatePageObjects(){
 
 		softAssertion.assertEquals(b.getPageLabel().getText(), "Bookings : Service View");
@@ -79,7 +68,7 @@ public class Bookings extends base {
 		
 	}
 	
-	@Test(priority = 3, enabled = true)
+	@Test(priority = 2, enabled = true)
 	public void showCalendar(){
 
 		
@@ -119,7 +108,9 @@ public class Bookings extends base {
 	@AfterClass (enabled = true)
 	public void tearDown() {
 			MyActions.focusByNativeWindowHandleIndex(0);
+			
 		driver.close();
+		
 		driver.quit();
 	}
 

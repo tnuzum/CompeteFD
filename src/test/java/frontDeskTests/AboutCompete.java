@@ -37,7 +37,7 @@ public class AboutCompete extends base {
 
 		MyActions.loginEmployee(barcodeId, password);
 
-		MyActions.myWait(30, "deckWorkspace1");
+		MyActions.myWaitByName(30, "deckWorkspace1");
 
 		la.getCompeteInfoButton().click();
 

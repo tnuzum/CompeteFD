@@ -40,6 +40,7 @@ public class PointOfSale extends base {
 
 		System.out.println("Test Class: " + getClass().getName());
 		driver = initializeDriver();
+		
 		p = new POS_MainPagePO();
 		la = new LandingPagePO();
 		ei = new POS_EditItemPO();
@@ -48,25 +49,17 @@ public class PointOfSale extends base {
 		ps = new POS_ProductSearchPO();
 		pa = new POS_PaymentAmountPO();
 		tp = new POS_TakePaymentPO();
+		
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		password = prop.getProperty("activeEmployeePassword");
 		searchString = "Manny";
+		
+		MyActions.loginEmployee(barcodeId, password);
+		la.getPOSButton().click();
+		
 	}
 
 	@Test(priority = 1, enabled = true)
-	public void launchPOS(){
-
-		MyActions.loginEmployee(barcodeId, password);
-
-		MyActions.myWait(30, "deckWorkspace1");
-
-		la.getPOSButton().click();
-
-		Assert.assertTrue(p.getPOSPageLabel().isDisplayed());
-
-	}
-
-	@Test(priority = 2, enabled = true)
 	public void validatePageObjects() {
 
 		softAssertion.assertEquals(p.getPOSPageLabel().getText(), "Point Of Sale");
@@ -127,14 +120,14 @@ public class PointOfSale extends base {
 
 	}
 
-	@Test(priority = 3, enabled = true)
+	@Test(priority = 2, enabled = true)
 	public void clearMember() {
 
 		p.getMemberInputField().sendKeys(searchString);
 
 		p.getSearchButton().click();
 
-		MyActions.myWait(30, "Member Quick Search");
+		MyActions.myWaitByName(30, "Member Quick Search");
 
 		ms.getOKButton().click();
 
@@ -143,7 +136,7 @@ public class PointOfSale extends base {
 		Assert.assertNotEquals(p.getMemberInputField().getText(), searchString);
 	}
 
-	@Test(priority = 4, enabled = true)
+	@Test(priority = 3, enabled = true)
 	public void purchaseWithCash() {
 
 		String searchString = "water";
@@ -182,12 +175,12 @@ public class PointOfSale extends base {
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 
-		MyActions.myWait(30, "Change Due");
+		MyActions.myWaitByName(30, "Change Due");
 
 		p.getOKButton().click();
 	}
 
-	@Test(priority = 5, enabled = true)
+	@Test(priority = 4, enabled = true)
 	public void purchaseWithCreditCard() {
 
 		MyActions.focusByNativeWindowHandleIndex(0);
@@ -243,12 +236,12 @@ public class PointOfSale extends base {
 
 		MyActions.focusByNativeWindowHandleIndex(0);
 
-		MyActions.myWait(30, "Change Due");
+		MyActions.myWaitByName(30, "Change Due");
 
 		p.getOKButton().click();
 	}
 
-	@Test(priority = 6, enabled = true)
+	@Test(priority = 5, enabled = true)
 	public void takePayment() {
 
 		MyActions.focusByNativeWindowHandleIndex(0);
@@ -257,13 +250,13 @@ public class PointOfSale extends base {
 
 		p.getSearchButton().click();
 
-		MyActions.myWait(30, "Member Quick Search");
+		MyActions.myWaitByName(30, "Member Quick Search");
 
 		ms.getOKButton().click();
 
 		p.getTakePaymentButton().click();
 
-		MyActions.myWait(30, "Payment");
+		MyActions.myWaitByName(30, "Payment");
 
 		tp.getAmountInput().sendKeys("0.01");
 
