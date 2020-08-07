@@ -90,6 +90,7 @@ public class TimeClockPO extends base{
 	
 	public WebElement getEmployeeUserIDLabel() {
 		return driver.findElementByAccessibilityId("lblType");
+		
 	}
 	
 	public WebElement getEmployeeUserIDInputField() {
