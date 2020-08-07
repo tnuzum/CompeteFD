@@ -39,20 +39,13 @@ public class CheckIn extends base {
 		ci = new CheckInPO();
 		ms = new MemberSearchPO();
 		mi = new MemberInfoPO();
+		
+		MyActions.loginEmployee(barcodeId, password);
+
+		la.getCheckInButton().click();
 	}
 
 	@Test(priority = 1, enabled = true)
-	public void launchCheckIn(){
-
-		MyActions.loginEmployee(barcodeId, password);
-
-		//MyActions.myWait(30, "deckWorkspace1");
-
-		la.getCheckInButton().click();
-
-	}
-
-	@Test(priority = 2)
 	public void validatePageObjects() {
 
 		// Button text is not available for these buttons, so it is not possible to
@@ -74,43 +67,94 @@ public class CheckIn extends base {
 		softAssertion.assertTrue(ci.getAddGuestButton().isEnabled());
 		softAssertion.assertAll();
 	}
-
-	@Test(priority = 3, enabled = true)
-	public void searchMember() {
+	
+	@Test(priority = 2, enabled = true)
+	public void memberCheckIn() {
 
 		ci.getMemberInputField().sendKeys(searchString);
+		
 		ci.getSearchButton().click();
 
-		MyActions.myWait(30, "Member Quick Search");
+		MyActions.myWaitByName(30, "Member Quick Search");
 
 		Assert.assertTrue(ms.getPageLocator().isDisplayed());
+		
 		ms.getOKButton().click();
+		
+		ci.getCheckInButton().click();
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+		
+		ci.getCheckInButton().click(); //button on Check-In Options page
+
+
+	}
+
+	@Test(priority = 3, enabled = true)
+	public void familyCheckIn() {
+
+		ci.getMemberInputField().sendKeys(searchString);
+		
+		ci.getSearchButton().click();
+
+		MyActions.myWaitByName(30, "Member Quick Search");
+
+		Assert.assertTrue(ms.getPageLocator().isDisplayed());
+		
+		ms.getOKButton().click();
+		
+		MyActions.myWaitByAccessibilityId(30, "pbFamilyCheckIn");
+		
+		ci.getFamilyCheckInButton().click();
+		
+		ci.getCheckInAllFamilyButton().click();
+		
+		ci.getWarningYesButton().click();
+
 	}
 
 	@Test(priority = 4)
 	public void clearMember() {
 
 		ci.getMemberInputField().sendKeys(searchString);
+		
+		ci.getSearchButton().click();
+
+		MyActions.myWaitByName(30, "Member Quick Search");
+
+		Assert.assertTrue(ms.getPageLocator().isDisplayed());
+		
+		ms.getOKButton().click();
+		
 		ci.getClearMemberButton().click();
+		
 		Assert.assertNotEquals(ci.getMemberInputField().getText(), searchString);
 	}
 	
-	@Test(priority = 5)
+	@Test(priority = 5, enabled = true)
 	public void memberInfo(){
 		
 		ci.getMemberInputField().sendKeys(searchString);
+		
 		ci.getSearchButton().click();
-			MyActions.myWait(30, "Member Quick Search");
+		
+			MyActions.myWaitByName(30, "Member Quick Search");
+			
 		ms.getOKButton().click();
 
 		ci.getMemberInfoButton().click();
+		
 			try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 			}
+			
 			MyActions.focusByNativeWindowHandleIndex(0);
+			
 		Assert.assertTrue(mi.getMemberNameLabel().getText().contains(searchString));
+		
 		Assert.assertTrue(mi.getMemberPaneMemberNameValue().getText().contains(searchString));
+		
 		mi.getCloseButton().click();
 	}
 

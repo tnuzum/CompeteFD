@@ -53,7 +53,7 @@ public class ChangePassword extends base {
 
 		l.getLoginButton().click();
 
-		MyActions.myWait(20, "Change Employee Password");
+		MyActions.myWaitByName(20, "Change Employee Password");
 
 	}
 
@@ -75,7 +75,7 @@ public class ChangePassword extends base {
 
 		cp.getCancelButton().click();
 
-		MyActions.myWait(30, "deckWorkspace1");
+		MyActions.myWaitByName(30, "deckWorkspace1");
 
 		MyActions.focusOnLandingPage();
 

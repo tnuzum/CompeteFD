@@ -14,7 +14,7 @@ import pageObjects.LandingPagePO;
 import pageObjects.LoginPO;
 
 public class MyActions extends base {
-	
+
 	public static LandingPagePO la = new LandingPagePO();
 
 	public void setDriver(WindowsDriver driver) {
@@ -24,23 +24,30 @@ public class MyActions extends base {
 
 	public static String loginEmployee(String barcodeId, String password) {
 
-			LoginPO l = new LoginPO();
-		
+		LoginPO l = new LoginPO();
+
 		l.getUserNameInputField().sendKeys(barcodeId);
-		
+
 		l.getPasswordInputField().sendKeys(password);
-		
+
 		l.getLoginButton().click();
-		
-			MyActions.myWait(30, "deckWorkspace1");
-			
+
+		MyActions.myWaitByName(30, "deckWorkspace1");
+
 		return null;
 	}
 
-	public static void myWait(int duration, String locatorName) {
+	public static void myWaitByName(int duration, String locatorName) {
 
 		WebDriverWait wait = new WebDriverWait(driver, duration);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name(locatorName)));
+
+	}
+
+	public static void myWaitByAccessibilityId(int duration, String accessibilityId) {
+
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOf(driver.findElementByAccessibilityId(accessibilityId)));
 
 	}
 
@@ -60,13 +67,13 @@ public class MyActions extends base {
 		return natWinHandle;
 	}
 
-	public static String focusOnLandingPage(){
+	public static String focusOnLandingPage() {
 
 		/*
 		 * Use this in test class to get nativeWindowHandle: String nativeWindowHandle =
 		 * la.getLandingPageLocator().getAttribute("NativeWindowHandle");
 		 */
-		
+
 		String nativeWindowHandle = la.getPageLocator().getAttribute("NativeWindowHandle");
 		int natWinHandleInt = Integer.parseInt(nativeWindowHandle);
 		String natWinHandleStr = Integer.toHexString(natWinHandleInt);
@@ -79,7 +86,7 @@ public class MyActions extends base {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//System.out.println("Native Window Handle: "+natWinHandle);
+		// System.out.println("Native Window Handle: "+natWinHandle);
 		return null;
 	}
 
@@ -113,21 +120,21 @@ public class MyActions extends base {
 
 		return;
 	}
-	
+
 	public static void performanceTestLoop() {
 		// STRESS TEST EXAMPLE
-				int i = 1;
-				while (i<=2) {
-					la.getCheckInButton().click();
-					try {
-						Thread.sleep(10000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					la.getPOSButton().click();
-				}
-		
+		int i = 1;
+		while (i <= 2) {
+			la.getCheckInButton().click();
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			la.getPOSButton().click();
+		}
+
 		return;
 	}
 

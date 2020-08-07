@@ -1,6 +1,5 @@
 package frontDeskTests;
 
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -36,22 +35,14 @@ public class Agreements extends base {
 		la = new LandingPagePO();
 		a = new AgreementsPO();
 		as = new AgreementSearchPO();
-	}
-
-	@Test(priority = 1, enabled = true)
-	public void launchAgreements() throws Exception {
-
+		
 		MyActions.loginEmployee(barcodeId, password);
 
-		MyActions.myWait(30, "deckWorkspace1");
-
 		la.getAgreementsButton().click();
-		
-		Assert.assertEquals(a.getAgreementsPageHeaderLabel().getText(), "Agreements");
 
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 1)
 	public void validatePageObjects() {
 
 		// Button text is not available for these buttons, so it is not possible to
@@ -69,12 +60,12 @@ public class Agreements extends base {
 		softAssertion.assertAll();
 	}
 	
-	@Test(priority = 3)
-	public void searchAgreements() throws InterruptedException, Exception {
+	@Test(priority = 2)
+	public void searchAgreements(){
 		
 		a.getSearchAgreementsButton().click();
 		
-			MyActions.myWait(30, "Search Agreements");
+			MyActions.myWaitByName(30, "Search Agreements");
 			
 		as.getQSSearchAgreementsInput().sendKeys(searchString);
 		

@@ -4,8 +4,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import org.testng.Assert;
-
 import pageObjects.ClassEnrollmentPO;
 import pageObjects.LandingPagePO;
 import resources.MyActions;
@@ -32,21 +30,13 @@ public class ClassEnrollment extends base {
 		ce = new ClassEnrollmentPO();
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		password = prop.getProperty("activeEmployeePassword");
-	}
-
-	@Test(priority = 1, enabled = true)
-	public void launchClassEnrollment(){
-
+		
 		MyActions.loginEmployee(barcodeId, password);
-
 		la.getMoreButton().click();
-		
 		la.getMoreButtons(8).click();
-		
-		Assert.assertTrue(ce.getPageLocator().isDisplayed());
 	}
 	
-	@Test(priority = 2, enabled = true)
+	@Test(priority = 1, enabled = true)
 	public void validatePageObjects(){
 
 		softAssertion.assertTrue(ce.getClearButton().isDisplayed(),"Clear Button is Enabled");
@@ -89,7 +79,7 @@ public class ClassEnrollment extends base {
 		softAssertion.assertAll();
 	}
 	
-	@Test(priority = 3, enabled = true)
+	@Test(priority = 2, enabled = true)
 	public void closeWindow(){
 		
 		ce.getCloseButton().click();

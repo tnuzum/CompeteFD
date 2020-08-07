@@ -39,28 +39,14 @@ public class MemberMgmt extends base {
 		mm = new MemberMgmtPO();
 		ms = new MemberSearchPO();
 		mi = new MemberInfoPO();
-	}
-
-	@Test(priority = 1, enabled = true)
-	public void launchCheckIn() throws Exception {
-
+		
 		MyActions.loginEmployee(barcodeId, password);
-
-		MyActions.myWait(30, "deckWorkspace1");
-
 		la.getMoreButton().click();
-		
 		la.getMoreButtons(9).click();
-		
-		Assert.assertTrue(mm.getMemberMgmtLabel().isDisplayed());
-
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 1)
 	public void validatePageObjects() {
-
-		// Button text is not available for these buttons, so it is not possible to
-		// assert that the text is correct
 
 		softAssertion.assertTrue(mm.getMemberMgmtLabel().isDisplayed());
 		softAssertion.assertEquals(mm.getMemberMgmtLabel().getText(), "Member Management");
@@ -74,31 +60,31 @@ public class MemberMgmt extends base {
 		softAssertion.assertAll();
 	}
 
-	@Test(priority = 3, enabled = true)
+	@Test(priority = 2, enabled = true)
 	public void searchMember() {
 
 		mm.getMemberInputField().sendKeys(searchString);
 		mm.getSearchButton().click();
 
-		MyActions.myWait(30, "Member Quick Search");
+		MyActions.myWaitByName(30, "Member Quick Search");
 
 		Assert.assertTrue(ms.getPageLocator().isDisplayed());
 		ms.getOKButton().click();
 	}
 
-	@Test(priority = 4, enabled = true)
+	@Test(priority = 3, enabled = true)
 	public void clearMember() {
 
 		mm.getCancelButton().click();
 		Assert.assertNotEquals(mm.getMemberInputField().getText(), searchString);
 	}
 	
-	@Test(priority = 5)
+	@Test(priority = 4)
 	public void memberInfo() throws Exception {
 		
 		mm.getMemberInputField().sendKeys(searchString);
 		mm.getSearchButton().click();
-			MyActions.myWait(30, "Member Quick Search");
+			MyActions.myWaitByName(30, "Member Quick Search");
 		ms.getOKButton().click();
 
 		mm.getMemberInfoButton().click();

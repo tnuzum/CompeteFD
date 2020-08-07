@@ -6,8 +6,6 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.Assert;
-
 import pageObjects.LandingPagePO;
 import pageObjects.ReportsPO;
 import resources.MyActions;
@@ -34,21 +32,13 @@ public class Reports extends base {
 		r = new ReportsPO();
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		password = prop.getProperty("activeEmployeePassword");
-	}
-
-	@Test(priority = 1, enabled = true)
-	public void launchReports(){
-
-		MyActions.loginEmployee(barcodeId, password);
-
-		la.getMoreButton().click();
 		
+		MyActions.loginEmployee(barcodeId, password);
+		la.getMoreButton().click();	
 		la.getMoreButtons(4).click();
-
-		Assert.assertTrue(r.getPageLabel().isDisplayed());
 	}
 	
-	@Test(priority = 2, enabled = true)
+	@Test(priority = 1, enabled = true)
 	public void validatePageObjects(){
 		
 		softAssertion.assertEquals(r.getPageLabel().getText(), "Reports");
@@ -72,7 +62,7 @@ public class Reports extends base {
 		softAssertion.assertAll();
 	}
 	
-	@Test(priority = 3, enabled = false)
+	@Test(priority = 2, enabled = false)
 	public void validateReportHeaders(){
 		
 		// !! Work In Progress -- Compete Unhandled exception when report is clicked
@@ -98,7 +88,7 @@ public class Reports extends base {
 	}
 	
 	
-	@Test(priority = 4, enabled = false)
+	@Test(priority = 3, enabled = false)
 	public void accountingCancelledPaymentsByDate(){
 		
 		// !! Work In Progress -- Compete Unhandled exception when report is clicked
