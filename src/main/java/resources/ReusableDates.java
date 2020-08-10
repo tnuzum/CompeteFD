@@ -14,13 +14,13 @@ public class ReusableDates {
 	}
 	
 	public static String getCurrentDateFormat2() {
-		DateFormat dateFormat = new SimpleDateFormat("M/d/yyyy"); //"yyyy-MM-dd"); //8/6/2020
+		DateFormat dateFormat = new SimpleDateFormat("M/d/yyyy"); //8/6/2020
 		Date currentDate = new Date();
 		return dateFormat.format(currentDate);
 	}
 	
 	public static String getCurrentDateFormat3() {
-		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy"); //"yyyy-MM-dd"); //8/6/2020
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy"); //08/06/2020
 		Date currentDate = new Date();
 		return dateFormat.format(currentDate);
 	}

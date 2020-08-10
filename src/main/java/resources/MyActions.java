@@ -14,6 +14,8 @@ import pageObjects.LandingPagePO;
 import pageObjects.LoginPO;
 
 public class MyActions extends base {
+	
+	//public WindowsDriver driver;
 
 	public static LandingPagePO la = new LandingPagePO();
 
@@ -137,5 +139,6 @@ public class MyActions extends base {
 
 		return;
 	}
+	
 
 }
