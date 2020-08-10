@@ -24,7 +24,7 @@ public class base {
 
 	public static UpdateFoundPO uf = new UpdateFoundPO();
 
-	public WindowsDriver initializeDriver() throws Throwable {
+	public static WindowsDriver initializeDriver() throws Throwable {
 
 		prop = new Properties();
 		FileInputStream fis = new FileInputStream(projectPath + "\\src\\main\\java\\resources\\properties");
@@ -43,7 +43,7 @@ public class base {
 
 		try {
 
-			WebDriverWait waitForUpdateFound = new WebDriverWait(driver, 30);
+			WebDriverWait waitForUpdateFound = new WebDriverWait(driver, 5);
 			waitForUpdateFound.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Update Found")));
 
 			if (uf.getPageLocator().isDisplayed()) {
@@ -71,7 +71,7 @@ public class base {
 		WebDriverWait waitForLogin = new WebDriverWait(driver, 30);
 		waitForLogin.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Employee Login")));
 
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
 		return driver;
 
 	}

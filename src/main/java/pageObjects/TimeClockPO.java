@@ -63,8 +63,8 @@ public class TimeClockPO extends base{
 	}
 	
 	public WebElement getCancelButton(){
-		// return driver.findElementByAccessibilityId("pbCancel");
-		return driver.findElementByXPath("//Pane[@AutomationId='pbCancel'][1]");
+		 return driver.findElementByAccessibilityId("pbCancel");
+		//return driver.findElementByXPath("//Pane[@AutomationId='pbCancel'][1]");
 	}
 	
 	public WebElement getManagerOverrideButton(){
@@ -89,8 +89,7 @@ public class TimeClockPO extends base{
 	}
 	
 	public WebElement getEmployeeUserIDLabel() {
-		return driver.findElementByAccessibilityId("lblType");
-		
+		return driver.findElementByName("Employee User ID");
 	}
 	
 	public WebElement getEmployeeUserIDInputField() {
@@ -102,7 +101,7 @@ public class TimeClockPO extends base{
 	}
 
 	public WebElement getManagerOverrideDateLabel() {
-		return driver.findElementByAccessibilityId("lblCurrentTime");
+		return driver.findElementByName("Date");
 	}
 
 	public WebElement getManagerOverrideDateCombobox() {
@@ -133,22 +132,53 @@ public class TimeClockPO extends base{
 	}
 	
 	public WebElement getManagerOverrideCancelButton(){
-		// return driver.findElementByAccessibilityId("pbCancel");
-		return driver.findElementByXPath("//Pane[@AutomationId='pbCancel'][2]");
+		return driver.findElementByAccessibilityId("pbCancel");
+		//return driver.findElementByXPath("//Pane[@AutomationId='pbCancel'][2]");
 	}
 
 	public WebElement getInvalidUserIDPWMessage() {
 		return driver.findElementByAccessibilityId("lblIncorrectLogin");
 	}
 	
+	public WebElement getConfirmationMessage() {
+		return driver.findElementByAccessibilityId("lblMessage");
+	}
 	
+	public WebElement getDepartmentLabel() {
+		return driver.findElementByAccessibilityId("lblDepartment");
+	}
 	
+	public WebElement getDepartmentComboboxValue() {
+		return driver.findElementByAccessibilityId("cmbDepartments");
+	}
 	
+	public WebElement getDepartmentComboboxOpen() {
+		return driver.findElementByName("Open");
+	}
 	
+	public WebElement getNotesLabel() {
+		return driver.findElementByName("Notes");
+	}
 	
+	public WebElement getNotesInputField() {
+		return driver.findElementByAccessibilityId("txtNotes");
+	}
 	
+	public WebElement getConfirmationOKButton(){
+		return driver.findElementByAccessibilityId("pbOk");
+	}
 	
+	public WebElement getConfirmationCancelButton(){
+		return driver.findElementByAccessibilityId("pbCancel");
+	}
 	
+	public WebElement getErrorMessage() {
+		return driver.findElementByAccessibilityId("txtErrorMessages");
+	}
+	
+	public WebElement getErrorMessageOkButton() {
+		return driver.findElementByAccessibilityId("pnlOkCancel");
+	}
 	
 	
 	

@@ -1,5 +1,6 @@
 package frontDeskTests;
 
+import org.junit.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -25,6 +26,7 @@ public class TimeClock extends base {
 	public void initialize() throws Throwable {
 
 		System.out.println("Test Class: " + getClass().getName());
+
 		driver = initializeDriver();
 		
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
@@ -33,13 +35,14 @@ public class TimeClock extends base {
 
 		la = new LandingPagePO();
 		tc = new TimeClockPO();
-		
+	
 		MyActions.loginEmployee(barcodeId, password);
 		la.getMoreButton().click();
 		la.getMoreButtons(1).click();
+
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1, enabled = true)
 	public void validateTimeClockPageObjects() {
 		
 		String cd = ReusableDates.getCurrentDateFormat2();
@@ -59,17 +62,12 @@ public class TimeClock extends base {
 		softAssertion.assertAll();
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 2, enabled = true)
 	public void validateManagerOverridePageObjects() {
 		
 		tc.getManagerOverrideButton().click();
 		
 		String cd = ReusableDates.getCurrentDateFormat3();
-		
-		/*
-		 * try { Thread.sleep(5000); } catch (InterruptedException e) { // TODO
-		 * Auto-generated catch block e.printStackTrace(); }
-		 */
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 
@@ -92,42 +90,97 @@ public class TimeClock extends base {
 		tc.getManagerOverrideCancelButton().click(); // return to Time Clock
 	}
 	
-/*
-	@Test(priority = 2, enabled = true)
-	public void searchMember() {
-
-		mm.getMemberInputField().sendKeys(searchString);
-		mm.getSearchButton().click();
-
-		MyActions.myWaitByName(30, "Member Quick Search");
-
-		Assert.assertTrue(ms.getPageLocator().isDisplayed());
-		ms.getOKButton().click();
-	}
-
 	@Test(priority = 3, enabled = true)
-	public void clearMember() {
-
-		mm.getCancelButton().click();
-		Assert.assertNotEquals(mm.getMemberInputField().getText(), searchString);
+	public void clockIn() {
+		
+		String cd = ReusableDates.getCurrentDateFormat2();
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+		
+		tc.getUserIDInputField().sendKeys(barcodeId);
+		
+		tc.getPasswordInputField().sendKeys(password);
+		
+		tc.getInButton().click();
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+		
+		Assert.assertTrue(tc.getConfirmationMessage().getText().contains("IN at "+cd));
+		
+		tc.getConfirmationOKButton().click();
 	}
 	
-	@Test(priority = 4)
-	public void memberInfo() throws Exception {
+	@Test(priority = 4, enabled = false)
+	public void clockINError() {
 		
-		mm.getMemberInputField().sendKeys(searchString);
-		mm.getSearchButton().click();
-			MyActions.myWaitByName(30, "Member Quick Search");
-		ms.getOKButton().click();
-
-		mm.getMemberInfoButton().click();
-			Thread.sleep(2000);
-			MyActions.focusByNativeWindowHandleIndex(0);
-		Assert.assertTrue(mi.getMemberNameLabel().getText().contains(searchString));
-		Assert.assertTrue(mi.getMemberPaneMemberNameValue().getText().contains(searchString));
-		mi.getCloseButton().click();
+		la.getMoreButton().click();
+		
+		la.getMoreButtons(1).click();
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+		
+		tc.getUserIDInputField().sendKeys(barcodeId);
+		
+		tc.getPasswordInputField().sendKeys(password);
+		
+		tc.getInButton().click();
+		
+		tc.getConfirmationOKButton().click();
+		
+		Assert.assertTrue(tc.getErrorMessage().getText().contains(""));
+		
+		try {
+			Thread.sleep(7000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+		
+		tc.getErrorMessageOkButton().click();
+		
+		try {
+			Thread.sleep(7000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+		
+		tc.getCancelButton().click();
 	}
-*/
+	
+	
+	@Test(priority = 5, enabled = true)
+	public void clockOut() {
+		
+		String cd = ReusableDates.getCurrentDateFormat2();
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+
+		la.getMoreButton().click();
+		
+		la.getMoreButtons(1).click();
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+		
+		tc.getUserIDInputField().sendKeys(barcodeId);
+		
+		tc.getPasswordInputField().sendKeys(password);
+		
+		tc.getOutButton().click();
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+		
+		Assert.assertTrue(tc.getConfirmationMessage().getText().contains("OUT at "+cd));
+		
+		tc.getConfirmationOKButton().click();
+		
+		
+	}
+
 	@AfterClass
 	public void TearDown() {
 		
