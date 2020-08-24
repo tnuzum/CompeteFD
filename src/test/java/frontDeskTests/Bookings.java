@@ -47,23 +47,23 @@ public class Bookings extends base {
 	public void validatePageObjects(){
 
 		softAssertion.assertEquals(b.getPageLabel().getText(), "Bookings : Service View");
-		softAssertion.assertTrue(!b.getClearButton().isEnabled(),"Clear Button is Enabled"); // not enabled because a member has not yet been selected
+		softAssertion.assertTrue(!b.getClearButton().isEnabled()); // not enabled because a member has not yet been selected
 		softAssertion.assertEquals(b.getMemberInputLabel().getText(), "Member ID/ Last Name");
-		softAssertion.assertTrue(b.getMemberInputField().isEnabled(), "Member Input Field is Enabled");
-		softAssertion.assertTrue(b.getBrowseButton().isEnabled(), "Browse Button is Enabled");
+		softAssertion.assertTrue(b.getMemberInputField().isEnabled());
+		softAssertion.assertTrue(b.getBrowseButton().isEnabled());
 		softAssertion.assertEquals(b.getClubLabel().getText(), "Club");
-		softAssertion.assertTrue(b.getClubCombobox().isEnabled(), "Club Combobox is Enabled");
+		softAssertion.assertTrue(b.getClubCombobox().isEnabled());
 		softAssertion.assertEquals(b.getServiceCategoryLabel().getText(), "Service Category");
-		softAssertion.assertTrue(b.getServiceCategoryCombobox().isEnabled(), "Service Category Combobox is Enabled");
+		softAssertion.assertTrue(b.getServiceCategoryCombobox().isEnabled());
 		softAssertion.assertEquals(b.getServiceLabel().getText(), "Service");
-		softAssertion.assertTrue(b.getServiceCombobox().isEnabled(), "Service Combobox is Enabled");
+		softAssertion.assertTrue(b.getServiceCombobox().isEnabled());
 		softAssertion.assertEquals(b.getResourcesLabel().getText(), "Resources");
 		softAssertion.assertEquals(b.getResourceTypeHeader().getText(), "Resource Type");
 		softAssertion.assertEquals(b.getBookHeader().getText(), "Book");
-		softAssertion.assertTrue(b.getCalendarView().isDisplayed(), "Calendar is Displayed");
-		softAssertion.assertTrue(!b.getShowCalendarButton().isEnabled(), "Show Calendar Button is Enabled");// not enabled because resources have not yet been selected
-		softAssertion.assertTrue(b.getBookViewButton().isEnabled(), "Bookview Button is Enabled");
-		softAssertion.assertTrue(b.getSearchAppointmentsButton().isEnabled(), "Search Appointment Button is Enabled");
+		softAssertion.assertTrue(b.getCalendarView().isDisplayed());
+		softAssertion.assertTrue(!b.getShowCalendarButton().isEnabled());// not enabled because resources have not yet been selected
+		softAssertion.assertTrue(b.getBookViewButton().isEnabled());
+		softAssertion.assertTrue(b.getSearchAppointmentsButton().isEnabled());
 		softAssertion.assertAll();
 		
 	}
@@ -89,11 +89,6 @@ public class Bookings extends base {
 		b.getShowCalendarButton().click();
 		
 		Assert.assertTrue(b.getBreadCrum().isDisplayed());
-		
-		// ** In progress - click on small calendar
-		//driver.findElementByXPath("//DataItem[contains(@Name,'17,')]").click();
-		//driver.findElementByName("Thursday, July 16, 2020").click(); this works but not sustainable
-		//b.getCalendarDateButton(0).click();
 		
 	}
 	

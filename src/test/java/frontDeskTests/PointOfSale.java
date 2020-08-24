@@ -1,5 +1,6 @@
 package frontDeskTests;
 
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -39,6 +40,9 @@ public class PointOfSale extends base {
 	public void initialize() throws Throwable {
 
 		System.out.println("Test Class: " + getClass().getName());
+		
+		MyActions.startWAD();
+		
 		driver = initializeDriver();
 		
 		p = new POS_MainPagePO();
@@ -180,7 +184,7 @@ public class PointOfSale extends base {
 		p.getOKButton().click();
 	}
 
-	@Test(priority = 4, enabled = true)
+	@Test(priority = 4, enabled = false)
 	public void purchaseWithCreditCard() {
 
 		MyActions.focusByNativeWindowHandleIndex(0);
@@ -210,23 +214,28 @@ public class PointOfSale extends base {
 
 		MyActions.focusByNativeWindowHandleIndex(0);
 
-		pa.getCCTypeDropdownButton().click();
+		//pa.getCCTypeDropdownButton().click();
 
-		pa.getCCCardTypeDropdownList(3).click();
+		//pa.getCCCardTypeDropdownList(3).click();
 
 		pa.getCCNumberInputField().sendKeys(prop.getProperty("changeCCMember1AccountNumber"));
 
 		pa.getCCExpMonthDropdownButton().click();
+		
+		Actions a= new Actions(driver);
+		a.moveToElement(pa.getCCExpMonthDropdownList(4)).click().build().perform();
 
-		pa.getCCExpMonthDropdownList(4).click();
+		// pa.getCCExpMonthDropdownList(4).click();
 
 		pa.getCCExpYearDropdownButton().click();
 
-		pa.getCCExpYearDropdownList(3).click();
+		a.moveToElement(pa.getCCExpYearDropdownList(3)).click().build().perform();
+
+		// pa.getCCExpYearDropdownList(3).click();
 
 		pa.getCCZipInputField().sendKeys("43215");
 
-		p.getOKButton().click();
+		pa.getOKButton().click();
 		
 			try {
 				Thread.sleep(3000);
@@ -238,7 +247,7 @@ public class PointOfSale extends base {
 
 		MyActions.myWaitByName(30, "Change Due");
 
-		p.getOKButton().click();
+		p.getOKButton().click(); // Click Ok button on Change Due prompt
 	}
 
 	@Test(priority = 5, enabled = true)

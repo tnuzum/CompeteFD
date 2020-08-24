@@ -32,6 +32,9 @@ public class base {
 
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("app", "C:\\Program Files (x86)\\JonasFitness\\Compete\\Front Desk.exe");
+		
+		Thread.sleep(5000); // This wait helps avoid a SessionNotCreatedException
+		
 		WindowsDriver Session = new WindowsDriver(new URL("http://127.0.0.1:4723"), capabilities);
 
 		Session.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -71,7 +74,7 @@ public class base {
 		WebDriverWait waitForLogin = new WebDriverWait(driver, 30);
 		waitForLogin.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Employee Login")));
 
-		driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		return driver;
 
 	}
