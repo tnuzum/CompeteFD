@@ -12,7 +12,7 @@
 			<class name="frontDeskTests.ClassEnrollment" />
 			<class name="frontDeskTests.Login" />
 			<class name="frontDeskTests.MemberMgmt" />
-			<!-- class name="frontDeskTests.PointOfSale" /-->
+			<class name="frontDeskTests.PointOfSale" />
 			<class name="frontDeskTests.Reports" />
 			<class name="frontDeskTests.TimeClock" />
 		</classes>

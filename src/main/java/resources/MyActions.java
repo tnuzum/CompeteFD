@@ -1,5 +1,6 @@
 package resources;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -140,5 +141,30 @@ public class MyActions extends base {
 		return;
 	}
 	
+	public static void startWAD() {
+		
+		String wad = ("//C://Automation//startWAD.bat");
+		
+		try {
+			Runtime.getRuntime().exec(wad);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		return;
+	}
+	
+	public static void stopWAD() {
+		
+		String wad = ("//C://Automation//stopWAD.bat");
+		
+		try {
+			Runtime.getRuntime().exec(wad);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		return;
+	}
 
 }

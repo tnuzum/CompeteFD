@@ -26,6 +26,8 @@ public class perfTesting extends base {
 		CheckInPO ci = new CheckInPO();
 		MemberSearchPO ms = new MemberSearchPO();
 		String searchString = "Manny";
+		
+		MyActions.startWAD();
 
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("app", "C:\\Program Files (x86)\\JonasFitness\\Compete\\Front Desk.exe");

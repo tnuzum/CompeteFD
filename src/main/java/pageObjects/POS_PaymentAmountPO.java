@@ -47,7 +47,7 @@ public class POS_PaymentAmountPO extends base {
 	}
 	
 	public WebElement getClear() {
-		return driver.findElementByAccessibilityId("pbClear");
+		return driver.findElementByAccessibilityId("cmdClear");
 	}
 	
 	public WebElement getChangeDueLabel() {
@@ -79,7 +79,7 @@ public class POS_PaymentAmountPO extends base {
 	}
 	
 	public WebElement getCCTypeDropdownButton() {
-		return driver.findElementByAccessibilityId("pbCardType");
+		return driver.findElementByAccessibilityId("cboCardType");
 	}
 	
 	public WebElement getCCCardTypeDropdownList(int index) {
@@ -108,7 +108,7 @@ public class POS_PaymentAmountPO extends base {
 	}
 	
 	public WebElement getCCExpMonthDropdownButton() {
-		return driver.findElementByAccessibilityId("pbExpMonth");
+		return driver.findElementByAccessibilityId("cboExpMonth");
 	}	
 	
 	public WebElement getCCExpMonthDropdownList(int index) {
@@ -117,7 +117,7 @@ public class POS_PaymentAmountPO extends base {
 	}
 	
 	public WebElement getCCExpYearDropdownButton() {
-		return driver.findElementByAccessibilityId("pbExpYear");
+		return driver.findElementByAccessibilityId("cboExpYear");
 	}
 	
 	public WebElement getCCExpYearDropdownList(int index) {
@@ -137,6 +137,9 @@ public class POS_PaymentAmountPO extends base {
 		return driver.findElementByAccessibilityId("pbSwipeCard");
 	}
 	
+	public WebElement getOKButton() {
+		return driver.findElementByAccessibilityId("cmdOk");
+	}
 	
 	
 	
