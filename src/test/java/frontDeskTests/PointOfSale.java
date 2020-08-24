@@ -184,7 +184,7 @@ public class PointOfSale extends base {
 		p.getOKButton().click();
 	}
 
-	@Test(priority = 4, enabled = false)
+	@Test(priority = 4, enabled = true)
 	public void purchaseWithCreditCard() {
 
 		MyActions.focusByNativeWindowHandleIndex(0);

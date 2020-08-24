@@ -38,6 +38,8 @@ public class ClassEnrollment extends base {
 	
 	@Test(priority = 1, enabled = true)
 	public void validatePageObjects(){
+		
+		MyActions.myWaitByAccessibilityId(30, "pbClearButton");
 
 		softAssertion.assertTrue(ce.getClearButton().isDisplayed(),"Clear Button is Enabled");
 		softAssertion.assertEquals(ce.getMemberInputLabel().getText(), "Member ID / Last Name");

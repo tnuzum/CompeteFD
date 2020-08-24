@@ -102,7 +102,7 @@ public class MyActions extends base {
 		 * System.out.println("WindowHandles: "+driver.getWindowHandles());
 		 */
 		try {
-			Thread.sleep(2000);// this allows time for the window focus to finalize
+			Thread.sleep(4000);// this allows time for the window focus to finalize
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

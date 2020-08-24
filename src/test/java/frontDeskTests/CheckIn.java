@@ -95,6 +95,8 @@ public class CheckIn extends base {
 
 	@Test(priority = 3, enabled = true)
 	public void familyCheckIn() {
+		
+		MyActions.myWaitByAccessibilityId(30, "txtBarcode");
 
 		ci.getMemberInputField().sendKeys(searchString);
 		
