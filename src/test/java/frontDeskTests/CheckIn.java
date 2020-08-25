@@ -115,6 +115,14 @@ public class CheckIn extends base {
 		
 		ms.getOKButton().click();
 		
+		
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		MyActions.myWaitByAccessibilityId(30, "pbFamilyCheckIn");
 		
 		ci.getFamilyCheckInButton().click();
