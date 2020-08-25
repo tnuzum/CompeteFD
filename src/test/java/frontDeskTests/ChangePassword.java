@@ -31,6 +31,9 @@ public class ChangePassword extends base {
 	public void initialize() throws Throwable {
 
 		System.out.println("Test Class: " + getClass().getName());
+		
+		MyActions.startWAD();
+		
 		driver = initializeDriver();
 
 		barcodeId = prop.getProperty("changeEmployeeBarcodeId");
