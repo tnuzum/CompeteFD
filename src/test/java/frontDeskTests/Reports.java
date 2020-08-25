@@ -26,6 +26,9 @@ public class Reports extends base {
 	public void initialize() throws Throwable{
 		
 		System.out.println("Test Class: "+getClass().getName());
+		
+		MyActions.startWAD();
+		
 		driver = initializeDriver();
 		
 		la = new LandingPagePO();

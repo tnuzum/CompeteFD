@@ -24,6 +24,8 @@ public class Login extends base {
 
 		System.out.println("Test Class: " + getClass().getName());
 		
+		MyActions.startWAD();
+		
 		driver = initializeDriver();
 		l = new LoginPO();
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
