@@ -53,6 +53,13 @@ public class CheckIn extends base {
 
 		// Button text is not available for these buttons, so it is not possible to
 		// assert that the text is correct
+		
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		softAssertion.assertTrue(ci.getCheckInModeLabel().isDisplayed());
 		softAssertion.assertEquals(ci.getCheckInModeLabel().getText(), "Check In | Attended");

@@ -42,6 +42,13 @@ public class ClassEnrollment extends base {
 	@Test(priority = 1, enabled = true)
 	public void validatePageObjects(){
 		
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		MyActions.myWaitByAccessibilityId(30, "pbClearButton");
 
 		softAssertion.assertTrue(ce.getClearButton().isDisplayed(),"Clear Button is Enabled");
