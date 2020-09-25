@@ -1,5 +1,6 @@
 package resources;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -14,6 +15,10 @@ import pageObjects.LandingPagePO;
 import pageObjects.LoginPO;
 
 public class MyActions extends base {
+	
+	//public WindowsDriver driver;
+
+	public static LandingPagePO la = new LandingPagePO();
 
 	public void setDriver(WindowsDriver driver) {
 
@@ -23,16 +28,29 @@ public class MyActions extends base {
 	public static String loginEmployee(String barcodeId, String password) {
 
 		LoginPO l = new LoginPO();
+
 		l.getUserNameInputField().sendKeys(barcodeId);
+
 		l.getPasswordInputField().sendKeys(password);
+
 		l.getLoginButton().click();
+
+		MyActions.myWaitByName(30, "deckWorkspace1");
+
 		return null;
 	}
 
-	public static void myWait(int duration, String locatorName) {
+	public static void myWaitByName(int duration, String locatorName) {
 
 		WebDriverWait wait = new WebDriverWait(driver, duration);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name(locatorName)));
+
+	}
+
+	public static void myWaitByAccessibilityId(int duration, String accessibilityId) {
+
+		WebDriverWait wait = new WebDriverWait(driver, duration);
+		wait.until(ExpectedConditions.visibilityOf(driver.findElementByAccessibilityId(accessibilityId)));
 
 	}
 
@@ -52,21 +70,26 @@ public class MyActions extends base {
 		return natWinHandle;
 	}
 
-	public static String focusOnLandingPage() throws MalformedURLException {
+	public static String focusOnLandingPage() {
 
 		/*
 		 * Use this in test class to get nativeWindowHandle: String nativeWindowHandle =
 		 * la.getLandingPageLocator().getAttribute("NativeWindowHandle");
 		 */
-		LandingPagePO la = new LandingPagePO();
-		String nativeWindowHandle = la.getLandingPageLocator().getAttribute("NativeWindowHandle");
+
+		String nativeWindowHandle = la.getPageLocator().getAttribute("NativeWindowHandle");
 		int natWinHandleInt = Integer.parseInt(nativeWindowHandle);
 		String natWinHandleStr = Integer.toHexString(natWinHandleInt);
 		String natWinHandle = "0x" + natWinHandleStr;
 		DesiredCapabilities appCapabilities = new DesiredCapabilities();
 		appCapabilities.setCapability("appTopLevelWindow", natWinHandle);
-		driver = new WindowsDriver<WindowsElement>(new URL("http://127.0.0.1:4723"), appCapabilities);
-		//System.out.println("Native Window Handle: "+natWinHandle);
+		try {
+			driver = new WindowsDriver<WindowsElement>(new URL("http://127.0.0.1:4723"), appCapabilities);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// System.out.println("Native Window Handle: "+natWinHandle);
 		return null;
 	}
 
@@ -79,7 +102,7 @@ public class MyActions extends base {
 		 * System.out.println("WindowHandles: "+driver.getWindowHandles());
 		 */
 		try {
-			Thread.sleep(1000);// this allows time for the window focus to finalize
+			Thread.sleep(4000);// this allows time for the window focus to finalize
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -95,8 +118,52 @@ public class MyActions extends base {
 		System.out.println("SessionDetails: " + driver.getSessionDetails());
 		System.out.println("SessionId: " + driver.getSessionId());
 		System.out.println("WindowHandle: " + driver.getWindowHandle());
+		System.out.println("WindowHandles: " + driver.getWindowHandles());
 		System.out.println("Page Source: " + driver.getPageSource());
 
+		return;
+	}
+
+	public static void performanceTestLoop() {
+		// STRESS TEST EXAMPLE
+		int i = 1;
+		while (i <= 2) {
+			la.getCheckInButton().click();
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			la.getPOSButton().click();
+		}
+
+		return;
+	}
+	
+	public static void startWAD() {
+		
+		String wad = ("//C://Automation//startWAD.bat");
+		
+		try {
+			Runtime.getRuntime().exec(wad);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		return;
+	}
+	
+	public static void stopWAD() {
+		
+		String wad = ("//C://Automation//stopWAD.bat");
+		
+		try {
+			Runtime.getRuntime().exec(wad);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 		return;
 	}
 

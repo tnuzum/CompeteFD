@@ -1,4 +1,15 @@
 
+----------------------------------------------
+** Best Practices **
+
+* Use softassertions for pageValidation tests so all elements will be tested
+* Label page object - assert equals expected text
+* Input field or button - assert true isEnabled 
+* Remove all outputs to console before committing code for test creation/updates
+----------------------------------------------
+
+
+----------------------------------------------
 ** Troubleshooting **
 
 * ElementNotFound - 
@@ -6,14 +17,16 @@
 	(2) Use MyActions > focus... method to get focus
 	(3) Use Xpath, System.out.println(driver.getPageSource()), copy PageSource to notepad,
 	 find block with element, use that block to create Xpath
+	 example: driver.findElementByXPath("(//Edit[@LocalizedControlType='edit'])[3]").getText());
 	 
 * Element not working, but not generating error - 
 	(1) There could be another element in the background with same locator,
 	 use Xpath to specify index of element to be used
+	 example: driver.findElementByXPath("(//Edit[@LocalizedControlType='edit'])[3]").getText());
  
  * Window needed has same Native Window Handle as a window in the background - 
  	(1) Use this in test class to get all Native Window Handles,
  	 System.out.println("WindowHandles: "+driver.getWindowHandles());
  	 then, use MyActions.focusByNativeWindowHandleIndex to indicate which 
  	 Native Window Handle to give focus
-  
+  ----------------------------------------------

@@ -1,9 +1,6 @@
 package frontDeskTests;
 
-import java.net.URL;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -12,8 +9,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import io.appium.java_client.windows.WindowsDriver;
-import io.appium.java_client.windows.WindowsElement;
 import pageObjects.ChangePasswordPO;
 import pageObjects.LandingPagePO;
 import pageObjects.LoginPO;
@@ -21,11 +16,12 @@ import resources.MyActions;
 import resources.base;
 
 public class ChangePassword extends base {
-	
-	public static SoftAssert softAssertion= new SoftAssert();
+
+	public static SoftAssert softAssertion = new SoftAssert();
 
 	ChangePasswordPO cp;
 	LandingPagePO lp;
+	LoginPO l;
 	String natWinHandle;
 	String nativeWindowHandle;
 	static String barcodeId;
@@ -34,7 +30,10 @@ public class ChangePassword extends base {
 	@BeforeClass
 	public void initialize() throws Throwable {
 
-		System.out.println("Test Class: "+getClass().getName());
+		System.out.println("Test Class: " + getClass().getName());
+		
+		MyActions.startWAD();
+		
 		driver = initializeDriver();
 
 		barcodeId = prop.getProperty("changeEmployeeBarcodeId");
@@ -42,42 +41,48 @@ public class ChangePassword extends base {
 
 		cp = new ChangePasswordPO();
 		lp = new LandingPagePO();
-		LoginPO l = new LoginPO();
-
-		l.getPromptCheckbox().click();
-
-		MyActions.loginEmployee(barcodeId, password);
+		l = new LoginPO();
 
 	}
 
 	@Test(priority = 1)
-	public void ValidatePageObjects() throws Exception{
-		
-		
-        WebDriverWait wait=new WebDriverWait(driver, 60);
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Change Employee Password")));
+	public void launchChangePassword() throws Exception {
+
+		l.getPromptCheckbox().click();
+
+		l.getUserNameInputField().sendKeys(barcodeId);
+
+		l.getPasswordInputField().sendKeys(password);
+
+		l.getLoginButton().click();
+
+		MyActions.myWaitByName(20, "Change Employee Password");
+
+	}
+
+	@Test(priority = 2)
+	public void validatePageObjects() {
 
 		softAssertion.assertEquals(cp.getNewPasswordlabel().getText(), "Please enter the new password value");
 		softAssertion.assertTrue(cp.getNewPasswordInputField().isEnabled());
-		softAssertion.assertEquals(cp.getConfirmPasswordlabel().getText(), "Please enter the password again for confirmation");
+		softAssertion.assertEquals(cp.getConfirmPasswordlabel().getText(),"Please enter the password again for confirmation");
 		softAssertion.assertTrue(cp.getNewPasswordInputField().isEnabled());
 		softAssertion.assertTrue(cp.getHelpButton().isEnabled());
 		softAssertion.assertTrue(cp.getOKButton().isEnabled());
 		softAssertion.assertTrue(cp.getCancelButton().isEnabled());
 		softAssertion.assertAll();
-		
+	}
+
+	@Test(priority = 3)
+	public void cancelChange() {
+
 		cp.getCancelButton().click();
 
-		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("deckWorkspace1")));
-		
-		String nativeWindowHandle = lp.getLandingPageLocator().getAttribute("NativeWindowHandle");
-		natWinHandle = MyActions.convertnativeWindowHandle(nativeWindowHandle);
+		MyActions.myWaitByName(30, "deckWorkspace1");
 
-		DesiredCapabilities appCapabilities = new DesiredCapabilities();
-		appCapabilities.setCapability("appTopLevelWindow", natWinHandle);
-		driver = new WindowsDriver<WindowsElement>(new URL("http://127.0.0.1:4723"), appCapabilities);
+		MyActions.focusOnLandingPage();
 
-		Assert.assertTrue(lp.getLandingPageLocator().isDisplayed()); // Employee logged in; landing page displayed
+		Assert.assertTrue(lp.getPageLocator().isDisplayed()); // Employee logged in; landing page displayed
 	}
 
 	@Test(priority = 2, enabled = false)
@@ -91,12 +96,12 @@ public class ChangePassword extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("deckWorkspace1")));
 
-		Assert.assertTrue(lp.getLandingPageLocator().isDisplayed()); // Employee logged in; landing page displayed
+		Assert.assertTrue(lp.getPageLocator().isDisplayed()); // Employee logged in; landing page displayed
 
 	}
 
 	@AfterClass()
-	public void TearDown() {
+	public void tearDown() {
 		driver.close();
 		driver.quit();
 	}

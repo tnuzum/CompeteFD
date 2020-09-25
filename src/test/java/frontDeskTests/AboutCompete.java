@@ -24,6 +24,9 @@ public class AboutCompete extends base {
 	public void initialize() throws Throwable {
 		
 		System.out.println("Test Class: "+getClass().getName());
+		
+		MyActions.startWAD();
+		
 		driver = initializeDriver();
 		
 		la = new LandingPagePO();
@@ -37,14 +40,13 @@ public class AboutCompete extends base {
 
 		MyActions.loginEmployee(barcodeId, password);
 
-		MyActions.myWait(30, "deckWorkspace1");
+		MyActions.myWaitByName(30, "deckWorkspace1");
 
 		la.getCompeteInfoButton().click();
 
-		Assert.assertTrue(a.getAboutPageLocator().isDisplayed());
+		Assert.assertTrue(a.getPageLocator().isDisplayed());
 		a.getCloseButton().click();
 	}
-
 
 	@AfterClass
 	public void TearDown(){

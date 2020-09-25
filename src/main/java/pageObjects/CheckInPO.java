@@ -8,13 +8,13 @@ public class CheckInPO extends base {
 
 
 	// ** Constructor **
-	public void checkIn(WindowsDriver driver) {
+	public void setDriver(WindowsDriver driver) {
 		base.driver = driver;
 	}
 
 	// ** Objects **
 
-	public WebElement getCheckInViewLocator() {
+	public WebElement getPageLocator() {
 		return driver.findElementByAccessibilityId("pnlToolBar");
 	}
 
@@ -65,4 +65,60 @@ public class CheckInPO extends base {
 	public WebElement getAddGuestButton() {
 		return driver.findElementByAccessibilityId("pbAddGuest");
 	}
+
+	public WebElement getGuestButton() {
+		return driver.findElementByAccessibilityId("pbGuestSelect");
+	}
+	
+	public WebElement getClassesButton() {
+		return driver.findElementByAccessibilityId("pbClasses");
+	}
+	
+	public WebElement getCheckInButton() {
+		return driver.findElementByAccessibilityId("pbCheckIn");
+	}
+
+	public WebElement getFamilyCheckInButton() {
+		return driver.findElementByAccessibilityId("pbFamilyCheckIn");
+	}
+	
+	public WebElement getDeclineButton() {
+		return driver.findElementByAccessibilityId("pbDecline");
+	}
+
+	public WebElement getCheckInAllFamilyButton() {
+		return driver.findElementByAccessibilityId("pbAllFamilyCheckIn");
+	}
+	
+	public WebElement getWarningYesButton() {
+		return driver.findElementByAccessibilityId("btnOK");
+		//return driver.findElementByName("Yes");
+	}
+	
+	public WebElement getWarningNoButton() {
+		return driver.findElementByAccessibilityId("btnCancel");
+		//return driver.findElementByName("No");
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

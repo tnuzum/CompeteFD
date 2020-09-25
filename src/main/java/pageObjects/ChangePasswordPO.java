@@ -8,12 +8,12 @@ import resources.base;
 public class ChangePasswordPO extends base {
 
 	// ** Constructor **
-	public void changePassword(WindowsDriver driver) {
+	public void setDriver(WindowsDriver driver) {
 		base.driver = driver;
 	}
 
 	// ** Objects **
-	public WebElement getChangePasswordPageLocator() {
+	public WebElement getPageLocator() {
 		return driver.findElementByName("Change Employee Password");
 	}
 
@@ -43,6 +43,7 @@ public class ChangePasswordPO extends base {
 	
 	public WebElement getCancelButton() {
 		return driver.findElementByXPath("//Pane[@AutomationId='pbCancel'][1]");
+		//return driver.findElementByAccessibilityId("pbCancel");
 	}
 
 }

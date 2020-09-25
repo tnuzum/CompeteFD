@@ -1,30 +1,35 @@
 package frontDeskTests;
 
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import pageObjects.CheckInPO;
 import pageObjects.LandingPagePO;
 import pageObjects.MemberSearchPO;
-import pageObjects.PaymentAmountPO;
-import pageObjects.PointOfSalePO;
-import pageObjects.TakePaymentPO;
+import pageObjects.POS_EditItemPO;
+import pageObjects.POS_PaymentAmountPO;
+import pageObjects.POS_ProductSearchPO;
+import pageObjects.POS_MainPagePO;
+import pageObjects.POS_TakePaymentPO;
+import pageObjects.POS_TaxDetailPO;
 import resources.MyActions;
 import resources.base;
 
 public class PointOfSale extends base {
-	
-	public static SoftAssert softAssertion= new SoftAssert();
 
-	PointOfSalePO p;
+	public static SoftAssert softAssertion = new SoftAssert();
+
+	POS_MainPagePO p;
+	POS_EditItemPO ei;
+	POS_TaxDetailPO td;
 	LandingPagePO la;
-	CheckInPO ci;
 	MemberSearchPO ms;
-	PaymentAmountPO pa;
-	TakePaymentPO tp;
+	POS_ProductSearchPO ps;
+	POS_PaymentAmountPO pa;
+	POS_TakePaymentPO tp;
 	String natWinHandle;
 	String nativeWindowHandle;
 	String barcodeId;
@@ -35,33 +40,31 @@ public class PointOfSale extends base {
 	public void initialize() throws Throwable {
 
 		System.out.println("Test Class: " + getClass().getName());
+		
+		MyActions.startWAD();
+		
 		driver = initializeDriver();
-		p = new PointOfSalePO();
+		
+		p = new POS_MainPagePO();
 		la = new LandingPagePO();
-		ci = new CheckInPO();
+		ei = new POS_EditItemPO();
+		td = new POS_TaxDetailPO();
 		ms = new MemberSearchPO();
-		pa = new PaymentAmountPO();
-		tp = new TakePaymentPO();
+		ps = new POS_ProductSearchPO();
+		pa = new POS_PaymentAmountPO();
+		tp = new POS_TakePaymentPO();
+		
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		password = prop.getProperty("activeEmployeePassword");
 		searchString = "Manny";
+		
+		MyActions.loginEmployee(barcodeId, password);
+		la.getPOSButton().click();
+		
 	}
 
 	@Test(priority = 1, enabled = true)
-	public void launchPOS() throws Exception{
-
-		MyActions.loginEmployee(barcodeId, password);
-
-			MyActions.myWait(30, "deckWorkspace1");
-
-		la.getPOSButton().click();
-		
-		Assert.assertTrue(p.getPOSPageLabel().isDisplayed());
-
-	}
-	
-	@Test(priority = 2, enabled = true)
-	public void validatePageObjects() throws Exception{
+	public void validatePageObjects() {
 
 		softAssertion.assertEquals(p.getPOSPageLabel().getText(), "Point Of Sale");
 		softAssertion.assertEquals(p.getMemberInputLabel().getText(), "Member ID / Last Name");
@@ -80,27 +83,27 @@ public class PointOfSale extends base {
 		softAssertion.assertEquals(p.getCategoriesLabel().getText(), "Categories");
 		softAssertion.assertTrue(p.getCategoryPreviousButton().isEnabled());
 		softAssertion.assertTrue(p.getCategoryNextButton().isEnabled());
-		softAssertion.assertTrue(p.getCategoryChoice1().isEnabled());
-		softAssertion.assertTrue(p.getCategoryChoice2().isEnabled());
-		softAssertion.assertTrue(p.getCategoryChoice3().isEnabled());
-		softAssertion.assertTrue(p.getCategoryChoice4().isEnabled());
-		softAssertion.assertTrue(p.getCategoryChoice5().isEnabled());
-		softAssertion.assertTrue(p.getCategoryChoice6().isEnabled());
-		softAssertion.assertTrue(p.getCategoryChoice7().isEnabled());
-		softAssertion.assertTrue(p.getCategoryChoice8().isEnabled());
-		softAssertion.assertTrue(p.getCategoryChoice9().isEnabled());
-		softAssertion.assertTrue(p.getCategoryChoice10().isEnabled());
+		softAssertion.assertTrue(p.getCategoryChoice(1).isEnabled());
+		softAssertion.assertTrue(p.getCategoryChoice(2).isEnabled());
+		softAssertion.assertTrue(p.getCategoryChoice(3).isEnabled());
+		softAssertion.assertTrue(p.getCategoryChoice(4).isEnabled());
+		softAssertion.assertTrue(p.getCategoryChoice(5).isEnabled());
+		softAssertion.assertTrue(p.getCategoryChoice(6).isEnabled());
+		softAssertion.assertTrue(p.getCategoryChoice(7).isEnabled());
+		softAssertion.assertTrue(p.getCategoryChoice(8).isEnabled());
+		softAssertion.assertTrue(p.getCategoryChoice(9).isEnabled());
+		softAssertion.assertTrue(p.getCategoryChoice(10).isEnabled());
 		softAssertion.assertEquals(p.getCategoryPageNumberLabel().getText(), "1 / 3");
 		softAssertion.assertEquals(p.getPaymentSectionLabel().getText(), "Point of Sale:  Fees");
-		softAssertion.assertTrue(p.getPosChoice1().isEnabled());
-		softAssertion.assertTrue(p.getPosChoice2().isEnabled());
-		softAssertion.assertTrue(p.getPosChoice3().isEnabled());
-		softAssertion.assertTrue(p.getPosChoice4().isEnabled());
-		softAssertion.assertTrue(p.getPosChoice5().isEnabled());
-		softAssertion.assertTrue(p.getPosChoice6().isEnabled());
-		softAssertion.assertTrue(p.getPosChoice7().isEnabled());
-		softAssertion.assertTrue(p.getPosChoice8().isEnabled());
-		softAssertion.assertTrue(p.getPosChoice9().isEnabled());
+		softAssertion.assertTrue(p.getPosChoice(1).isEnabled());
+		softAssertion.assertTrue(p.getPosChoice(2).isEnabled());
+		softAssertion.assertTrue(p.getPosChoice(3).isEnabled());
+		softAssertion.assertTrue(p.getPosChoice(4).isEnabled());
+		softAssertion.assertTrue(p.getPosChoice(5).isEnabled());
+		softAssertion.assertTrue(p.getPosChoice(6).isEnabled());
+		softAssertion.assertTrue(p.getPosChoice(7).isEnabled());
+		softAssertion.assertTrue(p.getPosChoice(8).isEnabled());
+		softAssertion.assertTrue(p.getPosChoice(9).isEnabled());
 		softAssertion.assertTrue(p.getPosChoicePreviousButton().isEnabled());
 		softAssertion.assertTrue(p.getPosChoiceNextButton().isEnabled());
 		softAssertion.assertEquals(p.getPosChoicePageNumberLabel().getText(), "1 / 1");
@@ -118,46 +121,151 @@ public class PointOfSale extends base {
 		softAssertion.assertTrue(p.getClearButton().isEnabled());
 		softAssertion.assertTrue(p.getTotalButton().isEnabled());
 		softAssertion.assertAll();
-		
+
+	}
+
+	@Test(priority = 2, enabled = true)
+	public void clearMember() {
+
+		p.getMemberInputField().sendKeys(searchString);
+
+		p.getSearchButton().click();
+
+		MyActions.myWaitByName(30, "Member Quick Search");
+
+		ms.getOKButton().click();
+
+		p.getClearMemberButton().click();
+
+		Assert.assertNotEquals(p.getMemberInputField().getText(), searchString);
 	}
 
 	@Test(priority = 3, enabled = true)
-	public void purchaseInventoryItem() throws InterruptedException {
+	public void purchaseWithCash() {
 
-		p.getPosChoice1().click();
-		
+		String searchString = "water";
+
+		p.getProductSearchInputField().sendKeys(searchString);
+
+		p.getProductSearchSearchButton().click();
+
+		MyActions.focusByNativeWindowHandleIndex(0);
+
+		ps.getSearchInputField().sendKeys(searchString);
+
+		ps.getSearchButton().click();
+
+		Assert.assertEquals(ps.getSearchInputField().getText(), searchString);
+
+		ps.getOKButton().click();
+
+		MyActions.focusByNativeWindowHandleIndex(0);
+
 		p.getTotalButton().click();
-		
-		p.getCategoryChoice2().click();
 
-			MyActions.focusByNativeWindowHandleIndex(0);
+		p.getCategoryChoice(2).click();
+
+		MyActions.focusByNativeWindowHandleIndex(0);
 
 		pa.getPayAmt5DollarsButton().click();
-		
+
 		p.getOKButton().click();
 		
-			Thread.sleep(2000); 
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		
-			MyActions.focusByNativeWindowHandleIndex(0);
-		
+		MyActions.focusByNativeWindowHandleIndex(0);
+
+		MyActions.myWaitByName(30, "Change Due");
+
 		p.getOKButton().click();
 	}
 
 	@Test(priority = 4, enabled = true)
-	public void takePayment() throws InterruptedException {
+	public void purchaseWithCreditCard() {
+
+		MyActions.focusByNativeWindowHandleIndex(0);
+
+		p.getPosChoice(1).click();
+
+		// Edit Item to match amount needed for CSIPay to approve transaction
+		p.getEditButton().click();
+
+		MyActions.focusByNativeWindowHandleIndex(0);
+
+		ei.getQuantityInputField().sendKeys("5");
+
+		ei.getTaxExemptCheckbox().click();
+
+		ei.getOKButton().click();
+
+		MyActions.focusByNativeWindowHandleIndex(0);
+
+		p.getTotalButton().click();
+
+		p.getCategoryChoice(1).click();
+
+		MyActions.focusByNativeWindowHandleIndex(0);
+
+		pa.getCCSwipeMessageCancelButton().click();
+
+		MyActions.focusByNativeWindowHandleIndex(0);
+
+		//pa.getCCTypeDropdownButton().click();
+
+		//pa.getCCCardTypeDropdownList(3).click();
+
+		pa.getCCNumberInputField().sendKeys(prop.getProperty("changeCCMember1AccountNumber"));
+
+		pa.getCCExpMonthDropdownButton().click();
 		
-			MyActions.focusByNativeWindowHandleIndex(0);
+		Actions a= new Actions(driver);
+		a.moveToElement(pa.getCCExpMonthDropdownList(4)).click().build().perform();
 
-		ci.getMemberInputField().sendKeys(searchString);
-		ci.getSearchButton().click();
+		// pa.getCCExpMonthDropdownList(4).click();
 
-			MyActions.myWait(30, "Member Quick Search");
+		pa.getCCExpYearDropdownButton().click();
+
+		a.moveToElement(pa.getCCExpYearDropdownList(3)).click().build().perform();
+
+		// pa.getCCExpYearDropdownList(3).click();
+
+		pa.getCCZipInputField().sendKeys("43215");
+
+		pa.getOKButton().click();
+		
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+		MyActions.focusByNativeWindowHandleIndex(0);
+
+		MyActions.myWaitByName(30, "Change Due");
+
+		p.getOKButton().click(); // Click Ok button on Change Due prompt
+	}
+
+	@Test(priority = 5, enabled = true)
+	public void takePayment() {
+
+		MyActions.focusByNativeWindowHandleIndex(0);
+
+		p.getMemberInputField().sendKeys(searchString);
+
+		p.getSearchButton().click();
+
+		MyActions.myWaitByName(30, "Member Quick Search");
 
 		ms.getOKButton().click();
 
 		p.getTakePaymentButton().click();
 
-			MyActions.myWait(30, "Payment");
+		MyActions.myWaitByName(30, "Payment");
 
 		tp.getAmountInput().sendKeys("0.01");
 
@@ -170,9 +278,11 @@ public class PointOfSale extends base {
 	}
 
 	@AfterClass
-	public void TearDown() {
-			MyActions.focusByNativeWindowHandleIndex(0);
+	public void tearDown() {
+		MyActions.focusByNativeWindowHandleIndex(0);
+
 		driver.close();
+
 		driver.quit();
 	}
 

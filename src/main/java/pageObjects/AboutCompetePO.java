@@ -7,17 +7,17 @@ import resources.base;
 public class AboutCompetePO extends base{
 	
 		// ** Constructor **
-	public void aboutCompete(WindowsDriver driver) {
+	public void setDriver(WindowsDriver driver) {
 		base.driver = driver;
 	}
 	
 		// ** Objects ** 
-	public WebElement getAboutPageLocator()
+	public WebElement getPageLocator()
 	{
 		return driver.findElementByAccessibilityId("AboutView");
 	}
 	
-	public WebElement getCloseButton() throws Exception {
+	public WebElement getCloseButton(){
 		return driver.findElementByXPath("//Button[@Name='Close'][1]");
 	}
 	

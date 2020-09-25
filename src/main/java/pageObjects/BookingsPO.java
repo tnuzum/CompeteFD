@@ -8,13 +8,13 @@ import resources.base;
 public class BookingsPO extends base{
 	
 		// ** Constructor **
-	public void aboutCompete(WindowsDriver driver) {
+	public void setDriver(WindowsDriver driver) {
 		base.driver = driver;
 	}
 	
 		// ** Objects ** 
 	
-	public WebElement getBookingsPageLabel() {
+	public WebElement getPageLabel() {
 		return driver.findElementByAccessibilityId("lblModule"); // upper left, below Compete logo
 	}
 
@@ -23,14 +23,14 @@ public class BookingsPO extends base{
 	}
 	
 	public WebElement getMemberInputLabel() {
-		return driver.findElementByAccessibilityId("lblSearchValue");
+		return driver.findElementByAccessibilityId("lblSeachValue");
 	}
 
 	public WebElement getMemberInputField() {
 		return driver.findElementByAccessibilityId("txtSearchValue");
 	}
 
-	public WebElement getSearchButton() {
+	public WebElement getBrowseButton() {
 		return driver.findElementByAccessibilityId("pnlBrowse");
 	}
 
@@ -42,7 +42,7 @@ public class BookingsPO extends base{
 		return driver.findElementByAccessibilityId("cmbClub");
 	}
 	
-	public WebElement getListItem(int index) throws Exception {
+	public WebElement getListItem(int index){
 		// *** This method is used to locate items in the 
 		// Club, Service Category and Service drop down lists. ***
 		return driver.findElementByXPath("//ListItem[@LocalizedControlType='list item']["+index+"]");
@@ -115,6 +115,10 @@ public class BookingsPO extends base{
 		return driver.findElementByAccessibilityId("pbBookView");
 	}
 	
+	public WebElement getBreadCrum() {
+		// label at top of large calendar
+		return driver.findElementByAccessibilityId("lblBreadCrum");
+	}
 	
 	
 	

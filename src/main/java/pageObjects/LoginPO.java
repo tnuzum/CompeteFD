@@ -9,13 +9,13 @@ public class LoginPO extends base{
 	
 	
 		// ** Constructor **
-	public void login(WindowsDriver driver) {
+	public void setDriver(WindowsDriver driver) {
 		
 		base.driver = driver;
 	}
 	
 		// ** Objects ** 
-	public WebElement getLoginPageLocator() {
+	public WebElement getPageLocator() {
 		return driver.findElementByAccessibilityId("FrontDeskEmployeeLogin");
 	}
 	

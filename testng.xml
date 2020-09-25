@@ -2,44 +2,20 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
 
-	<!-- ** Tests are split into separate test blocks to avoid multiple tests 
-		running at the same time -->
-
-	<test thread-count="1" name="About Compete">
+	<test thread-count="5" name="About Compete">
 		<classes>
 			<class name="frontDeskTests.AboutCompete" />
-
-		</classes>
-	</test>
-
-	<test thread-count="1" name="Agreements">
-		<classes>
 			<class name="frontDeskTests.Agreements" />
-
-		</classes>
-	</test>
-
-	<test thread-count="1" name="Change Password">
-		<classes>
+			<class name="frontDeskTests.Bookings" />
 			<class name="frontDeskTests.ChangePassword" />
-		</classes>
-	</test>
-
-	<test thread-count="1" name="CheckIn">
-		<classes>
 			<class name="frontDeskTests.CheckIn" />
-		</classes>
-	</test>
-
-	<test thread-count="1" name="Login">
-		<classes>
+			<class name="frontDeskTests.ClassEnrollment" />
 			<class name="frontDeskTests.Login" />
+			<class name="frontDeskTests.MemberMgmt" />
+			<class name="frontDeskTests.PointOfSale" />
+			<class name="frontDeskTests.Reports" />
+			<class name="frontDeskTests.TimeClock" />
 		</classes>
 	</test>
 
-	<test thread-count="1" name="Point Of Sale">
-		<classes>
-			<class name="frontDeskTests.PointOfSale" />
-		</classes>
-	</test>
 </suite>

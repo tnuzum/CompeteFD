@@ -4,10 +4,10 @@ import org.openqa.selenium.WebElement;
 import io.appium.java_client.windows.WindowsDriver;
 import resources.base;
 
-public class TakePaymentPO extends base {
+public class POS_TakePaymentPO extends base {
 
 	// ** Constructor **
-	public void POS(WindowsDriver driver) {
+	public void setDriver(WindowsDriver driver) {
 		base.driver = driver;
 	}
 

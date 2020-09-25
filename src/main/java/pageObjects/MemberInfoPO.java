@@ -8,13 +8,13 @@ import resources.base;
 public class MemberInfoPO extends base{
 
 	// ** Constructor **
-	public void memberInfo(WindowsDriver driver) {
+	public void setDriver(WindowsDriver driver) {
 		base.driver = driver;
 	}
 
 	// ** Objects **
 	
-	public WebElement getMemberInfoPageLocator() {
+	public WebElement getPageLocator() {
 		return driver.findElementByAccessibilityId("MemberInfoView");
 	}
 	
@@ -28,7 +28,7 @@ public class MemberInfoPO extends base{
 		return driver.findElementByAccessibilityId("lblNameValue");
 	}
 	
-	public WebElement getCloseButton() throws Exception {
+	public WebElement getCloseButton(){
 		return driver.findElementByXPath("//Button[@Name='Close'][1]");
 	}
 	

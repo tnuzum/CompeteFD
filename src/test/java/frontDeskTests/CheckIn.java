@@ -29,6 +29,9 @@ public class CheckIn extends base {
 	public void initialize() throws Throwable {
 
 		System.out.println("Test Class: " + getClass().getName());
+		
+		MyActions.startWAD();
+		
 		driver = initializeDriver();
 		
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
@@ -39,24 +42,24 @@ public class CheckIn extends base {
 		ci = new CheckInPO();
 		ms = new MemberSearchPO();
 		mi = new MemberInfoPO();
+		
+		MyActions.loginEmployee(barcodeId, password);
+
+		la.getCheckInButton().click();
 	}
 
 	@Test(priority = 1, enabled = true)
-	public void launchCheckIn() throws Exception {
-
-		MyActions.loginEmployee(barcodeId, password);
-
-		MyActions.myWait(30, "deckWorkspace1");
-
-		la.getCheckInButton().click();
-
-	}
-
-	@Test(priority = 2)
 	public void validatePageObjects() {
 
 		// Button text is not available for these buttons, so it is not possible to
 		// assert that the text is correct
+		
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		softAssertion.assertTrue(ci.getCheckInModeLabel().isDisplayed());
 		softAssertion.assertEquals(ci.getCheckInModeLabel().getText(), "Check In | Attended");
@@ -74,41 +77,104 @@ public class CheckIn extends base {
 		softAssertion.assertTrue(ci.getAddGuestButton().isEnabled());
 		softAssertion.assertAll();
 	}
-
-	@Test(priority = 3, enabled = true)
-	public void searchMember() {
+	
+	@Test(priority = 2, enabled = true)
+	public void memberCheckIn() {
 
 		ci.getMemberInputField().sendKeys(searchString);
+		
 		ci.getSearchButton().click();
 
-		MyActions.myWait(30, "Member Quick Search");
+		MyActions.myWaitByName(30, "Member Quick Search");
 
-		Assert.assertTrue(ms.getMemberSearchPageLocator().isDisplayed());
+		Assert.assertTrue(ms.getPageLocator().isDisplayed());
+		
 		ms.getOKButton().click();
+		
+		ci.getCheckInButton().click();
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+		
+		ci.getCheckInButton().click(); //button on Check-In Options page
+
+
 	}
 
+	@Test(priority = 3, enabled = true)
+	public void familyCheckIn() {
+		
+		MyActions.myWaitByAccessibilityId(30, "txtBarcode");
+
+		ci.getMemberInputField().sendKeys(searchString);
+		
+		ci.getSearchButton().click();
+
+		MyActions.myWaitByName(30, "Member Quick Search");
+
+		Assert.assertTrue(ms.getPageLocator().isDisplayed());
+		
+		ms.getOKButton().click();
+		
+		
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		MyActions.myWaitByAccessibilityId(30, "pbFamilyCheckIn");
+		
+		ci.getFamilyCheckInButton().click();
+		
+		ci.getCheckInAllFamilyButton().click();
+		
+		ci.getWarningYesButton().click();
+
+	}
 
 	@Test(priority = 4)
 	public void clearMember() {
 
 		ci.getMemberInputField().sendKeys(searchString);
+		
+		ci.getSearchButton().click();
+
+		MyActions.myWaitByName(30, "Member Quick Search");
+
+		Assert.assertTrue(ms.getPageLocator().isDisplayed());
+		
+		ms.getOKButton().click();
+		
 		ci.getClearMemberButton().click();
+		
 		Assert.assertNotEquals(ci.getMemberInputField().getText(), searchString);
 	}
 	
-	@Test(priority = 5)
-	public void memberInfo() throws Exception {
+	@Test(priority = 5, enabled = true)
+	public void memberInfo(){
 		
 		ci.getMemberInputField().sendKeys(searchString);
+		
 		ci.getSearchButton().click();
-			MyActions.myWait(30, "Member Quick Search");
+		
+			MyActions.myWaitByName(30, "Member Quick Search");
+			
 		ms.getOKButton().click();
 
 		ci.getMemberInfoButton().click();
-			Thread.sleep(2000);
+		
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+			}
+			
 			MyActions.focusByNativeWindowHandleIndex(0);
+			
 		Assert.assertTrue(mi.getMemberNameLabel().getText().contains(searchString));
+		
 		Assert.assertTrue(mi.getMemberPaneMemberNameValue().getText().contains(searchString));
+		
 		mi.getCloseButton().click();
 	}
 

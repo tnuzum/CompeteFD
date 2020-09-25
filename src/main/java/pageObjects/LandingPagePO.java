@@ -8,94 +8,48 @@ import resources.base;
 public class LandingPagePO extends base {
 
 	// ** Constructor **
-	public void landPage(WindowsDriver driver) {
+	public void setDriver(WindowsDriver driver) {
 		base.driver = driver;
 	}
 
 	// ** Objects **
-	public WebElement getLandingPageLocator() {
+	public WebElement getPageLocator() {
 		return driver.findElementByAccessibilityId("ShellForm");
 	}
 
-	public WebElement getCompeteInfoButton() throws Exception {
+	public WebElement getCompeteInfoButton() {
 		MyActions.focusOnLandingPage();
 		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][1]");
 	}
 
-	public WebElement getCheckInButton() throws Exception {
+	public WebElement getCheckInButton() {
 		MyActions.focusOnLandingPage();
 		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][2]");
 	}
 
-	public WebElement getPOSButton() throws Exception {
+	public WebElement getPOSButton() {
 		MyActions.focusOnLandingPage();
 		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][3]");
 	}
 
-	public WebElement getAgreementsButton() throws Exception {
+	public WebElement getAgreementsButton() {
 		MyActions.focusOnLandingPage();
 		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][4]");
 	}
 
-	public WebElement getInfoTrackerButton() throws Exception {
+	public WebElement getInfoTrackerButton() {
 		MyActions.focusOnLandingPage();
 		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][5]");
 	}
 
-	public WebElement getMoreButton() throws Exception {
+	public WebElement getMoreButton(){
 		MyActions.focusOnLandingPage();
 		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][6]");
 	}
 
-	public WebElement getMoreButton1() throws Exception {
-		//top button in list shown under the "More" top row button
-		MyActions.focusOnLandingPage();
-		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][1]");
+	public WebElement getMoreButtons(int index) {
+		//buttons in list shown under the "More" top row button
+		return driver.findElementByXPath("//Button[@LocalizedControlType='button']["+index+"]");
 	}
-	
-	public WebElement getMoreButton2() throws Exception {
-		//second button from top of list shown under the "More" top row button
-		MyActions.focusOnLandingPage();
-		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][2]");
-	}
-	
-	public WebElement getMoreButton3() throws Exception {
-		MyActions.focusOnLandingPage();
-		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][3]");
-	}
-	
-	public WebElement getMoreButton4() throws Exception {
-		MyActions.focusOnLandingPage();
-		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][4]");
-	}
-	
-	public WebElement getMoreButton5() throws Exception {
-		MyActions.focusOnLandingPage();
-		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][5]");
-	}
-	
-	public WebElement getMoreButton6() throws Exception {
-		MyActions.focusOnLandingPage();
-		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][6]");
-	}
-	
-	public WebElement getMoreButton7() throws Exception {
-		MyActions.focusOnLandingPage();
-		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][7]");
-	}
-	
-	public WebElement getMoreButton8() throws Exception {
-		MyActions.focusOnLandingPage();
-		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][8]");
-	}
-	
-	public WebElement getMoreButton9() throws Exception {
-		MyActions.focusOnLandingPage();
-		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][9]");
-	}
-	
-	public WebElement getMoreButton10() throws Exception {
-		MyActions.focusOnLandingPage();
-		return driver.findElementByXPath("//Button[@LocalizedControlType='button'][10]");
-	}
+
 }

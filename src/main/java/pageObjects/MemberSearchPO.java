@@ -8,13 +8,13 @@ import resources.base;
 public class MemberSearchPO extends base{
 
 	// ** Constructor **
-	public void memberSearch(WindowsDriver driver) {
+	public void setDriver(WindowsDriver driver) {
 		base.driver = driver;
 	}
 
 	// ** Objects **
 	
-	public WebElement getMemberSearchPageLocator() {
+	public WebElement getPageLocator() {
 		return driver.findElementByAccessibilityId("MemberQuickSearchView");
 	}
 	
@@ -102,54 +102,29 @@ public class MemberSearchPO extends base{
 		return driver.findElementByAccessibilityId("pbItems");
 	}
 	
-	public WebElement getQSResult1MemberType() { // asterisk at far left of results pane
-		return driver.findElementByName("MemberType Row 0, Not sorted");
+	public WebElement getQSResultMemberType(int index) { // asterisk at far left of results pane
+		return driver.findElementByName("MemberType Row "+index+", Not sorted");
 	}
 	
-	public WebElement getQSResult1MemberId() {
-		return driver.findElementByName("Barcode Row 0, Not sorted");
+	public WebElement getQSResultMemberId(int index) {
+		return driver.findElementByName("Barcode Row "+index+", Not sorted");
 	}
 	
-	public WebElement getQSResult1MemberName() {
-		return driver.findElementByName("DisplayName Row 0, Not sorted");
+	public WebElement getQSResultMemberName(int index) {
+		return driver.findElementByName("DisplayName Row "+index+", Not sorted");
 	}
 	
-	public WebElement getQSResult1Status() {
-		return driver.findElementByName("StatusDescription Row 0, Not sorted");
+	public WebElement getQSResultStatus(int index) {
+		return driver.findElementByName("StatusDescription Row "+index+", Not sorted");
 	}
 	
-	public WebElement getQSResult1HomePhone() {
-		return driver.findElementByName("HomePhone Row 0, Not sorted");
+	public WebElement getQSResultHomePhone(int index) {
+		return driver.findElementByName("HomePhone Row "+index+", Not sorted");
 	}
 	
-	public WebElement getQSResult1StreetAddress() {
-		return driver.findElementByName("Address1 Row 0, Not sorted");
+	public WebElement getQSResult1StreetAddress(int index) {
+		return driver.findElementByName("Address1 Row "+index+", Not sorted");
 	}
-	
-	public WebElement getQSResult2MemberType() { // asterisk at far left of results pane
-		return driver.findElementByName("MemberType Row 1, Not sorted");
-	}
-	
-	public WebElement getQSResult2MemberId() {
-		return driver.findElementByName("Barcode Row 1, Not sorted");
-	}
-	
-	public WebElement getQSResult2MemberName() {
-		return driver.findElementByName("DisplayName Row 1, Not sorted");
-	}
-	
-	public WebElement getQSResult2Status() {
-		return driver.findElementByName("StatusDescription Row 1, Not sorted");
-	}
-	
-	public WebElement getQSResult2HomePhone() {
-		return driver.findElementByName("HomePhone Row 1, Not sorted");
-	}
-	
-	public WebElement getQSResult2StreetAddress() {
-		return driver.findElementByName("Address1 Row 1, Not sorted");
-	}
-	
 	
 	
 	

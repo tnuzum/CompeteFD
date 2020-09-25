@@ -1,29 +1,23 @@
 package frontDeskTests;
 
-import java.net.URL;
-
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import io.appium.java_client.windows.WindowsDriver;
-import io.appium.java_client.windows.WindowsElement;
 import pageObjects.BookingsPO;
-import pageObjects.CheckInPO;
 import pageObjects.LandingPagePO;
-import pageObjects.MemberSearchPO;
-import pageObjects.PaymentAmountPO;
-import pageObjects.PointOfSalePO;
-import pageObjects.TakePaymentPO;
 import resources.MyActions;
 import resources.base;
 
 public class Bookings extends base {
+	
+	/*
+	 *  !! This test assumes the station is configured to show Service View by default
+	 *  Compete Back Office > Configuration > Station > Bookings; test will return
+	 *  Element Not Found exception if this is set to Book View
+	 */
 	
 	public static SoftAssert softAssertion= new SoftAssert();
 
@@ -36,27 +30,50 @@ public class Bookings extends base {
 	public void initialize() throws Throwable {
 
 		System.out.println("Test Class: " + getClass().getName());
+		
+		MyActions.startWAD();
+		
 		driver = initializeDriver();
 		
 		b = new BookingsPO();
 		la = new LandingPagePO();
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		password = prop.getProperty("activeEmployeePassword");
+		
+		MyActions.loginEmployee(barcodeId, password);
+		la.getMoreButton().click();
+		la.getMoreButtons(2).click();
 
 	}
-
+	
 	@Test(priority = 1, enabled = true)
-	public void launchBookings() throws Exception{
+	public void validatePageObjects(){
 
-		MyActions.loginEmployee(barcodeId, password);
-
-			MyActions.myWait(30, "deckWorkspace1");
-
-		la.getMoreButton().click();
+		softAssertion.assertEquals(b.getPageLabel().getText(), "Bookings : Service View");
+		softAssertion.assertTrue(!b.getClearButton().isEnabled()); // not enabled because a member has not yet been selected
+		softAssertion.assertEquals(b.getMemberInputLabel().getText(), "Member ID/ Last Name");
+		softAssertion.assertTrue(b.getMemberInputField().isEnabled());
+		softAssertion.assertTrue(b.getBrowseButton().isEnabled());
+		softAssertion.assertEquals(b.getClubLabel().getText(), "Club");
+		softAssertion.assertTrue(b.getClubCombobox().isEnabled());
+		softAssertion.assertEquals(b.getServiceCategoryLabel().getText(), "Service Category");
+		softAssertion.assertTrue(b.getServiceCategoryCombobox().isEnabled());
+		softAssertion.assertEquals(b.getServiceLabel().getText(), "Service");
+		softAssertion.assertTrue(b.getServiceCombobox().isEnabled());
+		softAssertion.assertEquals(b.getResourcesLabel().getText(), "Resources");
+		softAssertion.assertEquals(b.getResourceTypeHeader().getText(), "Resource Type");
+		softAssertion.assertEquals(b.getBookHeader().getText(), "Book");
+		softAssertion.assertTrue(b.getCalendarView().isDisplayed());
+		softAssertion.assertTrue(!b.getShowCalendarButton().isEnabled());// not enabled because resources have not yet been selected
+		softAssertion.assertTrue(b.getBookViewButton().isEnabled());
+		softAssertion.assertTrue(b.getSearchAppointmentsButton().isEnabled());
+		softAssertion.assertAll();
 		
-		la.getMoreButton2().click();
-		
-		Assert.assertTrue(b.getBookingsPageLabel().isDisplayed());
+	}
+	
+	@Test(priority = 2, enabled = true)
+	public void showCalendar(){
+
 		
 		b.getClubCombobox().click();
 		
@@ -72,41 +89,26 @@ public class Bookings extends base {
 		
 		b.getResourceTypeValue(0);
 		
-//		Actions a = new Actions(driver);
-//		a.sendKeys(Keys.TAB)
-//		.sendKeys(Keys.TAB)
-//		.sendKeys(Keys.TAB)
-//		.sendKeys(Keys.ARROW_RIGHT)
-//		.build()
-//		.perform();
-		driver.findElementByXPath("//DataItem[contains(@Name,'17,')]").click();
+		b.getShowCalendarButton().click();
 		
-		//driver.findElementByName("Thursday, July 16, 2020").click();
-
-//		String nativeWindowHandle = b.getCalendarView().getAttribute("NativeWindowHandle");
-//		int natWinHandleInt = Integer.parseInt(nativeWindowHandle);
-//		String natWinHandleStr = Integer.toHexString(natWinHandleInt);
-//		String natWinHandle = "0x" + natWinHandleStr;
-//		DesiredCapabilities appCapabilities = new DesiredCapabilities();
-//		appCapabilities.setCapability("appTopLevelWindow", natWinHandle);
-//		driver = new WindowsDriver<WindowsElement>(new URL("http://127.0.0.1:4723"), appCapabilities);
-//		b.getCalendarDateButton(0).click();
+		Assert.assertTrue(b.getBreadCrum().isDisplayed());
+		
 	}
 	
-	@Test(priority = 2, enabled = false)
-	public void validatePageObjects(){
-
-		softAssertion.assertEquals(b.getBookingsPageLabel().getText(), "Bookings");
-
-		softAssertion.assertAll();
+	@Test(priority = 4, enabled = true)
+	public void bookView(){
 		
+		b.getBookViewButton().click();
+		
+		Assert.assertEquals(b.getPageLabel().getText(), "Bookings : Book View");	
 	}
-
-
-	@AfterClass (enabled = false)
-	public void TearDown() {
+	
+	@AfterClass (enabled = true)
+	public void tearDown() {
 			MyActions.focusByNativeWindowHandleIndex(0);
+			
 		driver.close();
+		
 		driver.quit();
 	}
 
