@@ -37,26 +37,15 @@ public class base {
 		
 		WindowsDriver Session = new WindowsDriver(new URL("http://127.0.0.1:4723"), capabilities);
 
-<<<<<<< HEAD
-		Assert.assertNotNull(Session);
-		Session.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
-=======
+
 		Session.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
->>>>>>> master
+
 
 		DesiredCapabilities Appcapabilities = new DesiredCapabilities();
 		Appcapabilities.setCapability("app", "Root");
 		Appcapabilities.setCapability("ms:experimental-webdriver", true); // performance improvement for XPath
 		driver = new WindowsDriver<WindowsElement>(new URL("http://127.0.0.1:4723"), Appcapabilities);
-<<<<<<< HEAD
-		
-        WebDriverWait wait=new WebDriverWait(driver, 20);
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Employee Login")));
-        
 
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-=======
 
 		try {
 
@@ -89,7 +78,7 @@ public class base {
 		waitForLogin.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Employee Login")));
 
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
->>>>>>> master
+
 		return driver;
 
 	}
