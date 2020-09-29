@@ -18,8 +18,8 @@ inactiveClubName = Inactive
 ! ** EMPLOYEE INPUT DATA
 
 activeEmployeeId = 35
-activeEmployeeName = Todd
-activeEmployeeBarcodeId = todd
+activeEmployeeName = autotest
+activeEmployeeBarcodeId = autotest
 activeEmployeePassword = 111
 changeEmployeeName = Change
 changeEmployeeBarcodeId = change.auto
@@ -672,6 +672,9 @@ interest4Id = 4
 interest4Description = Maintain Health
 interest5Id = 5
 interest5Description = Group Fitness
+
+classToEnroll = BhagyaVirtualClass
+memberToEnroll = Auto, Demomember
 
 
 

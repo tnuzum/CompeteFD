@@ -89,6 +89,7 @@ public class ClassEnrollment extends base {
 		softAssertion.assertTrue(ce.getCloseButton().isEnabled(), "Close Button is Enabled");
 		softAssertion.assertTrue(ce.getClearAllButton().isEnabled(), "Clear All Button is Enabled");
 		softAssertion.assertAll();
+			
 	}
 	
 	@Test(priority = 2, enabled = true)
@@ -98,12 +99,12 @@ public class ClassEnrollment extends base {
 		
 		//Assert.assertTrue(ce.getPageLocator().isDisplayed());
 	}
-
-	@AfterClass
-	public void tearDown(){
-		MyActions.focusByNativeWindowHandleIndex(0);
-		driver.close();
-		driver.quit();
-	}
-
+	
+	  @AfterClass
+	  public void tearDown(){
+	  MyActions.focusByNativeWindowHandleIndex(0); 
+	  driver.close(); 
+	  driver.quit(); 
+	  }
+	 
 }
