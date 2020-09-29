@@ -1,5 +1,7 @@
 package pageObjects;
 
+import java.util.List;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import io.appium.java_client.windows.WindowsDriver;
 import resources.base;
@@ -10,7 +12,7 @@ public class ClassEnrollmentPO extends base {
 	public void setDriver(WindowsDriver driver) {
 		base.driver = driver;
 	}
-
+	
 	// ** Objects **
 	public WebElement getPageLocator() {
 		return driver.findElementByAccessibilityId("SelectClassForEnrollmentView");
@@ -144,6 +146,10 @@ public class ClassEnrollmentPO extends base {
 		return driver.findElementByAccessibilityId("pbSelectUnenroll");
 	}
 	
+	public WebElement getMsgUnenrollButton() {
+		return driver.findElementByName("Unenroll");
+	}
+	
 	public WebElement getEnrollButton() {
 		return driver.findElementByAccessibilityId("pbSelectEnroll");
 	}
@@ -155,12 +161,29 @@ public class ClassEnrollmentPO extends base {
 	public WebElement getClearAllButton() {
 		return driver.findElementByAccessibilityId("pbClearAll");
 	}
+		
+	public WebElement getClassCourseName(int i) {
+		return driver.findElementByName("DESCRIPTION Row "+i+", Not sorted.");
+				
+	}
 	
+	public WebElement getOkButton() {
+		return driver.findElementByAccessibilityId("pbOk");
+	}
 	
+	public WebElement getNoButton() {
+		return driver.findElementByAccessibilityId("btnCancel");
+	}
 	
+	public WebElement getSendEmailOkBtn() {
+		return driver.findElementByXPath("//Pane//Pane//Pane[@LocalizedControlType='pane'][2]");
+	}
 	
+	public WebElement getSendEmailCancelBtn() {
+		return driver.findElementByXPath("//Pane//Pane//Pane[@LocalizedControlType='pane'][1]");
+	}
 	
-	
-	
-
+	public WebElement getWarningOkBtn() {
+		return driver.findElementByName("OK");
+	}
 }
