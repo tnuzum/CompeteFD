@@ -27,7 +27,7 @@ public class base {
 	public static WindowsDriver initializeDriver() throws Throwable {
 
 		prop = new Properties();
-		FileInputStream fis = new FileInputStream(projectPath + "\\src\\main\\java\\resources\\properties");
+		FileInputStream fis = new FileInputStream(System.getenv("user.dir") + "\\src\\main\\java\\resources\\properties");
 		prop.load(fis);
 
 		DesiredCapabilities capabilities = new DesiredCapabilities();
