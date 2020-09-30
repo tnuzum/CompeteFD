@@ -21,18 +21,18 @@ public class EnrollInClass extends base {
 	String password;
 	static String classToEnroll;
 	static String memberToEnroll;
-	static Process p;
+	//static Process p;
 
 	@BeforeClass
 	public void initialize() throws Throwable{
 		
 		System.out.println("Test Class: "+getClass().getName());
 		
-		//MyActions.startWAD();
+		MyActions.startWAD();
 		
-		String command = "C:\\Program Files (x86)\\Windows Application Driver\\WinAppDriver.exe";
+		/*String command = "C:\\Program Files (x86)\\Windows Application Driver\\WinAppDriver.exe";
 		ProcessBuilder builder = new ProcessBuilder(command).inheritIO();
-		p = builder.start();
+		p = builder.start();*/
 		
 		driver = initializeDriver();
 		
@@ -122,7 +122,7 @@ public class EnrollInClass extends base {
 	  MyActions.focusByNativeWindowHandleIndex(0); 
 	  driver.close(); 
 	  driver.quit(); 
-	  p.destroy();
+	  //p.destroy();
 	  }
 	 
 	 
