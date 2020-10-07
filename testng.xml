@@ -15,6 +15,8 @@
 			<class name="frontDeskTests.PointOfSale" />
 			<class name="frontDeskTests.Reports" />
 			<class name="frontDeskTests.TimeClock" />
+			<class name = "FunctionalityTests.EnrollInClass"/>
+			<class name = "FunctionalityTests.BookAppointment"/>
 		</classes>
 	</test>
 
