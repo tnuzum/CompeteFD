@@ -1,5 +1,7 @@
 package pageObjects;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import io.appium.java_client.windows.WindowsDriver;
 import resources.MyActions;
@@ -45,6 +47,7 @@ public class BookingsPO extends base{
 	public WebElement getListItem(int index){
 		// *** This method is used to locate items in the 
 		// Club, Service Category and Service drop down lists. ***
+				
 		return driver.findElementByXPath("//ListItem[@LocalizedControlType='list item']["+index+"]");
 	}
 
@@ -85,6 +88,10 @@ public class BookingsPO extends base{
 		return driver.findElementByName("Book Row "+index);
 	}
 	
+	public WebElement getBookValueButton() {
+		return driver.findElementByXPath("//Button[@LocalizedControlType='button']");
+	}
+	
 	public WebElement getCalendarView() {
 		return driver.findElementByAccessibilityId("ultraMonthViewMulti");
 	}
@@ -120,7 +127,52 @@ public class BookingsPO extends base{
 		return driver.findElementByAccessibilityId("lblBreadCrum");
 	}
 	
+	public WebElement getCalendarDateTimeSlots(String date, String time) {
+		MyActions.focusByNativeWindowHandleIndex(0);
+		//return driver.findElementByName("//DataItem[@LocalizedControlType='item']["+index+"]");
+		return driver.findElementByXPath("//DataItem[contains(@Name,'"+date+" "+time+"')]");
+	}
 	
+	public WebElement getAddMbrButton() {
+		return driver.findElementByAccessibilityId("btnAddMember");
+	}
+	
+	public WebElement getMbrSearch() {
+		return driver.findElementByAccessibilityId("txtSearch");
+	}
+	
+	public WebElement getSearchBtn() {
+		return driver.findElementByAccessibilityId("pbQuickSearchButton");
+	}
+	
+	public WebElement getOk() {
+		return driver.findElementByAccessibilityId("pbOK");
+	}
+	
+	public WebElement getOkBtn() {
+		return driver.findElementByAccessibilityId("btnOK");
+	}
+	
+	public WebElement getTextMsg() {
+		return driver.findElementByAccessibilityId("txtErrorMessages");
+	}
+
+	public WebElement getCancel() {
+		return driver.findElementByAccessibilityId("pbCancel");
+	}
+	
+	public WebElement getCancelBtn() {
+		return driver.findElementByAccessibilityId("btnCancel");
+	}
+	
+
+	public WebElement getAppointment(String memberName) {
+		return driver.findElementByXPath("//DataItem[contains(@Name,'"+memberName+"')]");
+	}
+	
+	public WebElement getApptCancelBtn() {
+		return driver.findElementByAccessibilityId("btnDeleteAppointment");
+	}
 	
 	
 	

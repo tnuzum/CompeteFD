@@ -3,6 +3,7 @@ package resources;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -11,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.windows.WindowsDriver;
 import io.appium.java_client.windows.WindowsElement;
+import pageObjects.BookingsPO;
 import pageObjects.LandingPagePO;
 import pageObjects.LoginPO;
 
@@ -166,5 +168,29 @@ public class MyActions extends base {
 		}
 		return;
 	}
+	
+	public static <WebElement> void getListItem(String ItemToSelect) {
+		
+		BookingsPO b = new BookingsPO();
+		int i = 1;
+		
+		String ItemName;
+		
+		do {ItemName =  b.getListItem(i).getText();
+		System.out.println(ItemName);
+		
+		if (ItemName.equals(ItemToSelect))
+			b.getListItem(i).click();
+		else
+			i++;
+		}
+		while(!ItemName.equals(ItemToSelect));
+		 
+		
+		
+		
+	}
+	
+
 
 }

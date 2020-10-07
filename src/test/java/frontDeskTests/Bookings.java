@@ -92,6 +92,7 @@ public class Bookings extends base {
 		b.getShowCalendarButton().click();
 		
 		Assert.assertTrue(b.getBreadCrum().isDisplayed());
+		Assert.assertTrue(b.getBreadCrum().getText().equals("Jonas Sports-Plex > Personal Training > CancelTraining"));
 		
 	}
 	
