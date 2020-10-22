@@ -17,6 +17,7 @@
 			<class name="frontDeskTests.TimeClock" />
 			<class name = "FunctionalityTests.EnrollInClass"/>
 			<class name = "FunctionalityTests.BookAppointment"/>
+			<class name = "FunctionalityTests.PurchaseInventoryItems"/>
 		</classes>
 	</test>
 

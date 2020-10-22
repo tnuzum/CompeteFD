@@ -1,6 +1,5 @@
 package frontDeskTests;
 
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -138,116 +137,6 @@ public class PointOfSale extends base {
 		p.getClearMemberButton().click();
 
 		Assert.assertNotEquals(p.getMemberInputField().getText(), searchString);
-	}
-
-	@Test(priority = 3, enabled = true)
-	public void purchaseWithCash() {
-
-		String searchString = "water";
-
-		p.getProductSearchInputField().sendKeys(searchString);
-
-		p.getProductSearchSearchButton().click();
-
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		ps.getSearchInputField().sendKeys(searchString);
-
-		ps.getSearchButton().click();
-
-		Assert.assertEquals(ps.getSearchInputField().getText(), searchString);
-
-		ps.getOKButton().click();
-
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		p.getTotalButton().click();
-
-		p.getCategoryChoice(2).click();
-
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		pa.getPayAmt5DollarsButton().click();
-
-		p.getOKButton().click();
-		
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		MyActions.myWaitByName(30, "Change Due");
-
-		p.getOKButton().click();
-	}
-
-	@Test(priority = 4, enabled = true)
-	public void purchaseWithCreditCard() {
-
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		p.getPosChoice(1).click();
-
-		// Edit Item to match amount needed for CSIPay to approve transaction
-		p.getEditButton().click();
-
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		ei.getQuantityInputField().sendKeys("5");
-
-		ei.getTaxExemptCheckbox().click();
-
-		ei.getOKButton().click();
-
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		p.getTotalButton().click();
-
-		p.getCategoryChoice(1).click();
-
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		pa.getCCSwipeMessageCancelButton().click();
-
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		//pa.getCCTypeDropdownButton().click();
-
-		//pa.getCCCardTypeDropdownList(3).click();
-
-		pa.getCCNumberInputField().sendKeys(prop.getProperty("changeCCMember1AccountNumber"));
-
-		pa.getCCExpMonthDropdownButton().click();
-		
-		Actions a= new Actions(driver);
-		a.moveToElement(pa.getCCExpMonthDropdownList(4)).click().build().perform();
-
-		// pa.getCCExpMonthDropdownList(4).click();
-
-		pa.getCCExpYearDropdownButton().click();
-
-		a.moveToElement(pa.getCCExpYearDropdownList(3)).click().build().perform();
-
-		// pa.getCCExpYearDropdownList(3).click();
-
-		pa.getCCZipInputField().sendKeys("43215");
-
-		pa.getOKButton().click();
-		
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		MyActions.myWaitByName(30, "Change Due");
-
-		p.getOKButton().click(); // Click Ok button on Change Due prompt
 	}
 
 	@Test(priority = 5, enabled = true)

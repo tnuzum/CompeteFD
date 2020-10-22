@@ -277,7 +277,37 @@ public class POS_MainPagePO extends base {
 		return driver.findElementByAccessibilityId("lblPhone");
 	}
 	
+	public WebElement getYesButton() {
+		return driver.findElementByAccessibilityId("pbButton1");
+	}
 	
+	public WebElement getYesCashRefundButton() {
+		return driver.findElementByAccessibilityId("btnOK");
+	}
+	
+	public WebElement getNoCashRefundButton() {
+		return driver.findElementByAccessibilityId("btnCancel");
+	}
+	
+	public WebElement getNoButton() {
+		return driver.findElementByAccessibilityId("pbButton2");
+	}
+	
+	public WebElement getReturnReasonInputField() {
+		return driver.findElementByAccessibilityId("rtbReturnReason");
+	}
+	
+	public WebElement getSubmitButton() {
+		return driver.findElementByAccessibilityId("btnSubmit");
+	}
+	
+	public WebElement getChangeDueAmount() {
+		return driver.findElementByAccessibilityId("lblChange");
+	}
+	
+	public WebElement getTotalDueAmount() {
+		return driver.findElementByAccessibilityId("lblTotalDueAmount");
+	}
 	
 	
 	
