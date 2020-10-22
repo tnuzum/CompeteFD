@@ -50,6 +50,14 @@ public class POS_PaymentAmountPO extends base {
 		return driver.findElementByAccessibilityId("cmdClear");
 	}
 	
+	public WebElement getAmountDueLabel() {
+		return driver.findElementByName("Amount Due");
+	}
+	
+	public WebElement getAmountDueAmount() {
+		return driver.findElementByAccessibilityId("lblAmountDue");
+	}
+	
 	public WebElement getChangeDueLabel() {
 		return driver.findElementByAccessibilityId("lblChangeDue");
 	}

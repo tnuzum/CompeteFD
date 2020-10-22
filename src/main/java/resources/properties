@@ -673,6 +673,14 @@ interest4Description = Maintain Health
 interest5Id = 5
 interest5Description = Group Fitness
 
+! ** ITEMS / PRODUCTS **
+item1BarcodeId = autoItem1
+item1Description = Auto Item 1
+item1DefaultPrice = 5.00
+item2BarcodeId = autoItem2
+item2Description = Auto Item 2
+item2DefaultPrice = 5.00
+
 classToEnroll = BhagyaVirtualClass
 memberToEnroll = Auto, Demomember
 
