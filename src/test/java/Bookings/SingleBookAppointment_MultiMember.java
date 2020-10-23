@@ -1,19 +1,19 @@
-package FunctionalityTests;
+package Bookings;
 
+
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
 import pageObjects.BookingsPO;
 import pageObjects.LandingPagePO;
 import resources.MyActions;
 import resources.ReusableDates;
 import resources.base;
 
-public class BookAppointment extends base {
+public class SingleBookAppointment_MultiMember extends base {
 	
 	/*
 	 *  !! This test assumes the station is configured to show Service View by default
@@ -22,6 +22,7 @@ public class BookAppointment extends base {
 	 */
 	
 	public static SoftAssert softAssertion= new SoftAssert();
+	private static String tomorrowsDayNDate;
 
 	BookingsPO b;
 	LandingPagePO la;
@@ -50,7 +51,7 @@ public class BookAppointment extends base {
 	
 		
 	@Test(priority = 1, enabled = true)
-	public void bookappt() throws InterruptedException{
+	public void bookMultiMemberappt() throws InterruptedException{
 
 		
 		b.getClubCombobox().click();
@@ -59,48 +60,63 @@ public class BookAppointment extends base {
 		
 		b.getServiceCategoryCombobox().click();
 		
-		b.getListItem(6).click(); // selects category "Personal Training"
+		b.getListItem(7).click(); // selects category "Personal Training"
 		
 		b.getServiceCombobox().click();
 			
-		b.getListItem(13).click(); // selects product "Free Training Auto"
+		b.getListItem(1).click(); // selects product "APT-Bookings1"
 		
-		b.getBookValue(0).click();
-		
-		Actions actions = new Actions(driver);
-		
-		actions.doubleClick(b.getBookValue(0)).perform();
-		Thread.sleep(2000);
-		
-		b.getListItem(5).click();  // selects book Jeff Holmes
-		
+			
 		b.getShowCalendarButton().click();
 		Thread.sleep(4000);
 		
 		b.getWeekView().click();
 		
-		String tomorrowsDayNDate = ReusableDates.getTomorrowsDayAndDate();
-					
+		tomorrowsDayNDate = ReusableDates.getTomorrowsDayAndDate();
+		
+		Actions actions = new Actions(driver);		
 		
 		actions.doubleClick(b.getCalendarDateTimeSlots(tomorrowsDayNDate, "9:00 AM")).perform();  // selects appointment time
+		Thread.sleep(2000);
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
 		b.getAddMbrButton().click();
 		
-		b.getMbrSearch().sendKeys(prop.getProperty("ApptMember1"));
+		b.getMbrSearch().sendKeys(prop.getProperty("ApptMember2"));
 		
 		b.getSearchBtn().click();
 		
 		b.getOk().click();
 		Thread.sleep(2000);
-
+		
+		b.getAddMbrButton().click();
+		
+		b.getMbrSearch().sendKeys(prop.getProperty("ApptMember3"));
+		
+		b.getSearchBtn().click();
+		
+		b.getOk().click();
+		Thread.sleep(2000);
+	}
+	@Test(priority = 2, enabled = true)
+	public void VerifyCapacity() throws InterruptedException{
+				
+		b.getAddMbrButton().click();
+				  
+		MyActions.focusByNativeWindowHandleIndex(0);
+		  
+		softAssertion.assertTrue(b.getTextMsg().getText().contains("Appointment has reached maximum permissible count."));
+						 
+		WebElement OK =  (WebElement) b.getOKs().get(0);
+		OK.click();
+				
 		b.getOkBtn().click();
 		Thread.sleep(2000);
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
-		Assert.assertTrue(b.getTextMsg().getText().contains("has been booked"));
+		softAssertion.assertTrue(b.getTextMsg().getText().contains("has been booked"));
 		
 		b.getOkBtn().click();
 
@@ -109,7 +125,8 @@ public class BookAppointment extends base {
 		
 		b.getCalendarDateTimeSlots(tomorrowsDayNDate, "9:00 AM").click();
 		
-		Assert.assertTrue(b.getAppointment(prop.getProperty("ApptMember1")).isDisplayed());
+		softAssertion.assertTrue(b.getAppointment(prop.getProperty("ApptMember2")).isDisplayed());
+		softAssertion.assertAll();
 	}
 		
 		@Test(priority = 2, enabled = true)
@@ -119,16 +136,17 @@ public class BookAppointment extends base {
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 
-		Assert.assertTrue(b.getTextMsg().getText().contains("Do you want to cancel this appointment?"));
+		softAssertion.assertTrue(b.getTextMsg().getText().contains("Do you want to cancel this appointment?"));
 		
 		b.getOkBtn().click();
 		Thread.sleep(2000);
 
-		Assert.assertTrue(b.getTextMsg().getText().contains("has been cancelled"));
+		softAssertion.assertTrue(b.getTextMsg().getText().contains("has been cancelled"));
 		
 		b.getOkBtn().click();
 
 		b.getCancel().click();
+		softAssertion.assertAll();
 		
 		}		
 	
