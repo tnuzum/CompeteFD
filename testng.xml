@@ -15,9 +15,19 @@
 			<class name="frontDeskTests.PointOfSale" />
 			<class name="frontDeskTests.Reports" />
 			<class name="frontDeskTests.TimeClock" />
-			<class name = "FunctionalityTests.EnrollInClass"/>
-			<class name = "FunctionalityTests.BookAppointment"/>
 		</classes>
 	</test>
+	
+	<test thread-count="5" name="Functionality Tests">
+    	<packages>
+    		<package name = "FunctionalityTests"/>
+       	</packages>
+    </test> 
+	
+	<test thread-count="5" name="Booking Tests">
+    	<packages>
+    		<package name = "Bookings"/>
+       	</packages>
+    </test> 
 
 </suite>

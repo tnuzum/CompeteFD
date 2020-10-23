@@ -1,4 +1,4 @@
-package FunctionalityTests;
+package Bookings;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -15,7 +15,7 @@ import resources.MyActions;
 import resources.ReusableDates;
 import resources.base;
 
-public class BookAppointment extends base {
+public class MultiMemberApptCapacityCheck extends base {
 	
 	/*
 	 *  !! This test assumes the station is configured to show Service View by default
@@ -52,7 +52,7 @@ public class BookAppointment extends base {
 	
 		
 	@Test(priority = 1, enabled = true)
-	public void bookappt() throws InterruptedException{
+	public void VerifyCapacity() throws InterruptedException{
 
 		
 		b.getClubCombobox().click();
@@ -61,78 +61,54 @@ public class BookAppointment extends base {
 		
 		b.getServiceCategoryCombobox().click();
 		
-		b.getListItem(6).click(); // selects category "Personal Training"
+		b.getListItem(7).click(); // selects category "Personal Training"
 		
 		b.getServiceCombobox().click();
 			
-		b.getListItem(13).click(); // selects product "Free Training Auto"
+		b.getListItem(1).click(); // selects product "APT-Bookings1"
 		
-		b.getBookValue(0).click();
-		
-		Actions actions = new Actions(driver);
-		
-		actions.doubleClick(b.getBookValue(0)).perform();
-		Thread.sleep(2000);
-		
-		b.getListItem(5).click();  // selects book Jeff Holmes
-		
+			
 		b.getShowCalendarButton().click();
 		Thread.sleep(4000);
 		
 		b.getWeekView().click();
 		
 		String tomorrowsDayNDate = ReusableDates.getTomorrowsDayAndDate();
-					
+		
+		Actions actions = new Actions(driver);		
 		
 		actions.doubleClick(b.getCalendarDateTimeSlots(tomorrowsDayNDate, "9:00 AM")).perform();  // selects appointment time
+		Thread.sleep(2000);
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
 		b.getAddMbrButton().click();
 		
-		b.getMbrSearch().sendKeys("Auto, Apptmember2");
+		b.getMbrSearch().sendKeys("Auto, BookingsParty");
 		
 		b.getSearchBtn().click();
 		
 		b.getOk().click();
 		Thread.sleep(2000);
-
-		b.getOkBtn().click();
+		
+		b.getAddMbrButton().click();
+		
+		b.getMbrSearch().sendKeys("Auto, CCmember");
+		
+		b.getSearchBtn().click();
+		
+		b.getOk().click();
 		Thread.sleep(2000);
+			
 		
-		MyActions.focusByNativeWindowHandleIndex(0);
-		
-		Assert.assertTrue(b.getTextMsg().getText().contains("has been booked"));
-		
-		b.getOkBtn().click();
-
-		b.getCancel().click();
-		Thread.sleep(2000);
-		
-		b.getCalendarDateTimeSlots(tomorrowsDayNDate, "9:00 AM").click();
-		
-		Assert.assertTrue(b.getAppointment("Auto, ApptMember2").isDisplayed());
+		 b.getAddMbrButton().click();
+		  
+		 MyActions.focusByNativeWindowHandleIndex(0);
+		  
+		 Assert.assertTrue(b.getTextMsg().getText().contains("Appointment has reached maximum permissible count."));
+	
 	}
-		
-		@Test(priority = 2, enabled = true)
-		public void cancelappt() throws InterruptedException{	
-		
-		b.getApptCancelBtn().click();
-		
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		Assert.assertTrue(b.getTextMsg().getText().contains("Do you want to cancel this appointment?"));
-		
-		b.getOkBtn().click();
-		Thread.sleep(2000);
-
-		Assert.assertTrue(b.getTextMsg().getText().contains("has been cancelled"));
-		
-		b.getOkBtn().click();
-
-		b.getCancel().click();
-		
-		}		
+			
 	
 
 	@AfterClass (enabled = true)

@@ -2,6 +2,7 @@ package pageObjects;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import io.appium.java_client.windows.WindowsDriver;
 import resources.MyActions;
@@ -173,6 +174,24 @@ public class BookingsPO extends base{
 	public WebElement getApptCancelBtn() {
 		return driver.findElementByAccessibilityId("btnDeleteAppointment");
 	}
+	
+	public WebElement getWeekView() {
+		return driver.findElementByAccessibilityId("pbWeekView");
+	}
+	
+	public WebElement getDayView() {
+		return driver.findElementByAccessibilityId("pbDayView");
+	}
+	
+	public WebElement getMessageBox() {
+		return driver.findElementByAccessibilityId("FrontDeskMessageBox");
+	}
+	
+	public List getOKs() {
+		return driver.findElements(By.xpath("//Button[@Name = 'OK']"));
+	}
+	
+	
 	
 	
 	
