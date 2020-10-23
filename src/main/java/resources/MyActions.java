@@ -3,8 +3,6 @@ package resources;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -51,8 +49,14 @@ public class MyActions extends base {
 
 	public static void myWaitByAccessibilityId(int duration, String accessibilityId) {
 
-		WebDriverWait wait = new WebDriverWait(driver, duration);
-		wait.until(ExpectedConditions.visibilityOf(driver.findElementByAccessibilityId(accessibilityId)));
+		try {
+			Thread.sleep(2000);// this allows time for the window focus to finalize
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+			WebDriverWait wait = new WebDriverWait(driver, duration);
+			wait.until(ExpectedConditions.visibilityOf(driver.findElementByAccessibilityId(accessibilityId)));
+
 
 	}
 
@@ -94,7 +98,7 @@ public class MyActions extends base {
 		// System.out.println("Native Window Handle: "+natWinHandle);
 		return null;
 	}
-
+	
 	public static String focusByNativeWindowHandleIndex(int index) {
 
 		/*
@@ -103,16 +107,18 @@ public class MyActions extends base {
 		 * use this in test class to get all Native Window Handles,
 		 * System.out.println("WindowHandles: "+driver.getWindowHandles());
 		 */
+
 		try {
-			Thread.sleep(4000);// this allows time for the window focus to finalize
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+			Thread.sleep(2000);
+			Object[] wh = driver.getWindowHandles().toArray();
+			driver.switchTo().window((String) wh[index]);
+		} catch (Exception e) {
+			focusByNativeWindowHandleIndex(index);
 		}
-		Object[] wh = driver.getWindowHandles().toArray();
-		driver.switchTo().window((String) wh[index]);
 
 		return null;
 	}
+	
 
 	public static void getWindowInformation() {
 
@@ -125,6 +131,7 @@ public class MyActions extends base {
 
 		return;
 	}
+	
 
 	public static void performanceTestLoop() {
 		// STRESS TEST EXAMPLE
