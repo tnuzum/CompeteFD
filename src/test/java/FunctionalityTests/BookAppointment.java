@@ -1,7 +1,5 @@
 package FunctionalityTests;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -90,7 +88,7 @@ public class BookAppointment extends base {
 		
 		b.getAddMbrButton().click();
 		
-		b.getMbrSearch().sendKeys("Auto, Apptmember2");
+		b.getMbrSearch().sendKeys(prop.getProperty("ApptMember1"));
 		
 		b.getSearchBtn().click();
 		
@@ -111,7 +109,7 @@ public class BookAppointment extends base {
 		
 		b.getCalendarDateTimeSlots(tomorrowsDayNDate, "9:00 AM").click();
 		
-		Assert.assertTrue(b.getAppointment("Auto, ApptMember2").isDisplayed());
+		Assert.assertTrue(b.getAppointment(prop.getProperty("ApptMember1")).isDisplayed());
 	}
 		
 		@Test(priority = 2, enabled = true)

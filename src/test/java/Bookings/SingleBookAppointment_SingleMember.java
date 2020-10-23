@@ -83,7 +83,7 @@ public class SingleBookAppointment_SingleMember extends base {
 		
 		b.getAddMbrButton().click();
 		
-		b.getMbrSearch().sendKeys("Auto, BookingsParty");
+		b.getMbrSearch().sendKeys(prop.getProperty("ApptMember2"));
 		
 		b.getSearchBtn().click();
 		
@@ -104,7 +104,7 @@ public class SingleBookAppointment_SingleMember extends base {
 		
 		b.getCalendarDateTimeSlots(tomorrowsDayNDate, "9:00 AM").click();
 		
-		Assert.assertTrue(b.getAppointment("Auto, Bookingsparty").isDisplayed());
+		Assert.assertTrue(b.getAppointment(prop.getProperty("ApptMember2")).isDisplayed());
 	}
 		
 		@Test(priority = 2, enabled = true)
