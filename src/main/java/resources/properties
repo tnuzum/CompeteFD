@@ -685,8 +685,8 @@ classToEnroll = BhagyaVirtualClass
 memberToEnroll = Auto, Demomember
 
 ApptMember1 = Auto, ApptMember2
-ApptMember2 = Auto, Bookingsparty
-ApptMember3 = Auto, Ccmember
+ApptMember2 = Auto, BookingsParty
+ApptMember3 = Auto, CCmember
 
 
 
