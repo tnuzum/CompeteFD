@@ -1,4 +1,4 @@
-package Bookings;
+package ServiceViewBookings;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -15,7 +15,7 @@ import resources.MyActions;
 import resources.ReusableDates;
 import resources.base;
 
-public class MultiMemberApptCapacityCheck extends base {
+public class MultiBookAppointment_SingleMember_SameResourceType extends base {
 	
 	/*
 	 *  !! This test assumes the station is configured to show Service View by default
@@ -52,7 +52,7 @@ public class MultiMemberApptCapacityCheck extends base {
 	
 		
 	@Test(priority = 1, enabled = true)
-	public void VerifyCapacity() throws InterruptedException{
+	public void BookSingleMemberApptWithTwoBooksSameResourcetype() throws InterruptedException{
 
 		
 		b.getClubCombobox().click();
@@ -61,11 +61,11 @@ public class MultiMemberApptCapacityCheck extends base {
 		
 		b.getServiceCategoryCombobox().click();
 		
-		b.getListItem(7).click(); // selects category "Personal Training"
+		b.getListItem(6).click(); // selects category "Personal Training"
 		
 		b.getServiceCombobox().click();
 			
-		b.getListItem(1).click(); // selects product "APT-Bookings1"
+		b.getListItem(2).click(); // selects product "APT-Bookings2"
 		
 			
 		b.getShowCalendarButton().click();
@@ -77,38 +77,56 @@ public class MultiMemberApptCapacityCheck extends base {
 		
 		Actions actions = new Actions(driver);		
 		
-		actions.doubleClick(b.getCalendarDateTimeSlots(tomorrowsDayNDate, "9:00 AM")).perform();  // selects appointment time
+		actions.doubleClick(b.getCalendarDateTimeSlots(tomorrowsDayNDate, "9:30 AM")).perform();  // selects appointment time
 		Thread.sleep(2000);
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
 		b.getAddMbrButton().click();
 		
-		b.getMbrSearch().sendKeys("Auto, BookingsParty");
+		b.getMbrSearch().sendKeys(prop.getProperty("ApptMember2"));
 		
 		b.getSearchBtn().click();
 		
 		b.getOk().click();
 		Thread.sleep(2000);
-		
-		b.getAddMbrButton().click();
-		
-		b.getMbrSearch().sendKeys("Auto, CCmember");
-		
-		b.getSearchBtn().click();
-		
-		b.getOk().click();
+				
+		b.getOkBtn().click();
 		Thread.sleep(2000);
-			
 		
-		 b.getAddMbrButton().click();
-		  
-		 MyActions.focusByNativeWindowHandleIndex(0);
-		  
-		 Assert.assertTrue(b.getTextMsg().getText().contains("Appointment has reached maximum permissible count."));
-	
+		MyActions.focusByNativeWindowHandleIndex(0);
+		
+		Assert.assertTrue(b.getTextMsg().getText().contains("has been booked"));
+		
+		b.getOkBtn().click();
+
+		b.getCancel().click();
+		Thread.sleep(2000);
+		
+		b.getCalendarDateTimeSlots(tomorrowsDayNDate, "9:30 AM").click();
+		
+		Assert.assertTrue(b.getAppointment(prop.getProperty("ApptMember2")).isDisplayed());
 	}
-			
+		
+		@Test(priority = 2, enabled = true)
+		public void cancelappt() throws InterruptedException{	
+		
+		b.getApptCancelBtn().click();
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+
+		Assert.assertTrue(b.getTextMsg().getText().contains("Do you want to cancel this appointment?"));
+		
+		b.getOkBtn().click();
+		Thread.sleep(2000);
+
+		Assert.assertTrue(b.getTextMsg().getText().contains("has been cancelled"));
+		
+		b.getOkBtn().click();
+
+		b.getCancel().click();
+		
+		}		
 	
 
 	@AfterClass (enabled = true)
@@ -121,4 +139,6 @@ public class MultiMemberApptCapacityCheck extends base {
 	}
 
 }
+
+
 
