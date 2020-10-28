@@ -687,6 +687,7 @@ memberToEnroll = Auto, Demomember
 ApptMember1 = Auto, ApptMember2
 ApptMember2 = Auto, BookingsParty
 ApptMember3 = Auto, CCmember
+ApptMember3 = Auto, Kidapptmbr
 
 
 

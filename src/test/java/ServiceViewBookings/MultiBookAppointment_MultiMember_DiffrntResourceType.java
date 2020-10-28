@@ -1,4 +1,4 @@
-package Bookings;
+package ServiceViewBookings;
 
 
 import org.openqa.selenium.WebElement;
@@ -13,7 +13,7 @@ import resources.MyActions;
 import resources.ReusableDates;
 import resources.base;
 
-public class SingleBookAppointment_MultiMember extends base {
+public class MultiBookAppointment_MultiMember_DiffrntResourceType extends base {
 	
 	/*
 	 *  !! This test assumes the station is configured to show Service View by default
@@ -51,7 +51,7 @@ public class SingleBookAppointment_MultiMember extends base {
 	
 		
 	@Test(priority = 1, enabled = true)
-	public void bookMultiMemberappt() throws InterruptedException{
+	public void bookMultiMemberapptWithTwoBooksDifferentResourcetype() throws InterruptedException{
 
 		
 		b.getClubCombobox().click();
@@ -64,7 +64,7 @@ public class SingleBookAppointment_MultiMember extends base {
 		
 		b.getServiceCombobox().click();
 			
-		b.getListItem(1).click(); // selects product "APT-Bookings1"
+		b.getListItem(3).click(); // selects product "APT-GrpBookings3"
 		
 			
 		b.getShowCalendarButton().click();
@@ -76,7 +76,7 @@ public class SingleBookAppointment_MultiMember extends base {
 		
 		Actions actions = new Actions(driver);		
 		
-		actions.doubleClick(b.getCalendarDateTimeSlots(tomorrowsDayNDate, "9:00 AM")).perform();  // selects appointment time
+		actions.doubleClick(b.getCalendarDateTimeSlots(tomorrowsDayNDate, "6:00 AM")).perform();  // selects appointment time
 		Thread.sleep(2000);
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
@@ -123,13 +123,13 @@ public class SingleBookAppointment_MultiMember extends base {
 		b.getCancel().click();
 		Thread.sleep(2000);
 		
-		b.getCalendarDateTimeSlots(tomorrowsDayNDate, "9:00 AM").click();
+		b.getCalendarDateTimeSlots(tomorrowsDayNDate, "6:00 AM").click();
 		
 		softAssertion.assertTrue(b.getAppointment(prop.getProperty("ApptMember2")).isDisplayed());
 		softAssertion.assertAll();
 	}
 		
-		@Test(priority = 2, enabled = true)
+		@Test(priority = 3, enabled = true)
 		public void cancelappt() throws InterruptedException{	
 		
 		b.getApptCancelBtn().click();

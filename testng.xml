@@ -29,7 +29,7 @@
 	
 	<test thread-count="5" name="Booking Tests">
     	<packages>
-    		<package name = "Bookings"/>
+    		<package name = "ServiceViewBookings"/>
        	</packages>
     </test> 
 
