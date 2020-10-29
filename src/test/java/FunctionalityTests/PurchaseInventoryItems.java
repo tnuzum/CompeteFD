@@ -365,7 +365,6 @@ public class PurchaseInventoryItems extends base {
 		p.getOKButton().click();
 	}
 	
-
 	@Test(testName = "Clear Item")
 	public void clearItem() {
 

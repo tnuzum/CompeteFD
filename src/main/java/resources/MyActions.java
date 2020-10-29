@@ -7,18 +7,21 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import io.appium.java_client.windows.WindowsDriver;
 import io.appium.java_client.windows.WindowsElement;
 import pageObjects.BookingsPO;
 import pageObjects.LandingPagePO;
 import pageObjects.LoginPO;
+import pageObjects.POS_MainPagePO;
+import pageObjects.POS_PaymentAmountPO;
 
 public class MyActions extends base {
 	
 	//public WindowsDriver driver;
 
 	public static LandingPagePO la = new LandingPagePO();
+	public static POS_MainPagePO p = new POS_MainPagePO();
+	public static POS_PaymentAmountPO pa = new POS_PaymentAmountPO();
 
 	public void setDriver(WindowsDriver driver) {
 
@@ -119,7 +122,6 @@ public class MyActions extends base {
 		return null;
 	}
 	
-
 	public static void getWindowInformation() {
 
 		System.out.println("AllSessionDetails: " + driver.getAllSessionDetails());
@@ -132,7 +134,6 @@ public class MyActions extends base {
 		return;
 	}
 	
-
 	public static void performanceTestLoop() {
 		// STRESS TEST EXAMPLE
 		int i = 1;
@@ -198,6 +199,32 @@ public class MyActions extends base {
 		
 	}
 	
+	public static String purchaseItemWithCash(String item1BarcodeId) {
+
+			MyActions.focusByNativeWindowHandleIndex(0);
+
+			p.getProductSearchInputField().sendKeys(item1BarcodeId);
+
+			p.getProductSearchSearchButton().click();
+
+			p.getTotalButton().click();
+
+			p.getCategoryChoice(2).click();
+
+			MyActions.focusByNativeWindowHandleIndex(0);
+
+			pa.getPayAmt20DollarsButton().click();
+
+			p.getOKButton().click();
+			
+			MyActions.focusByNativeWindowHandleIndex(0);
+
+			MyActions.myWaitByName(30, "Change Due");
+
+			p.getOKButton().click();
+			
+			return null;
+	}
 
 
 }

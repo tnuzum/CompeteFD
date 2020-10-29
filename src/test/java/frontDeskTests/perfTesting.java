@@ -19,12 +19,14 @@ public class perfTesting extends base {
 
 	static String barcodeId = "Todd";
 	static String password = "111";
+	
 
 	public static void main(String[] args) throws Throwable {
 
 		LandingPagePO la = new LandingPagePO();
 		CheckInPO ci = new CheckInPO();
 		MemberSearchPO ms = new MemberSearchPO();
+		String item1BarcodeId = "autoItem1";
 		String searchString = "Manny";
 		
 		MyActions.startWAD();
@@ -48,6 +50,8 @@ public class perfTesting extends base {
 		int i = 1;
 		while (i <= 2) {
 			
+		// ** Member CheckIn **
+			
 			la.getCheckInButton().click();
 			
 			ci.getMemberInputField().sendKeys(searchString);
@@ -65,7 +69,7 @@ public class perfTesting extends base {
 				}
 			ci.getFamilyCheckInButton().click();
 			try {
-				Thread.sleep(10000);
+				Thread.sleep(12000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -73,7 +77,7 @@ public class perfTesting extends base {
 			
 			ci.getCheckInAllFamilyButton().click();
 			try {
-				Thread.sleep(10000);
+				Thread.sleep(12000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -87,7 +91,11 @@ public class perfTesting extends base {
 				e.printStackTrace();
 			}
 			
+	// ** Purchase Item with Cash **		
+			la.getPOSButton().click();
+			MyActions.purchaseItemWithCash(item1BarcodeId);
 			
+			MyActions.focusByNativeWindowHandleIndex(0);
 			
 			/*
 			la.getCheckInButton().click();
