@@ -22,4 +22,15 @@
 			<class name = "FunctionalityTests.PurchaseInventoryItems"/>
 		</classes>
 	</test>
+	<test thread-count="5" name="Functionality Tests">
+    	<packages>
+    		<package name = "FunctionalityTests"/>
+       	</packages>
+    </test> 
+	
+	<test thread-count="5" name="Booking Tests">
+    	<packages>
+    		<package name = "ServiceViewBookings"/>
+       	</packages>
+    </test> 
 </suite>

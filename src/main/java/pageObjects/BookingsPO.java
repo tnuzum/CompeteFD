@@ -1,5 +1,10 @@
 package pageObjects;
 
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebElement;
 import io.appium.java_client.windows.WindowsDriver;
 import resources.MyActions;
@@ -135,6 +140,10 @@ public class BookingsPO extends base{
 		return driver.findElementByAccessibilityId("btnAddMember");
 	}
 	
+	public WebElement getRemoveMbrBtn() {
+		return driver.findElementByAccessibilityId("btnDeleteMember");
+	}
+	
 	public WebElement getMbrSearch() {
 		return driver.findElementByAccessibilityId("txtSearch");
 	}
@@ -172,37 +181,84 @@ public class BookingsPO extends base{
 		return driver.findElementByAccessibilityId("btnDeleteAppointment");
 	}
 	
+	public WebElement getApptEditBtn() {
+		return driver.findElementByAccessibilityId("btnEditAppointment");
+	}
+	
+	public WebElement getEditApptsBtn() {
+		return driver.findElementByAccessibilityId("btnEditAppointments");
+	}
+	
+		
+	public WebElement getWeekView() {
+		return driver.findElementByAccessibilityId("pbWeekView");
+	}
+	
+	public WebElement getDayView() {
+		return driver.findElementByAccessibilityId("pbDayView");
+	}
+	
+	public WebElement getMessageBox() {
+		return driver.findElementByAccessibilityId("FrontDeskMessageBox");
+	}
+	
+	public List getOKs() {
+		return driver.findElements(By.xpath("//Button[@Name = 'OK']"));
+	}
+	
+	public WebElement getYes() {
+		return driver.findElement(By.xpath("//Button[@Name = 'Yes']"));
+	}
+	
+	public WebElement getRecurrenceBtn() {
+		return driver.findElementByAccessibilityId("btnRecurrence");
+	}
+	
+	public WebElement getRBDaily() {
+		return driver.findElementByName("Daily");
+	}
+	
+	public WebElement getRBWeekly() {
+		return driver.findElementByName("Weekly");
+	}
+	
+	public WebElement getRBMonthly() {
+		return driver.findElementByName("Monthly");
+	}
+		
+	
+	public WebElement getMaxOccurrences() {
+		return driver.findElementByAccessibilityId("txtRangeMaxOccurrences");
+	}
+	
+	public WebElement getRecurringAppointmentDate(int i) {
+		return driver.findElementByName("Recurring Appointments Date Row "+i+", Not sorted.");
+				
+	}
+	
+	public WebElement getAppointments(int i) {
+		return driver.findElementByName("Row "+i);
+						
+	}
+	
+	public WebElement getRemoveAppts() {
+		return driver.findElementByAccessibilityId("btnRemoveAppt");
+			
+		}
+	
+	public WebElement getRemoveAdd() {
+		return driver.findElementByAccessibilityId("btnAdd");
+				
+	}
+	
+	public WebElement getSelectAll() {
+		return driver.findElementByAccessibilityId("chkSelectAll");
+						
+	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
 	
 	
 }

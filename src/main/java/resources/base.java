@@ -72,8 +72,12 @@ public class base {
 		} catch (TimeoutException to) {
 
 		}
-
-
+		
+		
+		  WebDriverWait waitForLogin = new WebDriverWait(driver, 30);
+		  waitForLogin.until(ExpectedConditions.presenceOfElementLocated(By.name("Employee Login")));
+		  //.presenceOfAllElementsLocatedBy(By.name("Employee Login")));
+		 
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		return driver;
 

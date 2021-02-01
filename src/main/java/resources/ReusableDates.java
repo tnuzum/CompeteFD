@@ -146,6 +146,38 @@ public class ReusableDates {
 		 String tomorrowsDayNDate = dateFormat.format(today.getTime());
 		 return tomorrowsDayNDate;
 	}
+	
+	public static String getDayAfterTomorrowsDayAndDate(){
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMMMM d, yyyy");
+			Calendar today = Calendar.getInstance();
+			 today.add(Calendar.DAY_OF_YEAR, 2);
+			 String tomorrowsDayNDate = dateFormat.format(today.getTime());
+			 return tomorrowsDayNDate;
+		}
+	
+	public static String getCurrentDateFormat4(){
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/d/yyyy");
+		Calendar today = Calendar.getInstance();
+		String currentdate = dateFormat.format(today.getTime());
+		return currentdate ;
+		}
+	
+	public static String getCurrentDateFormatPlusOne(){
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/d/yyyy");
+		Calendar today = Calendar.getInstance();
+		today.add(Calendar.DAY_OF_YEAR, 1);
+		String currentdate = dateFormat.format(today.getTime());
+		return currentdate ;
+		}
+	
+	public static String getCurrentDateFormatPlusTwo(){
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/d/yyyy");
+		Calendar today = Calendar.getInstance();
+		today.add(Calendar.DAY_OF_YEAR, 2);
+		String currentdate = dateFormat.format(today.getTime());
+		return currentdate ;
+		}
 }
 	
 	
