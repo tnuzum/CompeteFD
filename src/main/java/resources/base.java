@@ -20,7 +20,8 @@ public class base {
 
 	public static WindowsDriver driver;
 	public static Properties prop;
-	static String projectPath = System.getenv("CompeteFD_HOME");
+	//static String projectPath = System.getenv("CompeteFD_HOME");
+	static String projectPath = System.getProperty("user.dir");
 
 	public static UpdateFoundPO uf = new UpdateFoundPO();
 
@@ -71,13 +72,11 @@ public class base {
 		} catch (TimeoutException to) {
 
 		}
-
 		
 		
 		  WebDriverWait waitForLogin = new WebDriverWait(driver, 30);
 		  waitForLogin.until(ExpectedConditions.presenceOfElementLocated(By.name("Employee Login")));
 		  //.presenceOfAllElementsLocatedBy(By.name("Employee Login")));
-		 
 		 
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		return driver;

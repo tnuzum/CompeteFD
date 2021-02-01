@@ -77,61 +77,6 @@ public class CheckIn extends base {
 		softAssertion.assertTrue(ci.getAddGuestButton().isEnabled());
 		softAssertion.assertAll();
 	}
-	
-	@Test(priority = 2, enabled = true)
-	public void memberCheckIn() {
-
-		ci.getMemberInputField().sendKeys(searchString);
-		
-		ci.getSearchButton().click();
-
-		MyActions.myWaitByName(30, "Member Quick Search");
-
-		Assert.assertTrue(ms.getPageLocator().isDisplayed());
-		
-		ms.getOKButton().click();
-		
-		ci.getCheckInButton().click();
-		
-		MyActions.focusByNativeWindowHandleIndex(0);
-		
-		ci.getCheckInButton().click(); //button on Check-In Options page
-
-
-	}
-
-	@Test(priority = 3, enabled = true)
-	public void familyCheckIn() {
-		
-		MyActions.myWaitByAccessibilityId(30, "txtBarcode");
-
-		ci.getMemberInputField().sendKeys(searchString);
-		
-		ci.getSearchButton().click();
-
-		MyActions.myWaitByName(30, "Member Quick Search");
-
-		Assert.assertTrue(ms.getPageLocator().isDisplayed());
-		
-		ms.getOKButton().click();
-		
-		
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		MyActions.myWaitByAccessibilityId(30, "pbFamilyCheckIn");
-		
-		ci.getFamilyCheckInButton().click();
-		
-		ci.getCheckInAllFamilyButton().click();
-		
-		ci.getWarningYesButton().click();
-
-	}
 
 	@Test(priority = 4)
 	public void clearMember() {

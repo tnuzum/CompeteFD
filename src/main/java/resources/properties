@@ -1,5 +1,6 @@
 Employee1UserName = todd
 Employee1Password = 111
+aPIKey = B50A8F2BF7315812CF2A21690A7FF5FDA33A156C
 
 ! ** CLUB INPUT DATA **
 
@@ -20,10 +21,10 @@ inactiveClubName = Inactive
 activeEmployeeId = 35
 activeEmployeeName = autotest
 activeEmployeeBarcodeId = autotest
-activeEmployeePassword = 111
+activeEmployeePassword = Testing1!
 changeEmployeeName = Change
 changeEmployeeBarcodeId = change.auto
-changeEmployeePassword = Testing1!
+changeEmployeePassword = Testing0n3!
 inactiveEmployeeId = 40
 inactiveEmployeeName = inactiveE
 
@@ -684,6 +685,9 @@ item2DefaultPrice = 5.00
 classToEnroll = BhagyaVirtualClass
 memberToEnroll = Auto, Demomember
 
+serviceCategory1 = Personal Training
+service1 = Club Demo
+=======
 ApptMember1 = Auto, ApptMember2
 ApptMember2 = Auto, BookingsParty
 ApptMember3 = Auto, CCmember

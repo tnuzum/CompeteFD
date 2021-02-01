@@ -47,8 +47,32 @@
 		</plugins>
 
 	</build>
-
 	<dependencies>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+			<version>3.6.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.8.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-artifact</artifactId>
+			<version>3.6.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-core</artifactId>
+			<version>3.6.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-resources-plugin</artifactId>
+			<version>3.2.0</version>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -65,12 +89,21 @@
 			<artifactId>testng</artifactId>
 			<version>7.3.0</version>
 		</dependency>
-		<!-- dependency> <groupId>io.appium</groupId> <artifactId>java-client</artifactId> 
-			<version>5.0.0-BETA6</version> </dependency -->
 		<dependency>
 			<groupId>io.appium</groupId>
 			<artifactId>java-client</artifactId>
-			<version>7.3.0</version>
+			<!-- version>7.3.0</version -->
+			<version>7.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>4.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>json-path</artifactId>
+			<version>4.3.0</version>
 		</dependency>
 	</dependencies>
 </project>

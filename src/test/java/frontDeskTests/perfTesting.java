@@ -22,7 +22,9 @@ public class perfTesting extends base {
 	
 
 	public static void main(String[] args) throws Throwable {
-
+		
+		
+		
 		LandingPagePO la = new LandingPagePO();
 		CheckInPO ci = new CheckInPO();
 		MemberSearchPO ms = new MemberSearchPO();
