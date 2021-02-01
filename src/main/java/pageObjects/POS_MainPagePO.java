@@ -66,6 +66,13 @@ public class POS_MainPagePO extends base {
 	}
 
 	public WebElement getZOutButton() {
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return driver.findElementByAccessibilityId("pbZOut");
 	}
 
@@ -198,6 +205,13 @@ public class POS_MainPagePO extends base {
 	}
 	
 	public WebElement getOKButton() {
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return driver.findElementByAccessibilityId("pbOK");
 	}
 	
