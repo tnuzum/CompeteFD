@@ -142,7 +142,7 @@ public class PointOfSale_Misc extends base {
 		p.getZODetailsButton().click();
 
 		Assert.assertEquals(p.getCashDrawerSearchFromComboBox().getText(), ReusableDates.getCurrentDateFormat3());
-		Assert.assertEquals(p.getCashDrawerDateValue(0).getText(), ReusableDates.getCurrentDateFormat4());
+		Assert.assertEquals(p.getCashDrawerDateValue(0).getText(), ReusableDates.getCurrentDateFormat5());
 		Assert.assertEquals(p.getCashDrawerTotalIncomeValue(0).getText(), "$"+prop.getProperty("item1DefaultPrice"));
 			
 		p.getCashDrawerCloseButton().click();

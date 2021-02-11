@@ -16,13 +16,13 @@
 			<class name="frontDeskTests.Reports" />
 			<class name="frontDeskTests.TimeClock" />
 			<class name = "FunctionalityTests.CheckIn" />
-			<!-- class name = "FunctionalityTests.EnrollInClass"/-->
-			<!-- class name = "FunctionalityTests.BookAppointment"/-->
+			<class name = "FunctionalityTests.EnrollInClass"/>
+			<class name = "FunctionalityTests.BookAppointment"/>
 			<class name = "FunctionalityTests.PointOfSale_Misc"/>
 			<class name = "FunctionalityTests.PurchaseInventoryItems"/>
 		</classes>
 	</test>
-	<test thread-count="5" name="Functionality Tests">
+	<!--test thread-count="5" name="Functionality Tests">
     	<packages>
     		<package name = "FunctionalityTests"/>
        	</packages>
@@ -32,5 +32,5 @@
     	<packages>
     		<package name = "ServiceViewBookings"/>
        	</packages>
-    </test> 
+    </test--> 
 </suite>

@@ -59,7 +59,7 @@ public class BookAppointment extends base {
 	@Test(priority = 1, enabled = true)
 	public void bookappt() throws InterruptedException{
 
-		
+// Club Dropdown List		
 		b.getClubCombobox().click();
 		
 		int a = 1;
@@ -72,8 +72,10 @@ public class BookAppointment extends base {
 		else
 			a++;
 		}
+		
 		while(!clubListItem.equals(clubName));
 		
+// Service Category Dropdown List		
 		b.getServiceCategoryCombobox().click();
 		
 		int i = 1;
@@ -86,11 +88,11 @@ public class BookAppointment extends base {
 		else
 			i++;
 		}
-		while(!serviceCategoryListItem.equals(serviceCategory));
 		
+		while(!serviceCategoryListItem.equals(serviceCategory));
+
+// Service Dropdown List		
 		b.getServiceCombobox().click();
-			
-		b.getListItem(13).click(); // selects product "Free Training Auto"
 	
 		int x = 1;
 		 String serviceListItem;
@@ -102,10 +104,10 @@ public class BookAppointment extends base {
 		else
 			x++;
 		}
+		
 		while(!serviceListItem.equals(service));
-		
-		System.out.println(b.getBookValue(0).getText());
-		
+
+// Book Dropdown List
 		int y = 0;
 		 String bookListItem;
 		
@@ -178,7 +180,7 @@ public class BookAppointment extends base {
 
 	}		
 
-	@AfterClass (enabled = false)
+	@AfterClass (enabled = true)
 	public void tearDown() {
 			MyActions.focusByNativeWindowHandleIndex(0);
 			
