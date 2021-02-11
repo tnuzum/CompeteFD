@@ -45,7 +45,7 @@ public class perfTesting extends base {
 		driver = new WindowsDriver<WindowsElement>(new URL("http://127.0.0.1:4723"), Appcapabilities);
 		
 		WebDriverWait waitForLogin = new WebDriverWait(driver, 30);
-		waitForLogin.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Employee Login")));
+		waitForLogin.until(ExpectedConditions.visibilityOfElementLocated(By.name("Employee Login")));
 
 		MyActions.loginEmployee(barcodeId, password);
 		

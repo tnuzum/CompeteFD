@@ -202,10 +202,6 @@ public class PurchaseInventoryItems extends base {
 
 		pa.getOKButton().click();
 
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		MyActions.myWaitByName(30, "Change Due");
-
 		p.getOKButton().click(); // Click Ok button on Change Due prompt
 	}
 	

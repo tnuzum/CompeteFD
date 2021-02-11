@@ -1,7 +1,11 @@
 package pageObjects;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import io.appium.java_client.windows.WindowsDriver;
+import resources.MyActions;
 import resources.base;
 
 public class POS_MainPagePO extends base {
@@ -67,12 +71,8 @@ public class POS_MainPagePO extends base {
 
 	public WebElement getZOutButton() {
 		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		MyActions.focusByNativeWindowHandleIndex(0);
+		MyActions.myWaitByAccessibilityId(30, "pbZOut");
 		return driver.findElementByAccessibilityId("pbZOut");
 	}
 
@@ -207,11 +207,13 @@ public class POS_MainPagePO extends base {
 	public WebElement getOKButton() {
 		
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(10000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		MyActions.focusByNativeWindowHandleIndex(0);
+		
 		return driver.findElementByAccessibilityId("pbOK");
 	}
 	

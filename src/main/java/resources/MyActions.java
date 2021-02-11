@@ -40,7 +40,7 @@ public class MyActions extends base {
 		LoginPO l = new LoginPO();
 		
 		WebDriverWait waitForLogin = new WebDriverWait(driver, 30);
-		waitForLogin.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Employee Login")));
+		waitForLogin.until(ExpectedConditions.visibilityOfElementLocated(By.name("Employee Login")));
 
 		l.getUserNameInputField().sendKeys(barcodeId);
 
@@ -56,7 +56,7 @@ public class MyActions extends base {
 	public static void myWaitByName(int duration, String locatorName) {
 
 		WebDriverWait wait = new WebDriverWait(driver, duration);
-		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name(locatorName)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(locatorName)));
 
 	}
 

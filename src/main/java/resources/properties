@@ -687,6 +687,7 @@ memberToEnroll = Auto, Demomember
 
 serviceCategory1 = Personal Training
 service1 = Club Demo
+service2 = Free Training Auto
 =======
 ApptMember1 = Auto, ApptMember2
 ApptMember2 = Auto, BookingsParty
