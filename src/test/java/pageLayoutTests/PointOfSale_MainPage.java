@@ -1,6 +1,5 @@
-package frontDeskTests;
+package pageLayoutTests;
 
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -17,7 +16,7 @@ import pageObjects.POS_TaxDetailPO;
 import resources.MyActions;
 import resources.base;
 
-public class PointOfSale extends base {
+public class PointOfSale_MainPage extends base {
 
 	public static SoftAssert softAssertion = new SoftAssert();
 
@@ -120,49 +119,6 @@ public class PointOfSale extends base {
 		softAssertion.assertTrue(p.getClearButton().isEnabled());
 		softAssertion.assertTrue(p.getTotalButton().isEnabled());
 		softAssertion.assertAll();
-
-	}
-
-	@Test(priority = 2, enabled = true)
-	public void clearMember() {
-
-		p.getMemberInputField().sendKeys(searchString);
-
-		p.getSearchButton().click();
-
-		MyActions.myWaitByName(30, "Member Quick Search");
-
-		ms.getOKButton().click();
-
-		p.getClearMemberButton().click();
-
-		Assert.assertNotEquals(p.getMemberInputField().getText(), searchString);
-	}
-
-	@Test(priority = 5, enabled = true)
-	public void takePayment() {
-
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		p.getMemberInputField().sendKeys(searchString);
-
-		p.getSearchButton().click();
-
-		MyActions.myWaitByName(30, "Member Quick Search");
-
-		ms.getOKButton().click();
-
-		p.getTakePaymentButton().click();
-
-		MyActions.myWaitByName(30, "Payment");
-
-		tp.getAmountInput().sendKeys("0.01");
-
-		tp.getCashRadioButton().click();
-
-		tp.getOKButton().click();
-
-		tp.getConfirmPayOKButton().click();
 
 	}
 

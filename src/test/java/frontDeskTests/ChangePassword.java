@@ -94,7 +94,7 @@ public class ChangePassword extends base {
 		cp.getOKButton().click();
 
 		WebDriverWait wait = new WebDriverWait(driver, 60);
-		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("deckWorkspace1")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("deckWorkspace1")));
 
 		Assert.assertTrue(lp.getPageLocator().isDisplayed()); // Employee logged in; landing page displayed
 

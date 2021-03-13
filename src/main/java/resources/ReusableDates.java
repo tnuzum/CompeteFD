@@ -25,6 +25,12 @@ public class ReusableDates {
 		return dateFormat.format(currentDate);
 	}
 	
+	public static String getCurrentDateFormat5() {
+		DateFormat dateFormat = new SimpleDateFormat("M/d/yyyy"); //8/6/2020
+		Date currentDate = new Date();
+		return dateFormat.format(currentDate);
+	}
+	
 	public static String getCurrentDateTime() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date currentDate = new Date();

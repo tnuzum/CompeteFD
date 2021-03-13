@@ -63,6 +63,8 @@ public class EnrollInClass extends base {
 		ce.getMemberInputField().sendKeys(memberToEnroll);
 		ce.getSearchButton().click();
 		
+		ce.getClassSearchInputField().sendKeys(classToEnroll);
+		
 		int i = 0;
 		 String classCourseName;
 		
