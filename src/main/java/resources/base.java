@@ -38,7 +38,7 @@ public class base {
 		
 		WindowsDriver Session = new WindowsDriver(new URL("http://127.0.0.1:4723"), capabilities);
 
-		Session.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Session.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 		DesiredCapabilities Appcapabilities = new DesiredCapabilities();
 		Appcapabilities.setCapability("app", "Root");
@@ -47,7 +47,7 @@ public class base {
 
 		try {
 
-			WebDriverWait waitForUpdateFound = new WebDriverWait(driver, 5);
+			WebDriverWait waitForUpdateFound = new WebDriverWait(driver, 30);
 			waitForUpdateFound.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Update Found")));
 
 			if (uf.getPageLocator().isDisplayed()) {

@@ -1,8 +1,6 @@
 package ServiceViewBookings;
 
 
-import java.util.NoSuchElementException;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
@@ -58,7 +56,7 @@ public class MultiBookAppointment_MultiMember_DiifrntResourceType_Recurring exte
 		
 		b.getClubCombobox().click();
 		
-		b.getListItem(8).click();  // selects club "Jonas Sports-Plex"
+		b.getListItem(10).click();  // selects club "Jonas Sports-Plex"
 		
 		b.getServiceCategoryCombobox().click();
 		

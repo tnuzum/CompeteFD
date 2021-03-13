@@ -1,7 +1,5 @@
 package ServiceViewBookings;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -57,7 +55,7 @@ public class SingleBookAppointment_SingleMember extends base {
 		
 		b.getClubCombobox().click();
 		
-		b.getListItem(8).click();  // selects club "Jonas Sports-Plex"
+		b.getListItem(10).click();  // selects club "Jonas Sports-Plex"
 		
 		b.getServiceCategoryCombobox().click();
 		
@@ -65,7 +63,7 @@ public class SingleBookAppointment_SingleMember extends base {
 		
 		b.getServiceCombobox().click();
 			
-		b.getListItem(1).click(); // selects product "APT-Bookings1"
+		b.getListItem(2).click(); // selects product "APT-Bookings1"
 		
 			
 		b.getShowCalendarButton().click();

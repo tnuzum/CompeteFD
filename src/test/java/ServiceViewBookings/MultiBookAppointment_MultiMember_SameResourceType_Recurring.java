@@ -56,7 +56,7 @@ public class MultiBookAppointment_MultiMember_SameResourceType_Recurring extends
 		
 		b.getClubCombobox().click();
 		
-		b.getListItem(8).click();  // selects club "Jonas Sports-Plex"
+		b.getListItem(10).click();  // selects club "Jonas Sports-Plex"
 		
 		b.getServiceCategoryCombobox().click();
 		

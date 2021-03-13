@@ -52,12 +52,12 @@ public class SingleBookAppointment_SingleMember_Recurring extends base {
 	
 		
 	@Test(priority = 1, enabled = true)
-	public void bookMultiMemberRecurringappt() throws InterruptedException{
+	public void bookSingleMemberRecurringappt() throws InterruptedException{
 
 		
 		b.getClubCombobox().click();
 		
-		b.getListItem(8).click();  // selects club "Jonas Sports-Plex"
+		b.getListItem(10).click();  // selects club "Jonas Sports-Plex"
 		
 		b.getServiceCategoryCombobox().click();
 		
@@ -65,7 +65,7 @@ public class SingleBookAppointment_SingleMember_Recurring extends base {
 		
 		b.getServiceCombobox().click();
 			
-		b.getListItem(1).click(); // selects product "APT-Bookings1"
+		b.getListItem(2).click(); // selects product "APT-Bookings1"
 		
 			
 		b.getShowCalendarButton().click();

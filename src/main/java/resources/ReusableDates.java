@@ -158,7 +158,7 @@ public class ReusableDates {
 		}
 	
 	public static String getCurrentDateFormatPlusOne(){
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/d/yyyy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
 		Calendar today = Calendar.getInstance();
 		today.add(Calendar.DAY_OF_YEAR, 1);
 		String currentdate = dateFormat.format(today.getTime());
@@ -166,7 +166,7 @@ public class ReusableDates {
 		}
 	
 	public static String getCurrentDateFormatPlusTwo(){
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/d/yyyy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
 		Calendar today = Calendar.getInstance();
 		today.add(Calendar.DAY_OF_YEAR, 2);
 		String currentdate = dateFormat.format(today.getTime());

@@ -57,7 +57,7 @@ public class MultiBookAppointment_SingleMember_DiffrntResourceType extends base 
 		
 		b.getClubCombobox().click();
 		
-		b.getListItem(8).click();  // selects club "Jonas Sports-Plex"
+		b.getListItem(10).click();  // selects club "Jonas Sports-Plex"
 		
 		b.getServiceCategoryCombobox().click();
 		
@@ -65,7 +65,7 @@ public class MultiBookAppointment_SingleMember_DiffrntResourceType extends base 
 		
 		b.getServiceCombobox().click();
 			
-		b.getListItem(3).click(); // selects product "APT-Bookings3"
+		b.getListItem(4).click(); // selects product "APT-Bookings3"
 		
 			
 		b.getShowCalendarButton().click();
