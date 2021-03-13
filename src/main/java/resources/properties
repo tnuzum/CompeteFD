@@ -686,8 +686,17 @@ classToEnroll = BhagyaVirtualClass
 memberToEnroll = Auto, Demomember
 
 serviceCategory1 = Personal Training
+serviceCategory2 = Personal Training 1
 service1 = Club Demo
 service2 = Free Training Auto
+service3 = APT-Bookings1
+service4 = APT-Bookings2
+service5 = APT-Bookings3
+service6 = APT-GrpBookings1
+service7 = APT-GrpBookings2
+service8 = APT-GrpBookings3
+
+
 =======
 ApptMember1 = Auto, ApptMember2
 ApptMember2 = Auto, BookingsParty

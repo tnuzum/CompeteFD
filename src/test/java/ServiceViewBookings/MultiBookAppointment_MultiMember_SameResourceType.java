@@ -28,6 +28,9 @@ public class MultiBookAppointment_MultiMember_SameResourceType extends base {
 	LandingPagePO la;
 	String barcodeId;
 	String password;
+	String desiredClub;
+	String desiredServiceCategory;
+	String desiredService;
 
 	@BeforeClass
 	public void initialize() throws Throwable {
@@ -46,6 +49,9 @@ public class MultiBookAppointment_MultiMember_SameResourceType extends base {
 		MyActions.loginEmployee(barcodeId, password);
 		la.getMoreButton().click();
 		la.getMoreButtons(2).click();
+		desiredClub = prop.getProperty("club1Name");
+		desiredServiceCategory = prop.getProperty("serviceCategory2");
+		desiredService = prop.getProperty("service7");
 
 	}
 	
@@ -53,18 +59,68 @@ public class MultiBookAppointment_MultiMember_SameResourceType extends base {
 	@Test(priority = 1, enabled = true)
 	public void bookMultiMemberapptWithTwoBooksSameResourcetype() throws InterruptedException{
 
+		int i = 1;
+		int j = 1;
+		int k = 1;
 		
 		b.getClubCombobox().click();
 		
-		b.getListItem(10).click();  // selects club "Jonas Sports-Plex"
+		String clubName;
+		
+		// selects club "Jonas Sports-Plex"
+		
+		do {clubName = b.getListItem(i).getText();
+		
+		if (clubName.equals(desiredClub)) 
+			
+			 b.getListItem(i).click();
+				 
+			 else
+			 i++;
+		
+			
+		}
+		while(!clubName.equals(desiredClub));
+		
+  
 		
 		b.getServiceCategoryCombobox().click();
 		
-		b.getListItem(7).click(); // selects category "Personal Training"
+	 // selects category "Personal Training 1"
+		
+		String serviceCategoryName;
+		
+		do {serviceCategoryName = b.getListItem(j).getText();
+		
+		if (serviceCategoryName.equals(desiredServiceCategory)) 
+			
+			 b.getListItem(j).click();
+				 
+			 else
+			 j++;
+		
+			
+		}
+		while(!serviceCategoryName.equals(desiredServiceCategory));
 		
 		b.getServiceCombobox().click();
+		
+		String ServiceName;
 			
-		b.getListItem(2).click(); // selects product "APT-GrpBookings2"
+		// selects product "APT-GrpBookings2"
+		
+		do {ServiceName = b.getListItem(k).getText();
+		
+		if (ServiceName.equals(desiredService)) 
+			
+			 b.getListItem(k).click();
+				 
+			 else
+			 k++;
+		
+			
+		}
+		while(!ServiceName.equals(desiredService));
 		
 			
 		b.getShowCalendarButton().click();
