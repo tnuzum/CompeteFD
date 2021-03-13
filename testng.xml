@@ -4,7 +4,8 @@
 
 	<test thread-count="5" name="About Compete">
 		<classes>
-			<class name="frontDeskTests.AboutCompete" />
+			<class name="pageLayoutTests.AboutCompete" />
+			<class name="pageLayoutTests.PointOfSale_MainPage" />
 			<class name="frontDeskTests.Agreements" />
 			<class name="frontDeskTests.Bookings" />
 			<class name="frontDeskTests.ChangePassword" />
@@ -12,16 +13,16 @@
 			<class name="frontDeskTests.ClassEnrollment" />
 			<class name="frontDeskTests.Login" />
 			<class name="frontDeskTests.MemberMgmt" />
-			<class name="frontDeskTests.PointOfSale" />
 			<class name="frontDeskTests.Reports" />
 			<class name="frontDeskTests.TimeClock" />
+			<class name = "FunctionalityTests.CheckIn" />
 			<class name = "FunctionalityTests.EnrollInClass"/>
 			<class name = "FunctionalityTests.BookAppointment"/>
+			<class name = "FunctionalityTests.PointOfSale_Misc"/>
 			<class name = "FunctionalityTests.PurchaseInventoryItems"/>
 		</classes>
 	</test>
-	
-	<test thread-count="5" name="Functionality Tests">
+	<!--test thread-count="5" name="Functionality Tests">
     	<packages>
     		<package name = "FunctionalityTests"/>
        	</packages>
@@ -31,6 +32,5 @@
     	<packages>
     		<package name = "ServiceViewBookings"/>
        	</packages>
-    </test> 
-
+    </test--> 
 </suite>
