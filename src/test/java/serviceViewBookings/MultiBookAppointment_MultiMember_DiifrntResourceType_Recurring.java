@@ -1,7 +1,5 @@
-package ServiceViewBookings;
+package serviceViewBookings;
 
-
-import java.util.NoSuchElementException;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -30,6 +28,10 @@ public class MultiBookAppointment_MultiMember_DiifrntResourceType_Recurring exte
 	LandingPagePO la;
 	String barcodeId;
 	String password;
+	String desiredClub;
+	String desiredServiceCategory;
+	String desiredService;
+
 
 	@BeforeClass
 	public void initialize() throws Throwable {
@@ -44,29 +46,90 @@ public class MultiBookAppointment_MultiMember_DiifrntResourceType_Recurring exte
 		la = new LandingPagePO();
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		password = prop.getProperty("activeEmployeePassword");
+		desiredClub = prop.getProperty("club1Name");
+		desiredServiceCategory = prop.getProperty("serviceCategory2");
+		desiredService = prop.getProperty("service8");
+
 		
 		MyActions.loginEmployee(barcodeId, password);
 		la.getMoreButton().click();
 		la.getMoreButtons(2).click();
-
+		
 	}
 	
 		
 	@Test(priority = 1, enabled = true)
 	public void bookMultiMemberRecurringappt() throws InterruptedException{
+		
+		if (b.getPageLabel().getText().contains("Book View")) {
+			
+			b.getServiceViewButton().click();
+			Thread.sleep(500);
+		}
 
+		
+		int i = 1;
+		int j = 1;
+		int k = 1;
 		
 		b.getClubCombobox().click();
 		
-		b.getListItem(8).click();  // selects club "Jonas Sports-Plex"
+		String clubName;
+		
+		// selects club "Jonas Sports-Plex"
+		
+		do {clubName = b.getListItem(i).getText();
+		
+		if (clubName.equals(desiredClub)) 
+			
+			 b.getListItem(i).click();
+				 
+			 else
+			 i++;
+		
+			
+		}
+		while(!clubName.equals(desiredClub));
+		
+  
 		
 		b.getServiceCategoryCombobox().click();
 		
-		b.getListItem(7).click(); // selects category "Personal Training1"
+	 // selects category "Personal Training 1"
+		
+		String serviceCategoryName;
+		
+		do {serviceCategoryName = b.getListItem(j).getText();
+		
+		if (serviceCategoryName.equals(desiredServiceCategory)) 
+			
+			 b.getListItem(j).click();
+				 
+			 else
+			 j++;
+		
+			
+		}
+		while(!serviceCategoryName.equals(desiredServiceCategory));
 		
 		b.getServiceCombobox().click();
+		
+		String ServiceName;
 			
-		b.getListItem(3).click(); // selects product "APT-GrpBookings3"
+		// selects product "APT-GrpBookings3"
+		
+		do {ServiceName = b.getListItem(k).getText();
+		
+		if (ServiceName.equals(desiredService)) 
+			
+			 b.getListItem(k).click();
+				 
+			 else
+			 k++;
+		
+			
+		}
+		while(!ServiceName.equals(desiredService));
 		
 			
 		b.getShowCalendarButton().click();

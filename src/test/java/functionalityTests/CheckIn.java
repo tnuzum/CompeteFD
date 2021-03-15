@@ -1,4 +1,4 @@
-package FunctionalityTests;
+package functionalityTests;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;

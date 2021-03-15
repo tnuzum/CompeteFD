@@ -1,4 +1,4 @@
-package ServiceViewBookings;
+package serviceViewBookings;
 
 
 import org.openqa.selenium.WebElement;
@@ -29,7 +29,9 @@ public class SingleBookAppointment_MultiMember_Recurring extends base {
 	LandingPagePO la;
 	String barcodeId;
 	String password;
-
+	String desiredClub;
+	String desiredServiceCategory;
+	String desiredService;
 	@BeforeClass
 	public void initialize() throws Throwable {
 
@@ -43,10 +45,15 @@ public class SingleBookAppointment_MultiMember_Recurring extends base {
 		la = new LandingPagePO();
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		password = prop.getProperty("activeEmployeePassword");
+		desiredClub = prop.getProperty("club1Name");
+		desiredServiceCategory = prop.getProperty("serviceCategory2");
+		desiredService = prop.getProperty("service6");
+
 		
 		MyActions.loginEmployee(barcodeId, password);
 		la.getMoreButton().click();
 		la.getMoreButtons(2).click();
+		
 
 	}
 	
@@ -54,18 +61,75 @@ public class SingleBookAppointment_MultiMember_Recurring extends base {
 	@Test(priority = 1, enabled = true)
 	public void bookMultiMemberRecurringappt() throws InterruptedException{
 
+
+		if (b.getPageLabel().getText().contains("Book View")) {
+			
+			b.getServiceViewButton().click();
+			Thread.sleep(500);
+		}
+		
+		int i = 1;
+		int j = 1;
+		int k = 1;
 		
 		b.getClubCombobox().click();
 		
-		b.getListItem(8).click();  // selects club "Jonas Sports-Plex"
+		String clubName;
+		
+		// selects club "Jonas Sports-Plex"
+		
+		do {clubName = b.getListItem(i).getText();
+		
+		if (clubName.equals(desiredClub)) 
+			
+			 b.getListItem(i).click();
+				 
+			 else
+			 i++;
+		
+			
+		}
+		while(!clubName.equals(desiredClub));
+		
+  
 		
 		b.getServiceCategoryCombobox().click();
 		
-		b.getListItem(7).click(); // selects category "Personal Training1"
+	 // selects category "Personal Training 1"
+		
+		String serviceCategoryName;
+		
+		do {serviceCategoryName = b.getListItem(j).getText();
+		
+		if (serviceCategoryName.equals(desiredServiceCategory)) 
+			
+			 b.getListItem(j).click();
+				 
+			 else
+			 j++;
+		
+			
+		}
+		while(!serviceCategoryName.equals(desiredServiceCategory));
 		
 		b.getServiceCombobox().click();
+		
+		String ServiceName;
 			
-		b.getListItem(1).click(); // selects product "APT-GrpBookings1"
+		// selects product "APT-GrpBookings1"
+		
+		do {ServiceName = b.getListItem(k).getText();
+		
+		if (ServiceName.equals(desiredService)) 
+			
+			 b.getListItem(k).click();
+				 
+			 else
+			 k++;
+		
+			
+		}
+		while(!ServiceName.equals(desiredService));
 		
 			
 		b.getShowCalendarButton().click();
@@ -77,7 +141,17 @@ public class SingleBookAppointment_MultiMember_Recurring extends base {
 		
 		Actions actions = new Actions(driver);		
 		
-		actions.doubleClick(b.getCalendarDateTimeSlots(tomorrowsDayNDate, "10:00 AM")).perform();  // selects appointment time
+		try {
+			actions.doubleClick(b.getCalendarDateTimeSlots(tomorrowsDayNDate, "10:00 AM")).perform();// selects appointment time
+				
+			}
+			catch (org.openqa.selenium.NoSuchElementException ne) {
+				
+						b.getCalendarDates(tomorrowsDayNDate).click();
+														
+				Thread.sleep(500);
+				actions.doubleClick(b.getCalendarDateTimeSlots(tomorrowsDayNDate, "10:00 AM")).perform(); // selects appointment time
+			}
 		Thread.sleep(2000);
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
@@ -146,8 +220,16 @@ public class SingleBookAppointment_MultiMember_Recurring extends base {
 		b.getOkBtn().click();
 
 		b.getCancel().click();
-		
+		try {
 		b.getCalendarDateTimeSlots(ReusableDates.getDayAfterTomorrowsDayAndDate(), "10:00 AM").click();
+		}
+		catch(org.openqa.selenium.NoSuchElementException ne)
+		{
+			b.getCalendarDates(ReusableDates.getDayAfterTomorrowsDayAndDate()).click();
+			b.getCalendarDateTimeSlots(ReusableDates.getDayAfterTomorrowsDayAndDate(), "10:00 AM").click();
+			
+			Thread.sleep(500);
+		}
 		b.getApptCancelBtn().click();
 		
 		MyActions.focusByNativeWindowHandleIndex(0);

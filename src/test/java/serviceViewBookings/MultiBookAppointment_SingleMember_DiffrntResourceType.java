@@ -1,4 +1,4 @@
-package ServiceViewBookings;
+package serviceViewBookings;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -15,7 +15,7 @@ import resources.MyActions;
 import resources.ReusableDates;
 import resources.base;
 
-public class MultiBookAppointment_SingleMember_SameResourceType extends base {
+public class MultiBookAppointment_SingleMember_DiffrntResourceType extends base {
 	
 	/*
 	 *  !! This test assumes the station is configured to show Service View by default
@@ -29,6 +29,9 @@ public class MultiBookAppointment_SingleMember_SameResourceType extends base {
 	LandingPagePO la;
 	String barcodeId;
 	String password;
+	String desiredClub;
+	String desiredServiceCategory;
+	String desiredService;
 
 	@BeforeClass
 	public void initialize() throws Throwable {
@@ -43,29 +46,91 @@ public class MultiBookAppointment_SingleMember_SameResourceType extends base {
 		la = new LandingPagePO();
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		password = prop.getProperty("activeEmployeePassword");
+		desiredClub = prop.getProperty("club1Name");
+		desiredServiceCategory = prop.getProperty("serviceCategory1");
+		desiredService = prop.getProperty("service5");
 		
 		MyActions.loginEmployee(barcodeId, password);
 		la.getMoreButton().click();
 		la.getMoreButtons(2).click();
-
+		
 	}
+
+
 	
 		
 	@Test(priority = 1, enabled = true)
-	public void BookSingleMemberApptWithTwoBooksSameResourcetype() throws InterruptedException{
+	public void BookSingleMemberApptWithTwoBooksDifferentResourcetype() throws InterruptedException{
+		
+		if (b.getPageLabel().getText().contains("Book View")) {
+			
+			b.getServiceViewButton().click();
+			Thread.sleep(500);
+		}
 
+		
+		int i = 1;
+		int j = 1;
+		int k = 1;
 		
 		b.getClubCombobox().click();
 		
-		b.getListItem(8).click();  // selects club "Jonas Sports-Plex"
+		String clubName;
+		
+		// selects club "Jonas Sports-Plex"
+		
+		do {clubName = b.getListItem(i).getText();
+		
+		if (clubName.equals(desiredClub)) 
+			
+			 b.getListItem(i).click();
+				 
+			 else
+			 i++;
+		
+			
+		}
+		while(!clubName.equals(desiredClub));
+		
+  
 		
 		b.getServiceCategoryCombobox().click();
 		
-		b.getListItem(6).click(); // selects category "Personal Training"
+	 // selects category "Personal Training"
+		
+		String serviceCategoryName;
+		
+		do {serviceCategoryName = b.getListItem(j).getText();
+		
+		if (serviceCategoryName.equals(desiredServiceCategory)) 
+			
+			 b.getListItem(j).click();
+				 
+			 else
+			 j++;
+		
+			
+		}
+		while(!serviceCategoryName.equals(desiredServiceCategory));
 		
 		b.getServiceCombobox().click();
+		
+		String ServiceName;
 			
-		b.getListItem(2).click(); // selects product "APT-Bookings2"
+		// selects product "APT-Bookings3"
+		
+		do {ServiceName = b.getListItem(k).getText();
+		
+		if (ServiceName.equals(desiredService)) 
+			
+			 b.getListItem(k).click();
+				 
+			 else
+			 k++;
+		
+			
+		}
+		while(!ServiceName.equals(desiredService));
 		
 			
 		b.getShowCalendarButton().click();
@@ -77,7 +142,7 @@ public class MultiBookAppointment_SingleMember_SameResourceType extends base {
 		
 		Actions actions = new Actions(driver);		
 		
-		actions.doubleClick(b.getCalendarDateTimeSlots(tomorrowsDayNDate, "9:30 AM")).perform();  // selects appointment time
+		actions.doubleClick(b.getCalendarDateTimeSlots(tomorrowsDayNDate, "8:30 AM")).perform();  // selects appointment time
 		Thread.sleep(2000);
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
@@ -103,7 +168,7 @@ public class MultiBookAppointment_SingleMember_SameResourceType extends base {
 		b.getCancel().click();
 		Thread.sleep(2000);
 		
-		b.getCalendarDateTimeSlots(tomorrowsDayNDate, "9:30 AM").click();
+		b.getCalendarDateTimeSlots(tomorrowsDayNDate, "8:30 AM").click();
 		
 		Assert.assertTrue(b.getAppointment(prop.getProperty("ApptMember2")).isDisplayed());
 	}

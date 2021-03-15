@@ -20,8 +20,7 @@ public class base {
 
 	public static WindowsDriver driver;
 	public static Properties prop;
-	//static String projectPath = System.getenv("CompeteFD_HOME");
-	static String projectPath = System.getProperty("user.dir");
+	static String projectPath = System.getenv("CompeteFD_HOME");
 
 	public static UpdateFoundPO uf = new UpdateFoundPO();
 
@@ -39,7 +38,7 @@ public class base {
 		
 		WindowsDriver Session = new WindowsDriver(new URL("http://127.0.0.1:4723"), capabilities);
 
-		Session.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Session.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 		DesiredCapabilities Appcapabilities = new DesiredCapabilities();
 		Appcapabilities.setCapability("app", "Root");
@@ -48,14 +47,14 @@ public class base {
 
 		try {
 
-			WebDriverWait waitForUpdateFound = new WebDriverWait(driver, 15);
-			waitForUpdateFound.until(ExpectedConditions.visibilityOfElementLocated(By.name("Update Found")));
+			WebDriverWait waitForUpdateFound = new WebDriverWait(driver, 30);
+			waitForUpdateFound.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Update Found")));
 
 			if (uf.getPageLocator().isDisplayed()) {
 				System.out.println("INFO: Update Found");
 				uf.getOKButton().click();
 				WebDriverWait waitForCancelButton = new WebDriverWait(driver, 30);
-				waitForCancelButton.until(ExpectedConditions.visibilityOfElementLocated(By.name("Cancel")));
+				waitForCancelButton.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Cancel")));
 				uf.getNextButton().click();
 
 				try {
@@ -72,10 +71,13 @@ public class base {
 		} catch (TimeoutException to) {
 
 		}
+
 		
 		
 		  WebDriverWait waitForLogin = new WebDriverWait(driver, 30);
 		  waitForLogin.until(ExpectedConditions.presenceOfElementLocated(By.name("Employee Login")));
+		  //.presenceOfAllElementsLocatedBy(By.name("Employee Login")));
+		 
 		 
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		return driver;
