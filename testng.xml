@@ -15,22 +15,32 @@
 			<class name="frontDeskTests.MemberMgmt" />
 			<class name="frontDeskTests.Reports" />
 			<class name="frontDeskTests.TimeClock" />
-			<class name = "FunctionalityTests.CheckIn" />
-			<class name = "FunctionalityTests.EnrollInClass"/>
-			<class name = "FunctionalityTests.BookAppointment"/>
-			<class name = "FunctionalityTests.PointOfSale_Misc"/>
-			<class name = "FunctionalityTests.PurchaseInventoryItems"/>
+			<class name = "functionalityTests.CheckIn" />
+			<class name = "functionalityTests.EnrollInClass"/>
+			<class name = "functionalityTests.BookAppointment"/>
+			<class name = "functionalityTests.PointOfSale_Misc"/>
+			<class name = "functionalityTests.PurchaseInventoryItems"/>
 		</classes>
 	</test>
 	<!--test thread-count="5" name="Functionality Tests">
     	<packages>
-    		<package name = "FunctionalityTests"/>
+    		<package name = "functionalityTests"/>
        	</packages>
     </test> 
-	
+//	<The tests in serviceViewBookings package should be run only on days from Sunday to Thursday>
 	<test thread-count="5" name="Booking Tests">
+	
     	<packages>
-    		<package name = "ServiceViewBookings"/>
+    		<package name = "serviceViewBookings"/>
+       	</packages>
+    </test> 
+    
+//  <The tests in bookViewBookings package should be run only on days from Sunday to Friday>
+    <test thread-count="5" name="Booking Tests">
+    
+    <The tests in this package should be run only on days from Sunday to Friday>
+    	<packages>
+    		<package name = "bookViewBookings"/>
        	</packages>
     </test--> 
 </suite>

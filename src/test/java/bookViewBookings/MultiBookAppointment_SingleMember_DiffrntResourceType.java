@@ -1,7 +1,5 @@
-package ServiceViewBookings;
+package bookViewBookings;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -29,7 +27,10 @@ public class MultiBookAppointment_SingleMember_DiffrntResourceType extends base 
 	LandingPagePO la;
 	String barcodeId;
 	String password;
+	
 	String desiredClub;
+	String desiredResourceType;
+	String desiredBook;
 	String desiredServiceCategory;
 	String desiredService;
 
@@ -46,27 +47,35 @@ public class MultiBookAppointment_SingleMember_DiffrntResourceType extends base 
 		la = new LandingPagePO();
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		password = prop.getProperty("activeEmployeePassword");
+		desiredClub = prop.getProperty("club1Name");
+		desiredResourceType = prop.getProperty("resourceType1");
+		desiredBook = prop.getProperty("book2");
+		desiredServiceCategory = prop.getProperty("serviceCategory1");
+		desiredService = prop.getProperty("service5");
 		
 		MyActions.loginEmployee(barcodeId, password);
 		la.getMoreButton().click();
 		la.getMoreButtons(2).click();
-		desiredClub = prop.getProperty("club1Name");
-		desiredServiceCategory = prop.getProperty("serviceCategory1");
-		desiredService = prop.getProperty("service5");
+		
 	}
-
-
 	
 		
 	@Test(priority = 1, enabled = true)
-	public void BookSingleMemberApptWithTwoBooksDifferentResourcetype() throws InterruptedException{
-
+	public void bookappt() throws InterruptedException{
+		
+		if (b.getPageLabel().getText().contains("Service View")) {
+			
+			b.getBookViewButton().click();
+			Thread.sleep(500);
+		}
 		
 		int i = 1;
 		int j = 1;
 		int k = 1;
+		int l = 1;
+		int m = 1;
 		
-		b.getClubCombobox().click();
+		b.getBookViewClubCombobox().click();
 		
 		String clubName;
 		
@@ -87,15 +96,15 @@ public class MultiBookAppointment_SingleMember_DiffrntResourceType extends base 
 		
   
 		
-		b.getServiceCategoryCombobox().click();
+		b.getBookViewResourceTypeCombobox().click();
 		
 	 // selects category "Personal Training"
 		
-		String serviceCategoryName;
+		String resourceTypeName;
 		
-		do {serviceCategoryName = b.getListItem(j).getText();
+		do {resourceTypeName = b.getListItem(j).getText();
 		
-		if (serviceCategoryName.equals(desiredServiceCategory)) 
+		if (resourceTypeName.equals(desiredResourceType)) 
 			
 			 b.getListItem(j).click();
 				 
@@ -104,17 +113,17 @@ public class MultiBookAppointment_SingleMember_DiffrntResourceType extends base 
 		
 			
 		}
-		while(!serviceCategoryName.equals(desiredServiceCategory));
+		while(!resourceTypeName.equals(desiredResourceType));
 		
-		b.getServiceCombobox().click();
+		b.getBookViewBookCombobox().click();
 		
-		String ServiceName;
+		String BookName;
 			
-		// selects product "APT-Bookings3"
+		// selects product "APT-Bookings1"
 		
-		do {ServiceName = b.getListItem(k).getText();
+		do {BookName = b.getListItem(k).getText();
 		
-		if (ServiceName.equals(desiredService)) 
+		if (BookName.equals(desiredBook)) 
 			
 			 b.getListItem(k).click();
 				 
@@ -123,22 +132,70 @@ public class MultiBookAppointment_SingleMember_DiffrntResourceType extends base 
 		
 			
 		}
-		while(!ServiceName.equals(desiredService));
+		while(!BookName.equals(desiredBook));
 		
-			
+					
 		b.getShowCalendarButton().click();
 		Thread.sleep(4000);
 		
 		b.getWeekView().click();
+			
 		
-		String tomorrowsDayNDate = ReusableDates.getTomorrowsDayAndDate();
 		
-		Actions actions = new Actions(driver);		
-		
-		actions.doubleClick(b.getCalendarDateTimeSlots(tomorrowsDayNDate, "8:30 AM")).perform();  // selects appointment time
-		Thread.sleep(2000);
-		
+		String ToDay = ReusableDates.getToDayAndDate();
+			
+		Actions actions = new Actions(driver);	
+				
+		try {
+		actions.doubleClick(b.getCalendarDateTimeSlots(ToDay, "8:30 AM")).perform();// selects appointment time
+			
+		}
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			
+					b.getCalendarDates(ToDay).click();
+													
+			Thread.sleep(500);
+			actions.doubleClick(b.getCalendarDateTimeSlots(ToDay, "8:30 AM")).perform(); // selects appointment time
+		}
 		MyActions.focusByNativeWindowHandleIndex(0);
+		
+		b.getBookViewServiceCategoryComboBox().click();
+		
+		 // selects category "Personal Training"
+			
+			String serviceCategoryName;
+			
+			do {serviceCategoryName = b.getListItem(l).getText();
+			
+						
+			if (serviceCategoryName.equals(desiredServiceCategory)) 
+				
+				 actions.click(b.getListItem(l)).perform();
+								 
+				 else
+				 l++;
+					
+			}
+			while(!serviceCategoryName.equals(desiredServiceCategory));
+			
+			b.getBookViewServiceCombobox().click();
+			
+			String ServiceName;
+				
+			// selects product "APT-Bookings1"
+			
+			do {ServiceName = b.getListItem(m).getText();
+			
+			if (ServiceName.equals(desiredService)) 
+				
+				 actions.click(b.getListItem(m)).perform();
+					 
+				 else
+				 m++;
+			
+				
+			}
+			while(!ServiceName.equals(desiredService));
 		
 		b.getAddMbrButton().click();
 		
@@ -148,7 +205,7 @@ public class MultiBookAppointment_SingleMember_DiffrntResourceType extends base 
 		
 		b.getOk().click();
 		Thread.sleep(2000);
-				
+
 		b.getOkBtn().click();
 		Thread.sleep(2000);
 		
@@ -161,7 +218,7 @@ public class MultiBookAppointment_SingleMember_DiffrntResourceType extends base 
 		b.getCancel().click();
 		Thread.sleep(2000);
 		
-		b.getCalendarDateTimeSlots(tomorrowsDayNDate, "8:30 AM").click();
+		b.getCalendarDateTimeSlots(ToDay, "8:30 AM").click();
 		
 		Assert.assertTrue(b.getAppointment(prop.getProperty("ApptMember2")).isDisplayed());
 	}
@@ -169,7 +226,7 @@ public class MultiBookAppointment_SingleMember_DiffrntResourceType extends base 
 		@Test(priority = 2, enabled = true)
 		public void cancelappt() throws InterruptedException{	
 		
-		b.getApptCancelBtn().click();
+		b.getBookViewApptCancelBtn().click();
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 
@@ -197,6 +254,4 @@ public class MultiBookAppointment_SingleMember_DiffrntResourceType extends base 
 	}
 
 }
-
-
 

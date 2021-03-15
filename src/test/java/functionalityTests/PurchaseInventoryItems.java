@@ -1,4 +1,4 @@
-package FunctionalityTests;
+package functionalityTests;
 
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;

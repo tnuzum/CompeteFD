@@ -138,6 +138,14 @@ public class ReusableDates {
 		return dateFormat.format(currentDateMinusOneYear);
 	}
 	
+	public static String getToDayAndDate(){
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMMMM d, yyyy");
+			Calendar today = Calendar.getInstance();
+			String toDayNDate = dateFormat.format(today.getTime());
+			 return toDayNDate;
+		}
+	
 	public static String getTomorrowsDayAndDate(){
 	
 	SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMMMM d, yyyy");

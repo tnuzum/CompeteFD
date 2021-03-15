@@ -47,6 +47,9 @@ public class BookingsPO extends base{
 		return driver.findElementByAccessibilityId("cmbClub");
 	}
 	
+	public WebElement getBookViewClubCombobox() {
+		return driver.findElementByAccessibilityId("cboClub");
+	}
 	public WebElement getListItem(int index){
 		// *** This method is used to locate items in the 
 		// Club, Service Category and Service drop down lists. ***
@@ -62,12 +65,27 @@ public class BookingsPO extends base{
 		return driver.findElementByAccessibilityId("cmbServiceCategory");
 	}
 
+	public WebElement getBookViewServiceCategoryComboBox() {
+		return driver.findElementByAccessibilityId("ddlType");
+	}
 	public WebElement getServiceLabel() {
 		return driver.findElementByAccessibilityId("lblScheduleBook");
 	}
 
 	public WebElement getServiceCombobox() {
 		return driver.findElementByAccessibilityId("cmbResources");
+	}
+	
+	public WebElement getBookViewServiceCombobox() {
+		return driver.findElementByAccessibilityId("ddlService");
+	}
+	
+	public WebElement getBookViewResourceTypeCombobox() {
+		return driver.findElementByAccessibilityId("cboResourceType");
+	}
+	
+	public WebElement getBookViewBookCombobox() {
+		return driver.findElementByAccessibilityId("cboBook");
 	}
 
 	public WebElement getResourcesLabel() {
@@ -121,6 +139,10 @@ public class BookingsPO extends base{
 		return driver.findElementByAccessibilityId("pbBookView");
 	}
 	
+	public WebElement getServiceViewButton() {
+		return driver.findElementByAccessibilityId("pbServiceView");
+	}
+	
 	public WebElement getSearchAppointmentsButton() {
 		return driver.findElementByAccessibilityId("pbBookView");
 	}
@@ -136,6 +158,12 @@ public class BookingsPO extends base{
 		return driver.findElementByXPath("//DataItem[contains(@Name,'"+date+" "+time+"')]");
 	}
 	
+	public WebElement getCalendarDates(String date) {
+		MyActions.focusByNativeWindowHandleIndex(0);
+		//return driver.findElementByName("//DataItem[@LocalizedControlType='item']["+index+"]");
+		return driver.findElementByXPath("//DataItem[@Name='"+date+"']");
+	}
+
 	public WebElement getAddMbrButton() {
 		return driver.findElementByAccessibilityId("btnAddMember");
 	}
@@ -179,6 +207,10 @@ public class BookingsPO extends base{
 	
 	public WebElement getApptCancelBtn() {
 		return driver.findElementByAccessibilityId("btnDeleteAppointment");
+	}
+	
+	public WebElement getBookViewApptCancelBtn() {
+		return driver.findElementByAccessibilityId("btnCancelAppointment");
 	}
 	
 	public WebElement getApptEditBtn() {
@@ -256,6 +288,37 @@ public class BookingsPO extends base{
 						
 	}
 	
+	public WebElement getCalendarCloseBtn() {
+		return driver.findElementByAccessibilityId("btnClose");
+						
+	}
+	
+	public WebElement getWaiveBtn() {
+		return driver.findElementByAccessibilityId("pbWaive");
+						
+	}
+	
+	public WebElement getCancellationFeeMsg1() {
+		return driver.findElementByAccessibilityId("lblMessageOne");
+						
+	}
+	
+	public WebElement getCancellationFeeMsg2() {
+		return driver.findElementByAccessibilityId("lblMessageTwo");
+						
+	}
+	
+	public WebElement getCancellationFeeRow(int index) { // Day must be sent as mixed-case, ex. Monday
+		return driver.findElementByName("CancellationFee Row "+index+", Not sorted.");
+	}
+	
+	public WebElement getMemberRow(int index) { // Day must be sent as mixed-case, ex. Monday
+		return driver.findElementByName("Member Row "+index+", Not sorted.");
+	}
+	
+	public WebElement getAppointmentDateRow(int index) { // Day must be sent as mixed-case, ex. Monday
+		return driver.findElementByName("Appointment Date Row "+index+", Not sorted.");
+	}
 	
 
 

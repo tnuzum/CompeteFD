@@ -1,4 +1,4 @@
-package ServiceViewBookings;
+package serviceViewBookings;
 
 
 import org.openqa.selenium.WebElement;
@@ -7,14 +7,13 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 import pageObjects.BookingsPO;
 import pageObjects.LandingPagePO;
 import resources.MyActions;
 import resources.ReusableDates;
 import resources.base;
 
-public class SingleBookAppointment_SingleMember_Recurring extends base {
+public class MultiBookAppointment_MultiMember_SameResourceType_Recurring extends base {
 	
 	/*
 	 *  !! This test assumes the station is configured to show Service View by default
@@ -46,25 +45,34 @@ public class SingleBookAppointment_SingleMember_Recurring extends base {
 		la = new LandingPagePO();
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		password = prop.getProperty("activeEmployeePassword");
+		desiredClub = prop.getProperty("club1Name");
+		desiredServiceCategory = prop.getProperty("serviceCategory2");
+		desiredService = prop.getProperty("service7");
+
 		
 		MyActions.loginEmployee(barcodeId, password);
 		la.getMoreButton().click();
 		la.getMoreButtons(2).click();
-		desiredClub = prop.getProperty("club1Name");
-		desiredServiceCategory = prop.getProperty("serviceCategory1");
-		desiredService = prop.getProperty("service3");
+		
+
 	}
 	
 		
 	@Test(priority = 1, enabled = true)
-	public void bookSingleMemberRecurringappt() throws InterruptedException{
-
+	public void bookMultiMemberRecurringappt() throws InterruptedException{
 		
-		b.getClubCombobox().click();
+		if (b.getPageLabel().getText().contains("Book View")) {
+			
+			b.getServiceViewButton().click();
+			Thread.sleep(500);
+		}
+
 		
 		int i = 1;
 		int j = 1;
 		int k = 1;
+		
+		b.getClubCombobox().click();
 		
 		String clubName;
 		
@@ -87,7 +95,7 @@ public class SingleBookAppointment_SingleMember_Recurring extends base {
 		
 		b.getServiceCategoryCombobox().click();
 		
-	 // selects category "Personal Training"
+	 // selects category "Personal Training 1"
 		
 		String serviceCategoryName;
 		
@@ -108,7 +116,7 @@ public class SingleBookAppointment_SingleMember_Recurring extends base {
 		
 		String ServiceName;
 			
-		// selects product "APT-Bookings1"
+		// selects product "APT-GrpBookings2"
 		
 		do {ServiceName = b.getListItem(k).getText();
 		
@@ -146,7 +154,15 @@ public class SingleBookAppointment_SingleMember_Recurring extends base {
 		
 		b.getOk().click();
 		Thread.sleep(2000);
-			
+		
+		b.getAddMbrButton().click();
+		
+		b.getMbrSearch().sendKeys(prop.getProperty("ApptMember3"));
+		
+		b.getSearchBtn().click();
+		
+		b.getOk().click();
+		Thread.sleep(2000);
 		
 		b.getRecurrenceBtn().click();
 		b.getRBDaily().click();
@@ -176,9 +192,33 @@ public class SingleBookAppointment_SingleMember_Recurring extends base {
 		Assert.assertTrue(b.getAppointment(prop.getProperty("ApptMember2")).isDisplayed());
 		
 	}
+	@Test(priority = 2, enabled = true)
+	public void EditAppt() throws InterruptedException {
 		
-		@Test(priority = 2, enabled = true)
+		b.getApptEditBtn().click();
+		Thread.sleep(8000);
+		MyActions.focusByNativeWindowHandleIndex(0);
+		b.getRemoveMbrBtn().click();
+		Assert.assertTrue(b.getTextMsg().getText().contains("Are you sure you want to remove selected member?"));
+		
+		b.getYes().click();
+		Thread.sleep(2000);
+		MyActions.focusByNativeWindowHandleIndex(0);
+		b.getSelectAll().click();
+		b.getRemoveAdd().click();
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+		Assert.assertTrue(b.getTextMsg().getText().contains("has been removed from the appointment"));
+		b.getOkBtn().click();
+		b.getCancel().click();
+		Thread.sleep(2000);
+		
+		
+	}
+		
+		@Test(priority = 3, enabled = true)
 		public void cancelappts() throws InterruptedException{	
+		b.getCalendarDateTimeSlots(tomorrowsDayNDate, "10:00 AM").click();
 		
 		b.getApptCancelBtn().click();
 		

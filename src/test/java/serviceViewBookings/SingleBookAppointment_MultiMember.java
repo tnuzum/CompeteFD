@@ -1,19 +1,19 @@
-package ServiceViewBookings;
+package serviceViewBookings;
 
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pageObjects.BookingsPO;
 import pageObjects.LandingPagePO;
 import resources.MyActions;
 import resources.ReusableDates;
 import resources.base;
 
-public class MultiBookAppointment_MultiMember_DiifrntResourceType_Recurring extends base {
+public class SingleBookAppointment_MultiMember extends base {
 	
 	/*
 	 *  !! This test assumes the station is configured to show Service View by default
@@ -21,7 +21,7 @@ public class MultiBookAppointment_MultiMember_DiifrntResourceType_Recurring exte
 	 *  Element Not Found exception if this is set to Book View
 	 */
 	
-	//public static SoftAssert softAssertion= new SoftAssert();
+	public static SoftAssert softAssertion= new SoftAssert();
 	private static String tomorrowsDayNDate;
 
 	BookingsPO b;
@@ -31,7 +31,6 @@ public class MultiBookAppointment_MultiMember_DiifrntResourceType_Recurring exte
 	String desiredClub;
 	String desiredServiceCategory;
 	String desiredService;
-
 
 	@BeforeClass
 	public void initialize() throws Throwable {
@@ -46,19 +45,28 @@ public class MultiBookAppointment_MultiMember_DiifrntResourceType_Recurring exte
 		la = new LandingPagePO();
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		password = prop.getProperty("activeEmployeePassword");
+		desiredClub = prop.getProperty("club1Name");
+		desiredServiceCategory = prop.getProperty("serviceCategory2");
+		desiredService = prop.getProperty("service6");
 		
 		MyActions.loginEmployee(barcodeId, password);
 		la.getMoreButton().click();
 		la.getMoreButtons(2).click();
-		desiredClub = prop.getProperty("club1Name");
-		desiredServiceCategory = prop.getProperty("serviceCategory2");
-		desiredService = prop.getProperty("service8");
+		
 
 	}
 	
 		
 	@Test(priority = 1, enabled = true)
-	public void bookMultiMemberRecurringappt() throws InterruptedException{
+	public void bookMultiMemberappt() throws InterruptedException{
+		
+
+		if (b.getPageLabel().getText().contains("Book View")) {
+			
+			b.getServiceViewButton().click();
+			Thread.sleep(500);
+		}
+
 
 		
 		int i = 1;
@@ -109,7 +117,7 @@ public class MultiBookAppointment_MultiMember_DiifrntResourceType_Recurring exte
 		
 		String ServiceName;
 			
-		// selects product "APT-GrpBookings3"
+		// selects product "APT-GrpBookings1"
 		
 		do {ServiceName = b.getListItem(k).getText();
 		
@@ -124,6 +132,7 @@ public class MultiBookAppointment_MultiMember_DiifrntResourceType_Recurring exte
 		}
 		while(!ServiceName.equals(desiredService));
 		
+		
 			
 		b.getShowCalendarButton().click();
 		Thread.sleep(4000);
@@ -132,9 +141,21 @@ public class MultiBookAppointment_MultiMember_DiifrntResourceType_Recurring exte
 		
 		tomorrowsDayNDate = ReusableDates.getTomorrowsDayAndDate();
 		
-		Actions actions = new Actions(driver);		
+		Actions actions = new Actions(driver);	
 		
-		actions.doubleClick(b.getCalendarDateTimeSlots(tomorrowsDayNDate, "10:00 AM")).perform();  // selects appointment time
+		try {
+			actions.doubleClick(b.getCalendarDateTimeSlots(tomorrowsDayNDate, "10:00 AM")).perform();// selects appointment time
+				
+			}
+			catch (org.openqa.selenium.NoSuchElementException ne) {
+				
+						b.getCalendarDates(tomorrowsDayNDate).click();
+														
+				Thread.sleep(500);
+				actions.doubleClick(b.getCalendarDateTimeSlots(tomorrowsDayNDate, "10:00 AM")).perform(); // selects appointment time
+			}
+		
+		
 		Thread.sleep(2000);
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
@@ -156,24 +177,25 @@ public class MultiBookAppointment_MultiMember_DiifrntResourceType_Recurring exte
 		
 		b.getOk().click();
 		Thread.sleep(2000);
-		
-		b.getRecurrenceBtn().click();
-		b.getRBDaily().click();
-		b.getMaxOccurrences().sendKeys("2");
-		
-		
+	}
+	@Test(priority = 2, enabled = true)
+	public void VerifyCapacity() throws InterruptedException{
+				
+		b.getAddMbrButton().click();
+				  
+		MyActions.focusByNativeWindowHandleIndex(0);
+		  
+		softAssertion.assertTrue(b.getTextMsg().getText().contains("Appointment has reached maximum permissible count."));
+						 
 		WebElement OK =  (WebElement) b.getOKs().get(0);
 		OK.click();
-		
-		Assert.assertEquals(b.getRecurringAppointmentDate(0).getText(), ReusableDates.getCurrentDateFormatPlusOne());
-		Assert.assertEquals(b.getRecurringAppointmentDate(1).getText(), ReusableDates.getCurrentDateFormatPlusTwo());
-							
+				
 		b.getOkBtn().click();
 		Thread.sleep(2000);
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
-		Assert.assertTrue(b.getTextMsg().getText().contains("have been booked"));
+		softAssertion.assertTrue(b.getTextMsg().getText().contains("has been booked"));
 		
 		b.getOkBtn().click();
 
@@ -182,49 +204,28 @@ public class MultiBookAppointment_MultiMember_DiifrntResourceType_Recurring exte
 		
 		b.getCalendarDateTimeSlots(tomorrowsDayNDate, "10:00 AM").click();
 		
-		Assert.assertTrue(b.getAppointment(prop.getProperty("ApptMember2")).isDisplayed());
-		
+		softAssertion.assertTrue(b.getAppointment(prop.getProperty("ApptMember2")).isDisplayed());
+		softAssertion.assertAll();
 	}
-	@Test(priority = 2, enabled = true)
-	public void EditAppt() throws InterruptedException {
 		
-		b.getApptEditBtn().click();
-		Thread.sleep(8000);
+		@Test(priority = 2, enabled = true)
+		public void cancelappt() throws InterruptedException{	
+		
+		b.getApptCancelBtn().click();
+		
 		MyActions.focusByNativeWindowHandleIndex(0);
-		b.getEditApptsBtn().click();
+
+		softAssertion.assertTrue(b.getTextMsg().getText().contains("Do you want to cancel this appointment?"));
+		
+		b.getOkBtn().click();
 		Thread.sleep(2000);
-		MyActions.focusByNativeWindowHandleIndex(0);
-		b.getSelectAll().click();
-		b.getRemoveAppts().click();
-		/*
-		 * b.getOkBtn().click(); Thread.sleep(2000);
-		 */
-		MyActions.focusByNativeWindowHandleIndex(0);
-		Assert.assertTrue(b.getTextMsg().getText().contains("Do you want to remove selected appointments?"));
+
+		softAssertion.assertTrue(b.getTextMsg().getText().contains("has been cancelled"));
 		
-		WebElement OK =  (WebElement) b.getOKs().get(0);
-		OK.click();
-		MyActions.focusByNativeWindowHandleIndex(0);
-		Assert.assertTrue(b.getTextMsg().getText().contains("have been cancelled."));
-		
-		OK =  (WebElement) b.getOKs().get(0);
-		OK.click();
-		
+		b.getOkBtn().click();
+
 		b.getCancel().click();
-		Thread.sleep(2000);
-		
-		
-	}
-		
-		@Test(priority = 3, enabled = true)
-		public void VerifyAppointmentscancelled() throws InterruptedException{	
-		b.getCalendarDateTimeSlots(tomorrowsDayNDate, "10:00 AM").click();
-		
-		Assert.assertFalse(b.getCalendarDateTimeSlots(tomorrowsDayNDate, "10:00 AM").getText().contains(prop.getProperty("ApptMember2")));
-		
-		b.getCalendarDateTimeSlots(ReusableDates.getDayAfterTomorrowsDayAndDate(), "10:00 AM").click();
-		
-		Assert.assertFalse(b.getCalendarDateTimeSlots(ReusableDates.getDayAfterTomorrowsDayAndDate(), "10:00 AM").getText().contains(prop.getProperty("ApptMember2")));
+		softAssertion.assertAll();
 		
 		}		
 	

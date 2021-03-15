@@ -696,6 +696,12 @@ service6 = APT-GrpBookings1
 service7 = APT-GrpBookings2
 service8 = APT-GrpBookings3
 
+resourceType1 = Personal Trainer
+resourceType2 = Fitness
+
+book1 = B'sBook
+book2 = Bhagya1
+book3 = Bhagya2
 
 =======
 ApptMember1 = Auto, ApptMember2
