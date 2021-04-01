@@ -270,7 +270,7 @@ public class MultiBookAppointment_MultiMember_DiifrntResourceType_Recurring exte
 		
 		Assert.assertTrue(b.getMemberRow(0).getText().contains(prop.getProperty("ApptMember2")));
 		Assert.assertTrue(b.getCancellationFeeRow(0).getText().contains("$6.00"));
-		Assert.assertTrue(b.getAppointmentDateRow(0).getText().contains(ReusableDates.getCurrentDateFormat5()));
+		Assert.assertTrue(b.getAppointmentDateRow(0).getText().contains(ReusableDates.getCurrentDateFormat3()));
 		
 		b.getWaiveBtn().click();
 		
