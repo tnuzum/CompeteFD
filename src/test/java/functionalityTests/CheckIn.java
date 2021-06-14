@@ -101,7 +101,7 @@ public class CheckIn extends base{
 	@Test(enabled = false)
 	public void checkInWithToken() {
 	
-		String t = MyActions.getToken("99959");
+		String t = MyActions.getToken("99959", "00:00:01");
 		
 		ci.getMemberInputField().sendKeys(t);
 		

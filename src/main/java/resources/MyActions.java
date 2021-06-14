@@ -238,13 +238,13 @@ public class MyActions extends base {
 		return x;
 	}
 	
-	public static String getToken(String barcodeId) {
+	public static String getToken(String barcodeId, String expirationTimeSpan ) {
 		
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 		
 		//barcodeId = "99959";// prop.getProperty("availableUserName");
-		String expirationTimeSpan = "00:10:00";
+//		String expirationTimeSpan = "00:10:00";
 
 		Response res =
 				
