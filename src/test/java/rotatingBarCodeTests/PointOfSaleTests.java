@@ -38,6 +38,7 @@ public class PointOfSaleTests extends base {
 	String searchString;
 	String token;
 	String newToken;
+	String expirationTimeSpan = "00:10:00";
 
 	@BeforeClass
 	public void initialize() throws Throwable {
@@ -70,7 +71,7 @@ public class PointOfSaleTests extends base {
 	@Test(priority = 1)
 	public void searchMemberWithToken() {
 
-		token = MyActions.getToken(prop.getProperty("tokenMemberId"));
+		token = MyActions.getToken(prop.getProperty("tokenMemberId"), expirationTimeSpan);
 		
 		p.getMemberInputField().sendKeys(token);
 		
@@ -110,7 +111,7 @@ public class PointOfSaleTests extends base {
 	@Test(priority = 3)
 	public void memberSearchWithExpiredToken() {
 		
-		newToken = MyActions.getToken(prop.getProperty("tokenMemberId"));
+		newToken = MyActions.getToken(prop.getProperty("tokenMemberId"), expirationTimeSpan);
 		
 		p.getMemberInputField().sendKeys(token);
 
@@ -145,6 +146,24 @@ public class PointOfSaleTests extends base {
 		ms.getCancelButton().click();
 		
 
+	}
+	@Test(priority = 5)
+	public void validateExpirationWorks() {
+		
+		String veryShortExpirationTimeSpan = "00:00:01";
+		
+		newToken = MyActions.getToken(prop.getProperty("tokenMemberId"), veryShortExpirationTimeSpan);
+		
+		p.getMemberInputField().clear();
+		
+		p.getMemberInputField().sendKeys(newToken);
+
+		p.getSearchButton().click();
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+				
+		Assert.assertEquals(p.getTextMsg().getText(), "Your Token has expired. Please try again or Enter your Barcode ID.");
+		p.getWarningYesButton().click();
 	}
 
 	

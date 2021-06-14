@@ -21,6 +21,7 @@ public class CheckInTests extends base{
 	String password;
 	String token;
 	String newToken;
+	String expirationTimeSpan = "00:10:00";
 	
 	@BeforeClass
 	public void initialize() throws Throwable {
@@ -47,7 +48,7 @@ public class CheckInTests extends base{
 	@Test(priority = 1)
 	public void memberCheckinWithToken() {
 		
-		token = MyActions.getToken(prop.getProperty("tokenMemberId"));
+		token = MyActions.getToken(prop.getProperty("tokenMemberId"), expirationTimeSpan);
 		
 		ci.getMemberInputField().sendKeys(token);
 		
@@ -66,7 +67,7 @@ public class CheckInTests extends base{
 	@Test(priority = 2)
 	public void memberSearchWithExpiredToken() {
 		
-		newToken = MyActions.getToken(prop.getProperty("tokenMemberId"));
+		newToken = MyActions.getToken(prop.getProperty("tokenMemberId"), expirationTimeSpan);
 		
 		ci.getMemberInputField().sendKeys(token);
 		
@@ -90,7 +91,7 @@ public class CheckInTests extends base{
 				
 		ci.getDeclineButton().click();
 		
-//No Record Found.
+
 	}
 	
 	@Test(priority = 4)
@@ -113,6 +114,25 @@ public class CheckInTests extends base{
 		Assert.assertTrue(ms.getPageLocator().isDisplayed());
 		
 		ms.getCancelButton().click();
+		
+
+	}
+	
+	@Test(priority = 5)
+	public void validateExpirationWorks() {
+		
+		String veryShortExpirationTimeSpan = "00:00:01";
+		
+		newToken = MyActions.getToken(prop.getProperty("tokenMemberId"), veryShortExpirationTimeSpan);
+						
+		ci.getMemberInputField().sendKeys(newToken);
+		
+		ci.getSearchButton().click();
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+				
+		Assert.assertEquals(ci.getTextMsg().getText(), "Your Token has expired. Please try again or Enter your Barcode ID.");
+		ci.getWarningYesButton().click();
 		
 
 	}
