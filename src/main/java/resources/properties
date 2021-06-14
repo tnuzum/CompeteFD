@@ -1,6 +1,9 @@
 Employee1UserName = todd
 Employee1Password = 111
 aPIKey = B50A8F2BF7315812CF2A21690A7FF5FDA33A156C
+X-CompanyId = 236
+baseURI = https://compete-api-future2.test-jfisoftware.com:8252
+environment = Future2
 
 ! ** CLUB INPUT DATA **
 
@@ -21,7 +24,7 @@ inactiveClubName = Inactive
 activeEmployeeId = 35
 activeEmployeeName = autotest
 activeEmployeeBarcodeId = autotest
-activeEmployeePassword = Testing1!
+activeEmployeePassword = Testing2!
 changeEmployeeName = Change
 changeEmployeeBarcodeId = change.auto
 changeEmployeePassword = Testing0n3!
@@ -708,6 +711,8 @@ ApptMember1 = Auto, ApptMember2
 ApptMember2 = Kalle, Kamala
 ApptMember3 = Kalle, Bob
 ApptMember4 = Auto, Kidapptmbr
+
+tokenMemberId = 1147869
 
 
 

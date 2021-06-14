@@ -625,6 +625,13 @@ public class POS_MainPagePO extends base {
 	public WebElement getHistoryTotalAmount() {
 		return driver.findElementByAccessibilityId("txtTotal");
 	}
+	public WebElement getTextMsg() {
+		return driver.findElementByAccessibilityId("txtErrorMessages");
+	}
+	public WebElement getWarningYesButton() {
+		return driver.findElementByAccessibilityId("btnOK");
+		//return driver.findElementByName("Yes");
+	}
 	
 	
 	
