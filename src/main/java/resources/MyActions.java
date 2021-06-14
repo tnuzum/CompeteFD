@@ -5,10 +5,12 @@ import static io.restassured.RestAssured.given;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import io.appium.java_client.windows.WindowsDriver;
 import io.appium.java_client.windows.WindowsElement;
 import io.restassured.RestAssured;
@@ -239,26 +241,24 @@ public class MyActions extends base {
 	public static String getToken(String barcodeId) {
 		
 		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = "https://compete-api-future.test-jfisoftware.com:8251";//prop.getProperty("baseURI");
+		RestAssured.baseURI = prop.getProperty("baseURI");
 		
-		barcodeId = "99959";// prop.getProperty("availableUserName");
-		String expirationTimeSpan = "00:00:01";
+		//barcodeId = "99959";// prop.getProperty("availableUserName");
+		String expirationTimeSpan = "00:10:00";
 
 		Response res =
 				
 			given()
-//				.log().all()
+				.log().all()
 				.header("X-Api-Key", prop.getProperty("aPIKey"))
-				.header("X-CompanyId", "101")//.header("X-CompanyId", companyId)
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("club1Id"))
 				.header("Content-Type", "application/json")
 			.when()
-				.body("{\"BarcodeId\": \""+barcodeId+"\",\r\n"
-						+ "  \"ExpirationTimeSpan\": \""+expirationTimeSpan+"\"\r\n"
-						+ "}")
+				.body(MyActions.getMemberToken(barcodeId, expirationTimeSpan))
 				.post("/api/v3/member/getcustomertoken").
 			then()
-//				.log().all()
+				.log().all()
 				.assertThat().statusCode(200)
 				.extract().response();	
 		
@@ -267,6 +267,17 @@ public class MyActions extends base {
 			
 			return token;
 	}
+	
+		
+	public static String getMemberToken(String barcodeId, String expirationTimeSpan) {
+	
+
+		String payload = "{\r\n"
+		+ "  \"BarcodeId\": \""+barcodeId+"\",\r\n"
+		+ "  \"ExpirationTimeSpan\": \""+expirationTimeSpan+"\"\r\n"
+		+ "}";
+		return payload;	
+		}
 	
 
 }

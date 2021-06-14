@@ -21,9 +21,8 @@ public class base {
 	public static WindowsDriver driver;
 	public static Properties prop;
 	static String projectPath = System.getenv("CompeteFD_HOME");
-
 	public static UpdateFoundPO uf = new UpdateFoundPO();
-
+		
 	public static WindowsDriver initializeDriver() throws Throwable {
 
 		prop = new Properties();

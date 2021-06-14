@@ -99,6 +99,18 @@ public class CheckInPO extends base {
 		return driver.findElementByAccessibilityId("btnCancel");
 		//return driver.findElementByName("No");
 	}
+	
+	public WebElement getMemberId() {
+		return driver.findElementByAccessibilityId("lblBarcodeIDValue");
+	}
+	
+	public WebElement getMembershipType() {
+		return driver.findElementByAccessibilityId("lbField2Value");
+	}
+	
+	public WebElement getTextMsg() {
+		return driver.findElementByAccessibilityId("txtErrorMessages");
+	}
 
 
 

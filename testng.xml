@@ -20,6 +20,8 @@
 			<class name = "functionalityTests.BookAppointment"/>
 			<class name = "functionalityTests.PointOfSale_Misc"/>
 			<class name = "functionalityTests.PurchaseInventoryItems"/>
+			<class name = "rotatingBarCodeTests.CheckInTests"/>
+			<class name = "rotatingBarCodeTests.PointOfSaleTests"/>
 		</classes>
 	</test>
 	<!--test thread-count="5" name="Functionality Tests">
