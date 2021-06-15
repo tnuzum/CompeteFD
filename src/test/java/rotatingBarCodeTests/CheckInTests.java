@@ -22,6 +22,8 @@ public class CheckInTests extends base{
 	String token;
 	String newToken;
 	String expirationTimeSpan = "00:10:00";
+	String tokenMemberId;
+	String tokenProspectId;
 	
 	@BeforeClass
 	public void initialize() throws Throwable {
@@ -38,6 +40,8 @@ public class CheckInTests extends base{
 		
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		password = prop.getProperty("activeEmployeePassword");
+		tokenMemberId = prop.getProperty("tokenMemberId");
+		tokenProspectId = prop.getProperty("tokenProspectId");
 		
 		MyActions.loginEmployee(barcodeId, password);
 
@@ -48,13 +52,13 @@ public class CheckInTests extends base{
 	@Test(priority = 1)
 	public void memberCheckinWithToken() {
 		
-		token = MyActions.getToken(prop.getProperty("tokenMemberId"), expirationTimeSpan);
+		token = MyActions.getToken(tokenMemberId, expirationTimeSpan);
 		
 		ci.getMemberInputField().sendKeys(token);
 		
 		ci.getSearchButton().click();
 				
-		Assert.assertEquals(ci.getMemberId().getText(), prop.getProperty("tokenMemberId"));
+		Assert.assertEquals(ci.getMemberId().getText(), tokenMemberId);
 		Assert.assertEquals(ci.getMembershipType().getText(), "Athletic");
 		
 		ci.getCheckInButton().click();
@@ -67,7 +71,7 @@ public class CheckInTests extends base{
 	@Test(priority = 2)
 	public void memberSearchWithExpiredToken() {
 		
-		newToken = MyActions.getToken(prop.getProperty("tokenMemberId"), expirationTimeSpan);
+		newToken = MyActions.getToken(tokenMemberId, expirationTimeSpan);
 		
 		ci.getMemberInputField().sendKeys(token);
 		
@@ -123,7 +127,99 @@ public class CheckInTests extends base{
 		
 		String veryShortExpirationTimeSpan = "00:00:01";
 		
-		newToken = MyActions.getToken(prop.getProperty("tokenMemberId"), veryShortExpirationTimeSpan);
+		newToken = MyActions.getToken(tokenMemberId, veryShortExpirationTimeSpan);
+						
+		ci.getMemberInputField().sendKeys(newToken);
+		
+		ci.getSearchButton().click();
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+				
+		Assert.assertEquals(ci.getTextMsg().getText(), "Your Token has expired. Please try again or Enter your Barcode ID.");
+		ci.getWarningYesButton().click();
+		
+
+	}
+	
+	@Test(priority = 6)
+	public void prospectCheckinWithToken() {
+		
+		token = MyActions.getToken(tokenProspectId, expirationTimeSpan);
+		
+		ci.getMemberInputField().sendKeys(token);
+		
+		ci.getSearchButton().click();
+				
+		Assert.assertEquals(ci.getMemberId().getText(), tokenProspectId);
+		Assert.assertEquals(ci.getMembershipType().getText(), "Prospect");
+		
+		ci.getCheckInButton().click();
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+		
+		ci.getCheckInButton().click(); //button on Check-In Options page
+		
+	}
+	@Test(priority = 7)
+	public void prospectSearchWithExpiredToken() {
+		
+		newToken = MyActions.getToken(tokenProspectId, expirationTimeSpan);
+		
+		ci.getMemberInputField().sendKeys(token);
+		
+		ci.getSearchButton().click();
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+				
+		Assert.assertEquals(ci.getTextMsg().getText(), "Your Token has expired. Please try again or Enter your Barcode ID.");
+		ci.getWarningYesButton().click();
+		
+
+	}
+	
+	@Test(priority = 8)
+	public void prospectCheckinDecline() {
+		
+				
+		ci.getMemberInputField().sendKeys(newToken);
+		
+		ci.getSearchButton().click();
+				
+		ci.getDeclineButton().click();
+		
+
+	}
+	
+	@Test(priority = 9)
+	public void prospectSearchWithmodifiedToken() {
+		
+		newToken = newToken+"1";
+		
+		ci.getMemberInputField().sendKeys(newToken);
+		
+		ci.getSearchButton().click();
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+				
+		Assert.assertEquals(ci.getTextMsg().getText(), "No Record Found.");
+		
+		ci.getWarningYesButton().click();
+		
+		MyActions.myWaitByName(30, "Member Quick Search");
+
+		Assert.assertTrue(ms.getPageLocator().isDisplayed());
+		
+		ms.getCancelButton().click();
+		
+
+	}
+	
+	@Test(priority = 10)
+	public void validateExpirationWorksForProspect() {
+		
+		String veryShortExpirationTimeSpan = "00:00:01";
+		
+		newToken = MyActions.getToken(tokenProspectId, veryShortExpirationTimeSpan);
 						
 		ci.getMemberInputField().sendKeys(newToken);
 		
