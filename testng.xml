@@ -22,6 +22,18 @@
 			<class name = "functionalityTests.PurchaseInventoryItems"/>
 			<class name = "rotatingBarCodeTests.CheckInTests"/>
 			<class name = "rotatingBarCodeTests.PointOfSaleTests"/>
+			<class name = "rotatingBarCodeTests.AgreementTests"/>
+			
+			<class name = "rotatingBarCodeTests.BookingTests"/>
+			<class name = "rotatingBarCodeTests.ClassEnrollmentTests"/>
+			<class name = "rotatingBarCodeTests.CourtReservationTests"/>
+			<class name = "rotatingBarCodeTests.LockerManagementTests"/>
+			<class name = "rotatingBarCodeTests.MemberManagementTests"/>
+			<class name = "rotatingBarCodeTests.NurseryMonitor_MainTests"/>
+			<class name = "rotatingBarCodeTests.NurseryMonitor_AddChild"/>
+			<class name = "rotatingBarCodeTests.NurseryMonitor_AddGuardian"/>
+			<class name = "rotatingBarCodeTests.TanningTests"/>
+			
 		</classes>
 	</test>
 	<!--test thread-count="5" name="Functionality Tests">

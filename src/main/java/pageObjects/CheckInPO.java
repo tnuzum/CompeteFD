@@ -1,5 +1,7 @@
 package pageObjects;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import io.appium.java_client.windows.WindowsDriver;
 import resources.base;
@@ -110,6 +112,10 @@ public class CheckInPO extends base {
 	
 	public WebElement getTextMsg() {
 		return driver.findElementByAccessibilityId("txtErrorMessages");
+	}
+	
+	public List getMemberData() {
+		return driver.findElementsByAccessibilityId("pnlMemberData");
 	}
 
 

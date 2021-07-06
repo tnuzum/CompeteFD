@@ -38,6 +38,10 @@ public class BookingsPO extends base{
 	public WebElement getBrowseButton() {
 		return driver.findElementByAccessibilityId("pnlBrowse");
 	}
+	
+	public WebElement getMemberId() {
+		return driver.findElementByAccessibilityId("lblMemberId");
+	}
 
 	public WebElement getClubLabel() {
 		return driver.findElementByAccessibilityId("lblClub");
@@ -144,7 +148,7 @@ public class BookingsPO extends base{
 	}
 	
 	public WebElement getSearchAppointmentsButton() {
-		return driver.findElementByAccessibilityId("pbBookView");
+		return driver.findElementByAccessibilityId("pbSearch");
 	}
 	
 	public WebElement getBreadCrum() {
@@ -319,6 +323,12 @@ public class BookingsPO extends base{
 	public WebElement getAppointmentDateRow(int index) { // Day must be sent as mixed-case, ex. Monday
 		return driver.findElementByName("Appointment Date Row "+index+", Not sorted.");
 	}
+	
+	public WebElement getMemberIdValue() {
+		return driver.findElementByName("Member ID");
+			}
+	
+	
 	
 
 

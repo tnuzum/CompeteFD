@@ -88,12 +88,16 @@ public class CheckInTests extends base{
 	@Test(priority = 3)
 	public void memberCheckinDecline() {
 		
-				
+		newToken = MyActions.getToken(tokenMemberId, expirationTimeSpan);		
 		ci.getMemberInputField().sendKeys(newToken);
 		
 		ci.getSearchButton().click();
 				
 		ci.getDeclineButton().click();
+		
+				
+		Assert.assertEquals(ci.getMemberData().size(), 0);
+		
 		
 
 	}
@@ -101,7 +105,7 @@ public class CheckInTests extends base{
 	@Test(priority = 4)
 	public void memberSearchWithmodifiedToken() {
 		
-		newToken = newToken+"1";
+		newToken = "@544B4E123456@";
 		
 		ci.getMemberInputField().sendKeys(newToken);
 		
@@ -112,13 +116,7 @@ public class CheckInTests extends base{
 		Assert.assertEquals(ci.getTextMsg().getText(), "No Record Found.");
 		
 		ci.getWarningYesButton().click();
-		
-		MyActions.myWaitByName(30, "Member Quick Search");
-
-		Assert.assertTrue(ms.getPageLocator().isDisplayed());
-		
-		ms.getCancelButton().click();
-		
+				
 
 	}
 	
@@ -187,13 +185,14 @@ public class CheckInTests extends base{
 				
 		ci.getDeclineButton().click();
 		
+		Assert.assertEquals(ci.getMemberData().size(), 0);
 
 	}
 	
 	@Test(priority = 9)
 	public void prospectSearchWithmodifiedToken() {
 		
-		newToken = newToken+"1";
+		newToken = "@544B4E123456@";
 		
 		ci.getMemberInputField().sendKeys(newToken);
 		
@@ -205,12 +204,7 @@ public class CheckInTests extends base{
 		
 		ci.getWarningYesButton().click();
 		
-		MyActions.myWaitByName(30, "Member Quick Search");
-
-		Assert.assertTrue(ms.getPageLocator().isDisplayed());
-		
-		ms.getCancelButton().click();
-		
+				
 
 	}
 	

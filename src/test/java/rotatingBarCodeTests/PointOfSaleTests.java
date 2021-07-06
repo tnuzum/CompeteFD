@@ -130,7 +130,7 @@ public class PointOfSaleTests extends base {
 	@Test(priority = 4)
 	public void memberSearchWithmodifiedToken() {
 		
-		newToken = newToken+"1";
+		newToken = "@544B4E123456@";
 		p.getMemberInputField().sendKeys(newToken);
 
 		p.getSearchButton().click();
@@ -141,11 +141,6 @@ public class PointOfSaleTests extends base {
 		
 		p.getWarningYesButton().click();
 		
-		MyActions.myWaitByName(30, "Member Quick Search");
-
-		Assert.assertTrue(ms.getPageLocator().isDisplayed());
-		
-		ms.getCancelButton().click();
 		
 
 	}
@@ -229,7 +224,7 @@ public class PointOfSaleTests extends base {
 	@Test(priority = 9)
 	public void prospectSearchWithmodifiedToken() {
 		
-		newToken = newToken+"1";
+		newToken = "@544B4E123456@";
 		p.getMemberInputField().sendKeys(newToken);
 
 		p.getSearchButton().click();
@@ -239,13 +234,7 @@ public class PointOfSaleTests extends base {
 		Assert.assertEquals(p.getTextMsg().getText(), "No Record Found.");
 		
 		p.getWarningYesButton().click();
-		
-		MyActions.myWaitByName(30, "Member Quick Search");
-
-		Assert.assertTrue(ms.getPageLocator().isDisplayed());
-		
-		ms.getCancelButton().click();
-		
+						
 
 	}
 	@Test(priority = 10)
