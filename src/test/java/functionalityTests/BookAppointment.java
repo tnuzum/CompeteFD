@@ -20,7 +20,7 @@ public class BookAppointment extends base {
 	 *  Compete Back Office > Configuration > Station > Bookings; test will return
 	 *  Element Not Found exception if this is set to Book View
 	 */
-	
+	// This test is now updated to navigate to Service View even if station is not configured to Service View by default
 	public static SoftAssert softAssertion= new SoftAssert();
 
 	BookingsPO b;
@@ -58,6 +58,12 @@ public class BookAppointment extends base {
 		
 	@Test(priority = 1, enabled = true)
 	public void bookappt() throws InterruptedException{
+		
+	if (b.getPageLabel().getText().contains("Book View")) {
+			
+			b.getServiceViewButton().click();
+			Thread.sleep(500);
+		}
 
 // Club Dropdown List		
 		b.getClubCombobox().click();

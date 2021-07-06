@@ -184,4 +184,11 @@ public class ClassEnrollmentPO extends base {
 	public WebElement getWarningOkBtn() {
 		return driver.findElementByName("OK");
 	}
+	
+	public WebElement getTextMsg() {
+		return driver.findElementByAccessibilityId("txtErrorMessages");
+	}
+	public WebElement getCancel() {
+		return driver.findElementByAccessibilityId("pbCancel");
+	}
 }
