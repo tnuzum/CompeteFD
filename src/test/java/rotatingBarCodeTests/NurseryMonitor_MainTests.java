@@ -25,7 +25,7 @@ public class NurseryMonitor_MainTests extends base{
 	String newToken;
 	String expirationTimeSpan = "00:10:00";
 	String tokenMemberId;
-	String tokenProspectId;
+	String tokenChildId;
 	
 	@BeforeClass
 	public void initialize() throws Throwable {
@@ -44,7 +44,7 @@ public class NurseryMonitor_MainTests extends base{
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		password = prop.getProperty("activeEmployeePassword");
 		tokenMemberId = prop.getProperty("tokenMemberId");
-		tokenProspectId = prop.getProperty("tokenProspectId");
+		tokenChildId = prop.getProperty("tokenChildId");
 		
 		MyActions.loginEmployee(barcodeId, password);
 
@@ -120,6 +120,100 @@ public class NurseryMonitor_MainTests extends base{
 				
 		Assert.assertEquals(n.getTextMsg().getText(), "Your Token has expired. Please try again or Enter your Barcode ID.");
 		n.getWarningYesButton().click();
+		
+
+	}
+	
+	@Test(priority = 5)
+	public void childSearchWithToken() {
+		
+		token = MyActions.getToken(tokenMemberId, expirationTimeSpan);
+		
+		n.getMemberInputField().sendKeys(token);
+		
+		n.getSearchButton().click();
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+				
+		Assert.assertTrue(n.getMemberId().getText().contains(tokenMemberId));
+		
+		n.getAddChildButton().click();
+		
+		token = MyActions.getToken(tokenChildId, expirationTimeSpan);
+		
+		n.getAddChildMemberInputField().sendKeys(token);
+		
+		n.getSearchButton().click();
+		
+		Assert.assertTrue(n.getAddChildMemberInputField().getText().contains(tokenChildId));
+		
+		
+		
+	}
+	@Test(priority = 6)
+	public void childSearchWithExpiredToken() {
+		
+		newToken = MyActions.getToken(tokenChildId, expirationTimeSpan);
+		
+		n.getAddChildMemberInputField().clear();
+		
+		n.getAddChildMemberInputField().sendKeys(token);
+		
+		n.getSearchButton().click();
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+				
+		Assert.assertEquals(n.getTextMsg().getText(), "Your Token has expired. Please try again or Enter your Barcode ID.");
+		n.getWarningYesButton().click();
+		
+
+	}
+	
+		
+	@Test(priority = 7)
+	public void childSearchWithmodifiedToken() {
+		
+		newToken = "@544B4E123456@";
+		
+		n.getAddChildMemberInputField().clear();
+		
+		n.getAddChildMemberInputField().sendKeys(newToken);
+		
+		n.getSearchButton().click();
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+				
+		Assert.assertEquals(n.getTextMsg().getText(), "No Record Found.");
+		
+		n.getWarningYesButton().click();
+				
+
+	}
+	
+	@Test(priority = 8)
+	public void validateExpirationWorksForChildSearch() {
+		
+		String veryShortExpirationTimeSpan = "00:00:01";
+		
+		newToken = MyActions.getToken(tokenChildId, veryShortExpirationTimeSpan);
+		
+		n.getAddChildMemberInputField().clear();
+							
+		n.getAddChildMemberInputField().sendKeys(newToken);
+		
+		n.getSearchButton().click();
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+				
+		Assert.assertEquals(n.getTextMsg().getText(), "Your Token has expired. Please try again or Enter your Barcode ID.");
+		
+		n.getWarningYesButton().click();
+		
+		n.getCloseButton().click();
+		
+		n.getAddChildCancel().click();
+		
+		n.getCloseButton().click();
 		
 
 	}
