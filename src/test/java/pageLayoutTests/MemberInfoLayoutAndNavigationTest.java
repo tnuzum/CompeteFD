@@ -14,7 +14,7 @@ import pageObjects.POS_TaxDetailPO;
 import resources.MyActions;
 import resources.base;
 
-public class MemberInfoLayoutTest extends base {
+public class MemberInfoLayoutAndNavigationTest extends base {
 
 	public static SoftAssert softAssertion = new SoftAssert();
 
@@ -98,7 +98,7 @@ public class MemberInfoLayoutTest extends base {
 	}
 	
 	@Test(priority = 2, enabled = true)
-	public void validateButtonViews() {
+	public void navigateToAccountStatus() {
 		
 		mp.getAccountStatus().click();
 		
@@ -107,6 +107,10 @@ public class MemberInfoLayoutTest extends base {
 		softAssertion.assertTrue(mp.getMemberAccountSummaryView().isDisplayed());
 		
 		mp.getViewWindowClose1().click();
+	}
+		
+		@Test(priority = 3, enabled = true)
+		public void navigateToCheckInHistory() {
 		
 		mp.getCheckInHistory().click();
 		
@@ -115,6 +119,10 @@ public class MemberInfoLayoutTest extends base {
 		softAssertion.assertTrue(mp.getMemberCheckInHistoryView().isDisplayed());
 		
 		mp.getViewWindowClose2().click();
+		}
+		
+		@Test(priority = 4, enabled = true)
+		public void navigateToPersonalTraining() {
 		
 		mp.getPersonalTraining().click();
 		
@@ -124,6 +132,11 @@ public class MemberInfoLayoutTest extends base {
 		
 		mp.getViewWindowClose2().click();
 		
+		}
+		
+		@Test(priority = 5, enabled = true)
+		public void navigateToBillingRelationship() {
+		
 		mp.getBillingRelationship().click();
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
@@ -131,6 +144,11 @@ public class MemberInfoLayoutTest extends base {
 		softAssertion.assertTrue(mp.getBillingRelationshipView().isDisplayed());
 		
 		mp.getViewWindowClose3().click();
+		
+		}
+		
+		@Test(priority = 6, enabled = true)
+		public void navigateToClass() {
 		
 		mp.getClassInformation().click();
 		
@@ -140,6 +158,11 @@ public class MemberInfoLayoutTest extends base {
 		
 		mp.getViewWindowClose3().click();
 		
+		}
+		
+		@Test(priority = 7, enabled = true)
+		public void navigateToAppointments() {
+		
 		mp.getAppointments().click();
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
@@ -147,6 +170,10 @@ public class MemberInfoLayoutTest extends base {
 		softAssertion.assertTrue(mp.getAppointmentInformationView().isDisplayed());
 		
 		mp.getViewWindowClose3().click();
+		}
+		
+		@Test(priority = 8, enabled = true)
+		public void navigateToAgreements() {
 		
 		mp.getAgreements().click();
 		
@@ -159,6 +186,10 @@ public class MemberInfoLayoutTest extends base {
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
 		mp.getViewWindowClose2().click();
+		}
+		
+		@Test(priority = 9, enabled = true)
+		public void navigateToFamilyMember() {
 		
 		mp.getFamilyMember().click();
 		
@@ -168,6 +199,11 @@ public class MemberInfoLayoutTest extends base {
 		
 		mp.getViewWindowClose1().click();
 		
+		}
+		
+		@Test(priority = 10, enabled = true)
+		public void navigateToActionItems() {
+		
 		mp.getActionItems().click();
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
@@ -176,15 +212,25 @@ public class MemberInfoLayoutTest extends base {
 		
 		mp.getViewWindowClose3().click();
 		
-//		mp.getMemberNotes().click();
-//		
-//		MyActions.focusByNativeWindowHandleIndex(0);
-//		
-//		softAssertion.assertTrue(mp.getMemberNotesView().isDisplayed());
-//		
-//		MyActions.focusByNativeWindowHandleIndex(0);
-//		
-//		mp.getViewWindowClose4().click();  // Selenium is thinking that the Close button is clicked but it is not being clicked. Therefore I commented this part
+		}
+		
+		@Test(priority = 11, enabled = false)
+		public void navigateToMemberNotes() {
+		
+		mp.getMemberNotes().click();
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+		
+		softAssertion.assertTrue(mp.getMemberNotesView().isDisplayed());
+		
+		MyActions.focusByNativeWindowHandleIndex(0);
+		
+		mp.getViewWindowClose4().click();  // Selenium is thinking that the Close button is clicked but it is not being clicked. Therefore I commented this part
+		
+		}
+		
+		@Test(priority = 12, enabled = true)
+		public void navigateToManageDocuments() {
 		
 		mp.getManageDocuments().click();
 		
@@ -194,6 +240,11 @@ public class MemberInfoLayoutTest extends base {
 		
 		mp.getViewWindowClose3().click();
 		
+		}
+		
+		@Test(priority = 13, enabled = true)
+		public void navigateToChangeRequestHistory() {
+		
 		mp.getChangeRequestHistory().click();
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
@@ -201,6 +252,11 @@ public class MemberInfoLayoutTest extends base {
 		softAssertion.assertTrue(mp.getChangeRequestHistoryView().isDisplayed());
 		
 		mp.getViewWindowClose3().click();
+		
+		}
+		
+		@Test(priority = 14, enabled = true)
+		public void navigateToeWaivers() {
 		
 		mp.getEWaivers().click();
 		
@@ -212,7 +268,6 @@ public class MemberInfoLayoutTest extends base {
 		
 		
 		mp.getCloseButton().click();
-		
 		
 	}
 

@@ -6,6 +6,7 @@
 		<classes>
 			<class name="pageLayoutTests.AboutCompete" />
 			<class name="pageLayoutTests.PointOfSale_MainPage" />
+			<class name="pageLayoutTests.MemberInfoLayoutAndNavigationTest" />
 			<class name="frontDeskTests.Agreements" />
 			<class name="frontDeskTests.Bookings" />
 			<class name="frontDeskTests.ChangePassword" />
