@@ -126,6 +126,7 @@ public class MyActions extends base {
 		try {
 			Thread.sleep(2000);
 			Object[] wh = driver.getWindowHandles().toArray();
+			
 			driver.switchTo().window((String) wh[index]);
 		} catch (Exception e) {
 			focusByNativeWindowHandleIndex(index);

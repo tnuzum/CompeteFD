@@ -14,6 +14,10 @@ public class MemberManagementPO extends base {
 	}
 
 	// ** Objects **
+	
+	public WebElement getPageLocator() {
+		return driver.findElementByAccessibilityId("MemberInfoView");
+	}
 
 
 	public WebElement getMemberInputField() {
@@ -35,6 +39,10 @@ public class MemberManagementPO extends base {
 	public WebElement getWarningYesButton() {
 		return driver.findElementByAccessibilityId("btnOK");
 		//return driver.findElementByName("Yes");
+	}
+	
+	public WebElement getMemberInfoButton() {
+		return driver.findElementByAccessibilityId("pbMemberInfo");
 	}
 	
 

@@ -8,6 +8,7 @@ import org.testng.asserts.SoftAssert;
 import pageObjects.CheckInPO;
 import pageObjects.LandingPagePO;
 import pageObjects.MemberInfoPO;
+import pageObjects.MemberManagementPO;
 import pageObjects.POS_EditItemPO;
 import pageObjects.POS_MainPagePO;
 import pageObjects.POS_TaxDetailPO;
@@ -24,6 +25,7 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 	LandingPagePO la;
 	CheckInPO ci;
 	MemberInfoPO mp;
+	MemberManagementPO mmp;
 	
 	String natWinHandle;
 	String nativeWindowHandle;
@@ -45,6 +47,7 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 		ei = new POS_EditItemPO();
 		td = new POS_TaxDetailPO();
 		mp = new MemberInfoPO();
+		mmp = new MemberManagementPO();
 				
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		password = prop.getProperty("activeEmployeePassword");
@@ -148,7 +151,7 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 		}
 		
 		@Test(priority = 6, enabled = true)
-		public void navigateToClass() {
+		public void navigateToClasses() {
 		
 		mp.getClassInformation().click();
 		
@@ -265,11 +268,26 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 		softAssertion.assertTrue(mp.getManageEWaiverView().isDisplayed());
 		
 		mp.getViewWindowClose3().click();
-		
-		
+			
 		mp.getCloseButton().click();
 		
 	}
+		@Test(priority = 15, enabled = true, description = "Access Member Info page from More drop down")
+		public void accessMemberInfoFromMore() {
+			
+			MyActions.focusByNativeWindowHandleIndex(0);
+			
+			la.getMoreButton().click();
+			la.getMoreButtons(9).click();
+			mmp.getMemberInputField().sendKeys(searchString);
+			mmp.getSearchButton().click();
+			mmp.getMemberInfoButton().click();
+			
+			MyActions.focusByNativeWindowHandleIndex(0);
+			softAssertion.assertTrue(mp.getPageLocator().isDisplayed());
+			softAssertion.assertAll();
+			mp.getCloseButton().click();
+		}
 
 	@AfterClass
 	public void tearDown() {

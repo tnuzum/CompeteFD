@@ -173,4 +173,48 @@ public class MemberInfoPO extends base{
 	public WebElement getManageEWaiverView(){
 		return driver.findElementByAccessibilityId("ManageEWaiverView");
 	}
+	
+	public WebElement getNewMemberIdField(){
+		return driver.findElementByAccessibilityId("txtNewBarcode");
+	}
+	
+	public WebElement getNewButon(){
+		return driver.findElementByAccessibilityId("pbNew");
+	}
+	
+	public WebElement getOkButon(){
+		return driver.findElementByAccessibilityId("pbOK");
+	}
+	
+	public WebElement getCancelButon(){
+		return driver.findElementByAccessibilityId("pbCancel");
+	}
+	
+	public WebElement getStatusName(int index){
+		return driver.findElementByName("Status Row "+index+", Not sorted.");
+	}
+	
+	public WebElement getChangeStatusOkButton(){
+		return driver.findElementByAccessibilityId("btnOk");
+	}
+	
+	public WebElement getChangeStatusComment(){
+		return driver.findElementByAccessibilityId("txtComments");
+	}
+	
+	public WebElement getMemberStatus(){
+		return driver.findElementByAccessibilityId("lblStatusValue");
+	}
+	
+	public WebElement getMemberId(){
+		return driver.findElementByAccessibilityId("lblBarcodeValue");
+	}
+	
+	public WebElement getChangeMemberIdOkButton(){
+		return driver.findElementByAccessibilityId("btnOK");
+	}
+	
+	public WebElement getCancelEmailButton(){
+		return driver.findElementByAccessibilityId("btnCancel");
+	}
 }
