@@ -11,7 +11,7 @@ import pageObjects.AccountStatuPO;
 import pageObjects.CheckInPO;
 import pageObjects.LandingPagePO;
 import pageObjects.MemberInfoPO;
-import pageObjects.MemberManagementPO;
+import pageObjects.MemberMgmtPO;
 import pageObjects.POS_EditItemPO;
 import pageObjects.POS_MainPagePO;
 import pageObjects.POS_TaxDetailPO;
@@ -28,7 +28,7 @@ public class MemberAccountStatusTests extends base {
 	LandingPagePO la;
 	CheckInPO ci;
 	MemberInfoPO mp;
-	MemberManagementPO mmp;
+	MemberMgmtPO mmp;
 	AccountStatuPO ap;
 	
 	String natWinHandle;
@@ -51,7 +51,7 @@ public class MemberAccountStatusTests extends base {
 		ei = new POS_EditItemPO();
 		td = new POS_TaxDetailPO();
 		mp = new MemberInfoPO();
-		mmp = new MemberManagementPO();
+		mmp = new MemberMgmtPO();
 		ap = new AccountStatuPO();
 				
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");

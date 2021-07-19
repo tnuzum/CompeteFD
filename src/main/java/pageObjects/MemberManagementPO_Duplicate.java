@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import io.appium.java_client.windows.WindowsDriver;
 import resources.base;
 
-public class MemberManagementPO extends base {
+public class MemberManagementPO_Duplicate extends base {
 
 
 	// ** Constructor **
@@ -17,6 +17,14 @@ public class MemberManagementPO extends base {
 	
 	public WebElement getPageLocator() {
 		return driver.findElementByAccessibilityId("MemberInfoView");
+	}
+	
+	public WebElement getMemberMgmtLabel() {
+		return driver.findElementByAccessibilityId("lblModule");
+	}
+
+	public WebElement getMemberInputLabel() {
+		return driver.findElementByAccessibilityId("lblBarcodeID");
 	}
 
 
@@ -45,9 +53,16 @@ public class MemberManagementPO extends base {
 		return driver.findElementByAccessibilityId("pbMemberInfo");
 	}
 	
+	public WebElement getChangeRequestButton() {
+		return driver.findElementByAccessibilityId("pbChangeRequest");
+	}
 
 	public WebElement getClose() {
 		return driver.findElementByAccessibilityId("btnCancel");
+	}
+	
+	public WebElement getCancelButton() {
+		return driver.findElementByAccessibilityId("pbCancel");
 	}
 	
 	

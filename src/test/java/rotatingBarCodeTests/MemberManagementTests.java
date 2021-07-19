@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import pageObjects.CheckInPO;
 import pageObjects.LandingPagePO;
-import pageObjects.MemberManagementPO;
+import pageObjects.MemberMgmtPO;
 import pageObjects.MemberSearchPO;
 import resources.MyActions;
 import resources.base;
@@ -16,7 +16,7 @@ import resources.base;
 public class MemberManagementTests extends base{
 	
 	LandingPagePO la;
-	MemberManagementPO mm;
+	MemberMgmtPO mm;
 	CheckInPO ci;
 	MemberSearchPO ms;
 	String barcodeId;
@@ -37,7 +37,7 @@ public class MemberManagementTests extends base{
 		driver = initializeDriver();
 
 		la = new LandingPagePO();
-		mm = new MemberManagementPO();
+		mm = new MemberMgmtPO();
 		ci = new CheckInPO();
 		ms = new MemberSearchPO();
 		
