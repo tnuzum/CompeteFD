@@ -8,7 +8,7 @@ import org.testng.asserts.SoftAssert;
 import pageObjects.CheckInPO;
 import pageObjects.LandingPagePO;
 import pageObjects.MemberInfoPO;
-import pageObjects.MemberManagementPO;
+import pageObjects.MemberManagementPO_Duplicate;
 import pageObjects.POS_EditItemPO;
 import pageObjects.POS_MainPagePO;
 import pageObjects.POS_TaxDetailPO;
@@ -25,7 +25,7 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 	LandingPagePO la;
 	CheckInPO ci;
 	MemberInfoPO mp;
-	MemberManagementPO mmp;
+	MemberManagementPO_Duplicate mmp;
 	
 	String natWinHandle;
 	String nativeWindowHandle;
@@ -47,7 +47,7 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 		ei = new POS_EditItemPO();
 		td = new POS_TaxDetailPO();
 		mp = new MemberInfoPO();
-		mmp = new MemberManagementPO();
+		mmp = new MemberManagementPO_Duplicate();
 				
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		password = prop.getProperty("activeEmployeePassword");
