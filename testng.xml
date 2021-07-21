@@ -7,6 +7,10 @@
 			<class name="pageLayoutTests.AboutCompete" />
 			<class name="pageLayoutTests.PointOfSale_MainPage" />
 			<class name="pageLayoutTests.MemberInfoLayoutAndNavigationTest" />
+			<class name="pageLayoutTests.MemberAccountStatusTests" />
+			<class name="pageLayoutTests.MemberInfo_AgreementModify" />
+			<class name="pageLayoutTests.MemberInfo_AgreementRenew" />
+			<class name="pageLayoutTests.MemberInfo_AgreementRewrite" />
 			<class name="frontDeskTests.Agreements" />
 			<class name="frontDeskTests.Bookings" />
 			<class name="frontDeskTests.ChangePassword" />
@@ -21,6 +25,8 @@
 			<class name = "functionalityTests.BookAppointment"/>
 			<class name = "functionalityTests.PointOfSale_Misc"/>
 			<class name = "functionalityTests.PurchaseInventoryItems"/>
+			<class name = "functionalityTests.ChangeMemberIdTest"/>
+			<class name = "functionalityTests.ChangeMemberStatusTest"/>
 			<class name = "rotatingBarCodeTests.CheckInTests"/>
 			<class name = "rotatingBarCodeTests.PointOfSaleTests"/>
 			<class name = "rotatingBarCodeTests.AgreementTests"/>
