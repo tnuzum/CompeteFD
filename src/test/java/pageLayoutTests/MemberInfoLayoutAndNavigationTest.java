@@ -1,5 +1,6 @@
 package pageLayoutTests;
 
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -8,7 +9,7 @@ import org.testng.asserts.SoftAssert;
 import pageObjects.CheckInPO;
 import pageObjects.LandingPagePO;
 import pageObjects.MemberInfoPO;
-import pageObjects.MemberManagementPO_Duplicate;
+import pageObjects.MemberMgmtPO;
 import pageObjects.POS_EditItemPO;
 import pageObjects.POS_MainPagePO;
 import pageObjects.POS_TaxDetailPO;
@@ -25,7 +26,8 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 	LandingPagePO la;
 	CheckInPO ci;
 	MemberInfoPO mp;
-	MemberManagementPO_Duplicate mmp;
+	MemberMgmtPO mmp;
+	
 	
 	String natWinHandle;
 	String nativeWindowHandle;
@@ -47,7 +49,8 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 		ei = new POS_EditItemPO();
 		td = new POS_TaxDetailPO();
 		mp = new MemberInfoPO();
-		mmp = new MemberManagementPO_Duplicate();
+		mmp = new MemberMgmtPO();
+		
 				
 		barcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		password = prop.getProperty("activeEmployeePassword");
@@ -107,7 +110,7 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
-		softAssertion.assertTrue(mp.getMemberAccountSummaryView().isDisplayed());
+		Assert.assertTrue(mp.getMemberAccountSummaryView().isDisplayed());
 		
 		mp.getViewWindowClose1().click();
 	}
@@ -119,7 +122,7 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
-		softAssertion.assertTrue(mp.getMemberCheckInHistoryView().isDisplayed());
+		Assert.assertTrue(mp.getMemberCheckInHistoryView().isDisplayed());
 		
 		mp.getViewWindowClose2().click();
 		}
@@ -131,7 +134,21 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
-		softAssertion.assertTrue(mp.getTrainingVisitHistoryView().isDisplayed());
+		Assert.assertTrue(mp.getTrainingVisitHistoryView().isDisplayed());
+		
+		Assert.assertTrue(mp.getPTRemainingPanel().isDisplayed());
+		
+		mp.getPTHistoryTab().click();
+		
+		Assert.assertTrue(mp.getPTHistoryPanel().isDisplayed());
+		
+		mp.getVisitisRemainingTab().click();
+		
+		Assert.assertTrue(mp.getVisitisRemainingPanel().isDisplayed());
+		
+		mp.getVisitsHistoryTab().click();
+		
+		Assert.assertTrue(mp.getVisitisHistoryPanel().isDisplayed());
 		
 		mp.getViewWindowClose2().click();
 		
@@ -144,7 +161,13 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
-		softAssertion.assertTrue(mp.getBillingRelationshipView().isDisplayed());
+		Assert.assertTrue(mp.getBillingRelationshipView().isDisplayed());
+		
+		Assert.assertTrue(mp.getFamilyMembersPanel().isDisplayed());
+		
+		mp.getOrganizationalMembersTab().click();
+		
+		Assert.assertTrue(mp.getOrganizationalMembersPanel().isDisplayed());
 		
 		mp.getViewWindowClose3().click();
 		
@@ -157,7 +180,13 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
-		softAssertion.assertTrue(mp.getClassInformationView().isDisplayed());
+		Assert.assertTrue(mp.getClassInformationView().isDisplayed());
+		
+		Assert.assertTrue(mp.getAttendancePanel().isDisplayed());
+		
+		mp.getEnrollmentab().click();
+		
+		Assert.assertTrue(mp.getEnrollmenPanel().isDisplayed());
 		
 		mp.getViewWindowClose3().click();
 		
@@ -170,7 +199,13 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
-		softAssertion.assertTrue(mp.getAppointmentInformationView().isDisplayed());
+		Assert.assertTrue(mp.getAppointmentInformationView().isDisplayed());
+		
+		Assert.assertTrue(mp.getCurrentViewPanel().isDisplayed());
+		
+		mp.getHistoryTab().click();
+		
+		Assert.assertTrue(mp.getHistoryPanel().isDisplayed());
 		
 		mp.getViewWindowClose3().click();
 		}
@@ -182,7 +217,12 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
-		softAssertion.assertTrue(mp.getManageAgreementView().isDisplayed());
+		Assert.assertTrue(mp.getManageAgreementView().isDisplayed());
+		Assert.assertTrue(mp.getHelpButton().isDisplayed());
+		Assert.assertTrue(mp.getInvoicesButton().isDisplayed());
+		Assert.assertTrue(mp.getModifyButton().isDisplayed());
+		Assert.assertTrue(mp.getRewriteButton().isDisplayed());
+		Assert.assertTrue(mp.getRenewButton().isDisplayed());
 		
 		mp.getViewWindowClose1().click();
 		
@@ -198,7 +238,7 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
-		softAssertion.assertTrue(mp.getFamilyMembersView().isDisplayed());
+		Assert.assertTrue(mp.getFamilyMembersView().isDisplayed());
 		
 		mp.getViewWindowClose1().click();
 		
@@ -211,7 +251,7 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
-		softAssertion.assertTrue(mp.getActionItemsView().isDisplayed());
+		Assert.assertTrue(mp.getActionItemsView().isDisplayed());
 		
 		mp.getViewWindowClose3().click();
 		
@@ -224,7 +264,7 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
-		softAssertion.assertTrue(mp.getMemberNotesView().isDisplayed());
+		Assert.assertTrue(mp.getMemberNotesView().isDisplayed());
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
@@ -239,7 +279,7 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
-		softAssertion.assertTrue(mp.getManageDocumentsView().isDisplayed());
+		Assert.assertTrue(mp.getManageDocumentsView().isDisplayed());
 		
 		mp.getViewWindowClose3().click();
 		
@@ -252,7 +292,7 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
-		softAssertion.assertTrue(mp.getChangeRequestHistoryView().isDisplayed());
+		Assert.assertTrue(mp.getChangeRequestHistoryView().isDisplayed());
 		
 		mp.getViewWindowClose3().click();
 		
@@ -265,7 +305,13 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
-		softAssertion.assertTrue(mp.getManageEWaiverView().isDisplayed());
+		Assert.assertTrue(mp.getManageEWaiverView().isDisplayed());
+		
+		Assert.assertTrue(mp.getCurrentEWaiverPanel().isDisplayed());
+		
+		mp.getEWaiverHistoryTab().click();
+		
+		Assert.assertTrue(mp.getEWaiverHistoryPanel().isDisplayed());
 		
 		mp.getViewWindowClose3().click();
 			
@@ -273,7 +319,7 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 		
 	}
 		@Test(priority = 15, enabled = true, description = "Access Member Info page from More drop down")
-		public void accessMemberInfoFromMore() {
+		public void accessMemberInfoFromMore() throws InterruptedException {
 			
 			MyActions.focusByNativeWindowHandleIndex(0);
 			
@@ -282,10 +328,10 @@ public class MemberInfoLayoutAndNavigationTest extends base {
 			mmp.getMemberInputField().sendKeys(searchString);
 			mmp.getSearchButton().click();
 			mmp.getMemberInfoButton().click();
+			Thread.sleep(2000);
 			
 			MyActions.focusByNativeWindowHandleIndex(0);
-			softAssertion.assertTrue(mp.getPageLocator().isDisplayed());
-			softAssertion.assertAll();
+			Assert.assertTrue(mmp.getPageLocator().isDisplayed());
 			mp.getCloseButton().click();
 		}
 

@@ -1,5 +1,7 @@
 package pageObjects;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 
 import io.appium.java_client.windows.WindowsDriver;
@@ -126,6 +128,22 @@ public class AgreementsPO extends base{
 		//return driver.findElementByName("Yes");
 	}
 	
+	public List getWarningYesButtons() {
+		return driver.findElementsByAccessibilityId("btnOK");
+		//return driver.findElementByName("Yes");
+	}
+	
+	public WebElement getCancelButton() {
+		return driver.findElementByAccessibilityId("btnCancel");
+			}
+	
+	public WebElement getSearchPlansWindow() {
+		return driver.findElementByAccessibilityId("SearchMembershipPlanView");
+			}
+	
+	public WebElement getDataChangedYesButton() {
+		return driver.findElementByAccessibilityId("pbButton1");
+			}
 	
 	
 	

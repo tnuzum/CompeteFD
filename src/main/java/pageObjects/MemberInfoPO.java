@@ -134,12 +134,76 @@ public class MemberInfoPO extends base{
 		return driver.findElementByAccessibilityId("TrainingVisitHistoryView");
 	}
 	
+	public WebElement getPTRemainingTab(){
+		return driver.findElementByName("P/T Remaining");
+	}
+	
+	public WebElement getPTRemainingPanel(){
+		return driver.findElementByAccessibilityId("pnlTrainingRemainingLayout");
+	}
+	
+	public WebElement getPTHistoryTab(){
+		return driver.findElementByName("P/T History");
+	}
+	
+	public WebElement getPTHistoryPanel(){
+		return driver.findElementByAccessibilityId("tpnlTrainingHistoryBaseLayout");
+	}
+	
+	public WebElement getVisitisRemainingTab(){
+		return driver.findElementByName("Visits Remaining");
+	}
+	
+	public WebElement getVisitisRemainingPanel(){
+		return driver.findElementByAccessibilityId("pnlVisitRemainingLayout");
+	}
+	
+	public WebElement getVisitsHistoryTab(){
+		return driver.findElementByName("Visits History");
+	}
+	
+	public WebElement getVisitisHistoryPanel(){
+		return driver.findElementByAccessibilityId("tabVisitsHistory");
+	}
+	
 	public WebElement getBillingRelationshipView(){
 		return driver.findElementByAccessibilityId("FamilyMembersView");
 	}
 	
+	public WebElement getFamilyMembersTab(){
+		return driver.findElementByName("Family Members");
+	}
+	
+	public WebElement getFamilyMembersPanel(){
+		return driver.findElementByAccessibilityId("pnlMainTimeRestriction");
+	}
+	
+	public WebElement getOrganizationalMembersTab(){
+		return driver.findElementByName("Organizational Members");
+	}
+	
+	public WebElement getOrganizationalMembersPanel(){
+		return driver.findElementByAccessibilityId("panel1");
+	}
+	
 	public WebElement getClassInformationView(){
 		return driver.findElementByAccessibilityId("ClassInformationView");
+	}
+	
+	public WebElement getAttendanceTab(){
+		return driver.findElementByName("Attendance");
+	}
+	
+	public WebElement getAttendancePanel(){
+		return driver.findElementByAccessibilityId("pnlAttendance");
+	}
+	
+	public WebElement getEnrollmentab(){
+		return driver.findElementByName("Enrollment");
+	}
+	
+	public WebElement getEnrollmenPanel(){
+		return driver.findElementByAccessibilityId("pnlEnrollment");
 	}
 	
 	public WebElement getManageDocumentsView(){
@@ -150,8 +214,44 @@ public class MemberInfoPO extends base{
 		return driver.findElementByAccessibilityId("AppointmentInformationView");
 	}
 	
+	public WebElement getCurrentViewTab(){
+		return driver.findElementByName("Current");
+	}
+	
+	public WebElement getCurrentViewPanel(){
+		return driver.findElementByAccessibilityId("pnlCurrent");
+	}
+	
+	public WebElement getHistoryTab(){
+		return driver.findElementByName("History");
+	}
+	
+	public WebElement getHistoryPanel(){
+		return driver.findElementByAccessibilityId("pnlHistory");
+	}
+	
 	public WebElement getManageAgreementView(){
 		return driver.findElementByAccessibilityId("ManageAgreementView");
+	}
+	
+	public WebElement getHelpButton(){
+		return driver.findElementByAccessibilityId("btnHelp");
+	}
+	
+	public WebElement getInvoicesButton(){
+		return driver.findElementByAccessibilityId("btnInvoices");
+	}
+	
+	public WebElement getModifyButton(){
+		return driver.findElementByAccessibilityId("btnModify");
+	}
+	
+	public WebElement getRewriteButton(){
+		return driver.findElementByAccessibilityId("btnRewrite");
+	}
+	
+	public WebElement getRenewButton(){
+		return driver.findElementByAccessibilityId("btnRenew");
 	}
 	
 	public WebElement getFamilyMembersView(){
@@ -172,6 +272,22 @@ public class MemberInfoPO extends base{
 	
 	public WebElement getManageEWaiverView(){
 		return driver.findElementByAccessibilityId("ManageEWaiverView");
+	}
+	
+	public WebElement getCurrentEWaiverTab(){
+		return driver.findElementByName("Current");
+	}
+	
+	public WebElement getCurrentEWaiverPanel(){
+		return driver.findElementByAccessibilityId("dgvEWaiverCurrent");
+	}
+	
+	public WebElement getEWaiverHistoryTab(){
+		return driver.findElementByName("History");
+	}
+	
+	public WebElement getEWaiverHistoryPanel(){
+		return driver.findElementByAccessibilityId("dgvEWaiverHistory");
 	}
 	
 	public WebElement getNewMemberIdField(){
@@ -216,5 +332,9 @@ public class MemberInfoPO extends base{
 	
 	public WebElement getCancelEmailButton(){
 		return driver.findElementByAccessibilityId("btnCancel");
+	}
+	
+	public WebElement getContinueCancelYes(){
+		return driver.findElementByAccessibilityId("btnOK");
 	}
 }
