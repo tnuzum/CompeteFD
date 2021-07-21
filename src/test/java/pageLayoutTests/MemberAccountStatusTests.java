@@ -104,7 +104,7 @@ public class MemberAccountStatusTests extends base {
 	}
 	
 	@Test(priority = 2, enabled = true)
-	public void navigateToAccountStatusView() {
+	public void navigateToInvoicesView() {
 		
 		ap.getInvoicesButton().click();
 		
