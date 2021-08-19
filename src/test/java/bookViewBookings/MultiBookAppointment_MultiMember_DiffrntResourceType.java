@@ -272,8 +272,9 @@ public class MultiBookAppointment_MultiMember_DiffrntResourceType extends base {
 		Assert.assertTrue(b.getCancellationFeeRow(0).getText().contains("$6.00"));
 		
 		b.getWaiveBtn().click();
+		MyActions.focusByNativeWindowHandleIndex(0);
 
-		Assert.assertTrue(b.getTextMsg().getText().contains("has been cancelled"));
+		Assert.assertTrue(b.getTextMsg().getText().contains("has been cancelled."));
 		
 		b.getOkBtn().click();
 
