@@ -203,7 +203,7 @@ public class BookingTests extends base {
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
-		Assert.assertEquals(b.getMemberIdValue().getText(), tokenMemberId);
+//		Assert.assertEquals(b.getMemberIdValue().getText(), tokenMemberId);
 				
 		b.getOkBtn().click();
 		Thread.sleep(2000);

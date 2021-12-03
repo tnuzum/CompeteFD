@@ -59,7 +59,7 @@ public class CheckInTests extends base{
 		ci.getSearchButton().click();
 				
 		Assert.assertEquals(ci.getMemberId().getText(), tokenMemberId);
-		Assert.assertEquals(ci.getMembershipType().getText(), "Athletic");
+		Assert.assertEquals(ci.getMembershipType().getText(), "Corporate Member");
 		
 		ci.getCheckInButton().click();
 		
