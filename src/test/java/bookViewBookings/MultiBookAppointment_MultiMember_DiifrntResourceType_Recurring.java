@@ -296,9 +296,10 @@ public class MultiBookAppointment_MultiMember_DiifrntResourceType_Recurring exte
 
 			Assert.assertTrue(b.getTextMsg().getText().contains("Do you want to cancel this appointment?"));
 			
+			Thread.sleep(1000);
 			b.getOkBtn().click();
 			Thread.sleep(1000);
-
+			
 			Assert.assertTrue(b.getTextMsg().getText().contains("has been cancelled"));
 			
 			b.getOkBtn().click();

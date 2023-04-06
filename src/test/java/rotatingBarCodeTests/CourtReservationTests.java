@@ -175,11 +175,11 @@ public class CourtReservationTests extends base {
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
-		cp.getAttendedChkBox().click();
+//		cp.getAttendedChkBox().click();
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 					
-		cp.getMessageYes().click();
+//		cp.getMessageYes().click();
 		Thread.sleep(2000);
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
@@ -188,7 +188,8 @@ public class CourtReservationTests extends base {
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 		
-		cp.getOkBtn().click();
+//		cp.getOkBtn().click();
+		cp.getCancel().click();
 		
 		
 	}
@@ -314,7 +315,8 @@ public class CourtReservationTests extends base {
 		
 		MyActions.focusByNativeWindowHandleIndex(0);
 
-		cp.getOkBtn().click();
+//		cp.getOkBtn().click();
+		cp.getCancel().click();
 	
 	}		
 
