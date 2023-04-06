@@ -1,5 +1,7 @@
 package pageObjects;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 
 import io.appium.java_client.windows.WindowsDriver;
@@ -49,6 +51,22 @@ public class AgreementsPO extends base{
 	
 	public WebElement getSellClubComboBox() {
 		return driver.findElementByAccessibilityId("cmbSellClub");
+	}
+	
+	public WebElement geSearchPlantOkButton() {
+		return driver.findElementByAccessibilityId("btnOK");
+	}
+	
+	public WebElement getMemberSearchCancel() {
+		return driver.findElementByAccessibilityId("pbCancel");
+	}
+	
+	public WebElement getMemberInputField() {
+		return driver.findElementByAccessibilityId("txtMemberID");
+	}
+	
+	public WebElement getMemberSearchButton() {
+		return driver.findElementByAccessibilityId("btnMemberSearch");
 	}
 	
 	public WebElement getAgreementTypeLabel() {
@@ -101,6 +119,31 @@ public class AgreementsPO extends base{
 		return driver.findElementByXPath("//Button[@Name='Close'][1]");
 	}
 	
+	public WebElement getTextMsg() {
+		return driver.findElementByAccessibilityId("txtErrorMessages");
+	}
+	
+	public WebElement getWarningYesButton() {
+		return driver.findElementByAccessibilityId("btnOK");
+		//return driver.findElementByName("Yes");
+	}
+	
+	public List getWarningYesButtons() {
+		return driver.findElementsByAccessibilityId("btnOK");
+		//return driver.findElementByName("Yes");
+	}
+	
+	public WebElement getCancelButton() {
+		return driver.findElementByAccessibilityId("btnCancel");
+			}
+	
+	public WebElement getSearchPlansWindow() {
+		return driver.findElementByAccessibilityId("SearchMembershipPlanView");
+			}
+	
+	public WebElement getDataChangedYesButton() {
+		return driver.findElementByAccessibilityId("pbButton1");
+			}
 	
 	
 	

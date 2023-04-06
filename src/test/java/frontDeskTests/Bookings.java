@@ -77,7 +77,7 @@ public class Bookings extends base {
 		
 		b.getClubCombobox().click();
 		
-		b.getListItem(8).click(); // selects club "Jonas Sport-Plex"
+		b.getListItem(9).click(); // selects club "Jonas Sport-Plex"
 		
 		b.getServiceCategoryCombobox().click();
 		
@@ -85,13 +85,14 @@ public class Bookings extends base {
 		
 		b.getServiceCombobox().click();
 		
-		b.getListItem(2).click(); // selects club "Club Demo"
+		b.getListItem(7).click(); // selects club "Club Demo"
 		
 		b.getResourceTypeValue(0);
 		
 		b.getShowCalendarButton().click();
 		
 		Assert.assertTrue(b.getBreadCrum().isDisplayed());
+		Assert.assertTrue(b.getBreadCrum().getText().contains("Jonas Sports-Plex > Personal Training > Club Demo"));
 		
 	}
 	

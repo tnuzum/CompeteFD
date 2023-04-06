@@ -1,7 +1,5 @@
-package frontDeskTests;
+package pageLayoutTests;
 
-import org.openqa.selenium.interactions.Actions;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -18,7 +16,7 @@ import pageObjects.POS_TaxDetailPO;
 import resources.MyActions;
 import resources.base;
 
-public class PointOfSale extends base {
+public class PointOfSale_MainPage extends base {
 
 	public static SoftAssert softAssertion = new SoftAssert();
 
@@ -121,159 +119,6 @@ public class PointOfSale extends base {
 		softAssertion.assertTrue(p.getClearButton().isEnabled());
 		softAssertion.assertTrue(p.getTotalButton().isEnabled());
 		softAssertion.assertAll();
-
-	}
-
-	@Test(priority = 2, enabled = true)
-	public void clearMember() {
-
-		p.getMemberInputField().sendKeys(searchString);
-
-		p.getSearchButton().click();
-
-		MyActions.myWaitByName(30, "Member Quick Search");
-
-		ms.getOKButton().click();
-
-		p.getClearMemberButton().click();
-
-		Assert.assertNotEquals(p.getMemberInputField().getText(), searchString);
-	}
-
-	@Test(priority = 3, enabled = true)
-	public void purchaseWithCash() {
-
-		String searchString = "water";
-
-		p.getProductSearchInputField().sendKeys(searchString);
-
-		p.getProductSearchSearchButton().click();
-
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		ps.getSearchInputField().sendKeys(searchString);
-
-		ps.getSearchButton().click();
-
-		Assert.assertEquals(ps.getSearchInputField().getText(), searchString);
-
-		ps.getOKButton().click();
-
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		p.getTotalButton().click();
-
-		p.getCategoryChoice(2).click();
-
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		pa.getPayAmt5DollarsButton().click();
-
-		p.getOKButton().click();
-		
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		MyActions.myWaitByName(30, "Change Due");
-
-		p.getOKButton().click();
-	}
-
-	@Test(priority = 4, enabled = true)
-	public void purchaseWithCreditCard() {
-
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		p.getPosChoice(1).click();
-
-		// Edit Item to match amount needed for CSIPay to approve transaction
-		p.getEditButton().click();
-
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		ei.getQuantityInputField().sendKeys("5");
-
-		ei.getTaxExemptCheckbox().click();
-
-		ei.getOKButton().click();
-
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		p.getTotalButton().click();
-
-		p.getCategoryChoice(1).click();
-
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		pa.getCCSwipeMessageCancelButton().click();
-
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		//pa.getCCTypeDropdownButton().click();
-
-		//pa.getCCCardTypeDropdownList(3).click();
-
-		pa.getCCNumberInputField().sendKeys(prop.getProperty("changeCCMember1AccountNumber"));
-
-		pa.getCCExpMonthDropdownButton().click();
-		
-		Actions a= new Actions(driver);
-		a.moveToElement(pa.getCCExpMonthDropdownList(4)).click().build().perform();
-
-		// pa.getCCExpMonthDropdownList(4).click();
-
-		pa.getCCExpYearDropdownButton().click();
-
-		a.moveToElement(pa.getCCExpYearDropdownList(3)).click().build().perform();
-
-		// pa.getCCExpYearDropdownList(3).click();
-
-		pa.getCCZipInputField().sendKeys("43215");
-
-		pa.getOKButton().click();
-		
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		MyActions.myWaitByName(30, "Change Due");
-
-		p.getOKButton().click(); // Click Ok button on Change Due prompt
-	}
-
-	@Test(priority = 5, enabled = true)
-	public void takePayment() {
-
-		MyActions.focusByNativeWindowHandleIndex(0);
-
-		p.getMemberInputField().sendKeys(searchString);
-
-		p.getSearchButton().click();
-
-		MyActions.myWaitByName(30, "Member Quick Search");
-
-		ms.getOKButton().click();
-
-		p.getTakePaymentButton().click();
-
-		MyActions.myWaitByName(30, "Payment");
-
-		tp.getAmountInput().sendKeys("0.01");
-
-		tp.getCashRadioButton().click();
-
-		tp.getOKButton().click();
-
-		tp.getConfirmPayOKButton().click();
 
 	}
 

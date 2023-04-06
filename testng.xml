@@ -4,7 +4,13 @@
 
 	<test thread-count="5" name="About Compete">
 		<classes>
-			<class name="frontDeskTests.AboutCompete" />
+			<class name="pageLayoutTests.AboutCompete" />
+			<class name="pageLayoutTests.PointOfSale_MainPage" />
+			<class name="pageLayoutTests.MemberInfoLayoutAndNavigationTest" />
+			<class name="pageLayoutTests.MemberAccountStatusTests" />
+			<class name="pageLayoutTests.MemberInfo_AgreementModify" />
+			<class name="pageLayoutTests.MemberInfo_AgreementRenew" />
+			<class name="pageLayoutTests.MemberInfo_AgreementRewrite" />
 			<class name="frontDeskTests.Agreements" />
 			<class name="frontDeskTests.Bookings" />
 			<class name="frontDeskTests.ChangePassword" />
@@ -12,10 +18,50 @@
 			<class name="frontDeskTests.ClassEnrollment" />
 			<class name="frontDeskTests.Login" />
 			<class name="frontDeskTests.MemberMgmt" />
-			<class name="frontDeskTests.PointOfSale" />
 			<class name="frontDeskTests.Reports" />
 			<class name="frontDeskTests.TimeClock" />
+			<class name = "functionalityTests.CheckIn" />
+			<class name = "functionalityTests.EnrollInClass"/>
+			<class name = "functionalityTests.BookAppointment"/>
+			<class name = "functionalityTests.PointOfSale_Misc"/>
+			<class name = "functionalityTests.PurchaseInventoryItems"/>
+			<class name = "functionalityTests.ChangeMemberIdTest"/>
+			<class name = "functionalityTests.ChangeMemberStatusTest"/>
+			<class name = "rotatingBarCodeTests.CheckInTests"/>
+			<class name = "rotatingBarCodeTests.PointOfSaleTests"/>
+			<class name = "rotatingBarCodeTests.AgreementTests"/>
+			
+			<class name = "rotatingBarCodeTests.BookingTests"/>
+			<class name = "rotatingBarCodeTests.ClassEnrollmentTests"/>
+			<class name = "rotatingBarCodeTests.CourtReservationTests"/>
+			<class name = "rotatingBarCodeTests.LockerManagementTests"/>
+			<class name = "rotatingBarCodeTests.MemberManagementTests"/>
+			<class name = "rotatingBarCodeTests.NurseryMonitor_MainTests"/>
+			<class name = "rotatingBarCodeTests.NurseryMonitor_AddChild"/>
+			<class name = "rotatingBarCodeTests.NurseryMonitor_AddGuardian"/>
+			<class name = "rotatingBarCodeTests.TanningTests"/>
+			
 		</classes>
 	</test>
-
+	<!--test thread-count="5" name="Functionality Tests">
+    	<packages>
+    		<package name = "functionalityTests"/>
+       	</packages>
+    </test> 
+//	<The tests in serviceViewBookings package should be run only on days from Sunday to Thursday>
+	<test thread-count="5" name="Booking Tests">
+	
+    	<packages>
+    		<package name = "serviceViewBookings"/>
+       	</packages>
+    </test> 
+    
+//  <The tests in bookViewBookings package should be run only on days from Sunday to Friday>
+    <test thread-count="5" name="Booking Tests">
+    
+    <The tests in this package should be run only on days from Sunday to Friday>
+    	<packages>
+    		<package name = "bookViewBookings"/>
+       	</packages>
+    </test--> 
 </suite>

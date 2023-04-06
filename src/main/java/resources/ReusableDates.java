@@ -25,6 +25,12 @@ public class ReusableDates {
 		return dateFormat.format(currentDate);
 	}
 	
+	public static String getCurrentDateFormat5() {
+		DateFormat dateFormat = new SimpleDateFormat("M/d/yyyy"); //8/6/2020
+		Date currentDate = new Date();
+		return dateFormat.format(currentDate);
+	}
+	
 	public static String getCurrentDateTime() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date currentDate = new Date();
@@ -131,6 +137,55 @@ public class ReusableDates {
         Date currentDateMinusOneYear = c.getTime();
 		return dateFormat.format(currentDateMinusOneYear);
 	}
+	
+	public static String getToDayAndDate(){
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMMMM d, yyyy");
+			Calendar today = Calendar.getInstance();
+			String toDayNDate = dateFormat.format(today.getTime());
+			 return toDayNDate;
+		}
+	
+	public static String getTomorrowsDayAndDate(){
+	
+	SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMMMM d, yyyy");
+		Calendar today = Calendar.getInstance();
+		 today.add(Calendar.DAY_OF_YEAR, 1);
+		 String tomorrowsDayNDate = dateFormat.format(today.getTime());
+		 return tomorrowsDayNDate;
+	}
+	
+	public static String getDayAfterTomorrowsDayAndDate(){
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMMMM d, yyyy");
+			Calendar today = Calendar.getInstance();
+			 today.add(Calendar.DAY_OF_YEAR, 2);
+			 String tomorrowsDayNDate = dateFormat.format(today.getTime());
+			 return tomorrowsDayNDate;
+		}
+	
+	public static String getCurrentDateFormat4(){
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/d/yyyy");
+		Calendar today = Calendar.getInstance();
+		String currentdate = dateFormat.format(today.getTime());
+		return currentdate ;
+		}
+	
+	public static String getCurrentDateFormatPlusOne(){
+		SimpleDateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
+		Calendar today = Calendar.getInstance();
+		today.add(Calendar.DAY_OF_YEAR, 1);
+		String currentdate = dateFormat.format(today.getTime());
+		return currentdate ;
+		}
+	
+	public static String getCurrentDateFormatPlusTwo(){
+		SimpleDateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
+		Calendar today = Calendar.getInstance();
+		today.add(Calendar.DAY_OF_YEAR, 2);
+		String currentdate = dateFormat.format(today.getTime());
+		return currentdate ;
+		}
 }
 	
 	

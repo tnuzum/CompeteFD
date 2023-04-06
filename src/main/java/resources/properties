@@ -1,5 +1,11 @@
 Employee1UserName = todd
 Employee1Password = 111
+aPIKey = B50A8F2BF7315812CF2A21690A7FF5FDA33A156C
+!X-CompanyId = 236
+X-CompanyId = 224
+!baseURI = https://compete-api-future2.test-jfisoftware.com:8252
+baseURI = https://compete-api-future.test-jfisoftware.com:8251
+environment = Future2
 
 ! ** CLUB INPUT DATA **
 
@@ -18,12 +24,12 @@ inactiveClubName = Inactive
 ! ** EMPLOYEE INPUT DATA
 
 activeEmployeeId = 35
-activeEmployeeName = Todd
-activeEmployeeBarcodeId = todd
+activeEmployeeName = autotest
+activeEmployeeBarcodeId = autotest
 activeEmployeePassword = 111
 changeEmployeeName = Change
 changeEmployeeBarcodeId = change.auto
-changeEmployeePassword = Testing1!
+changeEmployeePassword = Testing0n3!
 inactiveEmployeeId = 40
 inactiveEmployeeName = inactiveE
 
@@ -672,6 +678,49 @@ interest4Id = 4
 interest4Description = Maintain Health
 interest5Id = 5
 interest5Description = Group Fitness
+
+! ** ITEMS / PRODUCTS **
+item1BarcodeId = autoItem1
+item1Description = Auto Item 1
+item1DefaultPrice = 5.00
+item2BarcodeId = autoItem2
+item2Description = Auto Item 2
+item2DefaultPrice = 5.00
+
+classToEnroll = BhagyaVirtualClass
+memberToEnroll = Auto, Demomember
+
+serviceCategory1 = Personal Training
+serviceCategory2 = Personal Training 1
+service1 = Club Demo
+service2 = Free Training Auto
+service3 = APT-Bookings1
+service4 = APT-Bookings2
+service5 = APT-Bookings3
+service6 = APT-GrpBookings1
+service7 = APT-GrpBookings2
+service8 = APT-GrpBookings3
+
+resourceType1 = Personal Trainer
+resourceType2 = Fitness
+
+book1 = B'sBook
+book2 = Bhagya1
+book3 = Bhagya2
+
+=======
+ApptMember1 = Auto, ApptMember2
+ApptMember2 = Kalle, Kamala
+ApptMember3 = Kalle, Bob
+ApptMember4 = Auto, Kidapptmbr
+tokenMember = Kalle, Bhagya
+
+tokenMemberId = 1147869
+tokenProspectId = G4820
+tokenChildId = 1147898
+tokenGuardianId = 1146725
+
+courtType = Tennis Court
 
 
 

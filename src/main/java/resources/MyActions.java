@@ -1,5 +1,7 @@
 package resources;
 
+import static io.restassured.RestAssured.given;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -11,14 +13,24 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.windows.WindowsDriver;
 import io.appium.java_client.windows.WindowsElement;
+import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import pageObjects.BookingsPO;
 import pageObjects.LandingPagePO;
 import pageObjects.LoginPO;
+import pageObjects.POS_MainPagePO;
+import pageObjects.POS_PaymentAmountPO;
 
 public class MyActions extends base {
 	
 	//public WindowsDriver driver;
 
 	public static LandingPagePO la = new LandingPagePO();
+	public static POS_MainPagePO p = new POS_MainPagePO();
+	public static POS_PaymentAmountPO pa = new POS_PaymentAmountPO();
+	static String projectPath = System.getProperty("user.dir");
+	
 
 	public void setDriver(WindowsDriver driver) {
 
@@ -28,6 +40,9 @@ public class MyActions extends base {
 	public static String loginEmployee(String barcodeId, String password) {
 
 		LoginPO l = new LoginPO();
+		
+		WebDriverWait waitForLogin = new WebDriverWait(driver, 30);
+		waitForLogin.until(ExpectedConditions.visibilityOfElementLocated(By.name("Employee Login")));
 
 		l.getUserNameInputField().sendKeys(barcodeId);
 
@@ -43,14 +58,20 @@ public class MyActions extends base {
 	public static void myWaitByName(int duration, String locatorName) {
 
 		WebDriverWait wait = new WebDriverWait(driver, duration);
-		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name(locatorName)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(locatorName)));
 
 	}
 
 	public static void myWaitByAccessibilityId(int duration, String accessibilityId) {
 
-		WebDriverWait wait = new WebDriverWait(driver, duration);
-		wait.until(ExpectedConditions.visibilityOf(driver.findElementByAccessibilityId(accessibilityId)));
+		try {
+			Thread.sleep(2000);// this allows time for the window focus to finalize
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+			WebDriverWait wait = new WebDriverWait(driver, duration);
+			wait.until(ExpectedConditions.visibilityOf(driver.findElementByAccessibilityId(accessibilityId)));
+
 
 	}
 
@@ -92,7 +113,7 @@ public class MyActions extends base {
 		// System.out.println("Native Window Handle: "+natWinHandle);
 		return null;
 	}
-
+	
 	public static String focusByNativeWindowHandleIndex(int index) {
 
 		/*
@@ -101,17 +122,19 @@ public class MyActions extends base {
 		 * use this in test class to get all Native Window Handles,
 		 * System.out.println("WindowHandles: "+driver.getWindowHandles());
 		 */
+
 		try {
-			Thread.sleep(4000);// this allows time for the window focus to finalize
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+			Thread.sleep(2000);
+			Object[] wh = driver.getWindowHandles().toArray();
+			
+			driver.switchTo().window((String) wh[index]);
+		} catch (Exception e) {
+			focusByNativeWindowHandleIndex(index);
 		}
-		Object[] wh = driver.getWindowHandles().toArray();
-		driver.switchTo().window((String) wh[index]);
 
 		return null;
 	}
-
+	
 	public static void getWindowInformation() {
 
 		System.out.println("AllSessionDetails: " + driver.getAllSessionDetails());
@@ -123,7 +146,7 @@ public class MyActions extends base {
 
 		return;
 	}
-
+	
 	public static void performanceTestLoop() {
 		// STRESS TEST EXAMPLE
 		int i = 1;
@@ -143,7 +166,7 @@ public class MyActions extends base {
 	
 	public static void startWAD() {
 		
-		String wad = ("//C://Automation//startWAD.bat");
+		String wad = (projectPath +"\\src\\main\\java\\WAD\\startWAD.bat");
 		
 		try {
 			Runtime.getRuntime().exec(wad);
@@ -154,17 +177,108 @@ public class MyActions extends base {
 		return;
 	}
 	
-	public static void stopWAD() {
+	public static <WebElement> void getListItem(String ItemToSelect) {
 		
-		String wad = ("//C://Automation//stopWAD.bat");
+		BookingsPO b = new BookingsPO();
+		int i = 1;
 		
-		try {
-			Runtime.getRuntime().exec(wad);
-		} catch (IOException e) {
-			
-			e.printStackTrace();
+		String ItemName;
+		
+		do {ItemName =  b.getListItem(i).getText();
+		System.out.println(ItemName);
+		
+		if (ItemName.equals(ItemToSelect))
+			b.getListItem(i).click();
+		else
+			i++;
 		}
-		return;
+		while(!ItemName.equals(ItemToSelect));
+		 
+		
+		
+		
 	}
+	
+	public static String purchaseItemWithCash(String item1BarcodeId) {
+
+			MyActions.focusByNativeWindowHandleIndex(0);
+
+			p.getProductSearchInputField().sendKeys(item1BarcodeId);
+
+			p.getProductSearchSearchButton().click();
+
+			p.getTotalButton().click();
+
+			p.getCategoryChoice(2).click();
+
+			MyActions.focusByNativeWindowHandleIndex(0);
+
+			pa.getPayAmt20DollarsButton().click();
+
+			p.getOKButton().click();
+			
+			MyActions.focusByNativeWindowHandleIndex(0);
+
+			MyActions.myWaitByName(30, "Change Due");
+
+			p.getOKButton().click();
+			
+			return null;
+	}
+
+	public static JsonPath rawToJson(Response r) {
+
+		String respon = r.asString();
+		JsonPath x = new JsonPath(respon);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return x;
+	}
+	
+	public static String getToken(String barcodeId, String expirationTimeSpan ) {
+		
+		RestAssured.useRelaxedHTTPSValidation();
+		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		//barcodeId = "99959";// prop.getProperty("availableUserName");
+//		String expirationTimeSpan = "00:10:00";
+
+		Response res =
+				
+			given()
+				.log().all()
+				.header("X-Api-Key", prop.getProperty("aPIKey"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("club1Id"))
+				.header("Content-Type", "application/json")
+			.when()
+				.body(MyActions.getMemberToken(barcodeId, expirationTimeSpan))
+				.post("/api/v3/member/getcustomertoken").
+			then()
+				.log().all()
+				.assertThat().statusCode(200)
+				.extract().response();	
+		
+			JsonPath js = MyActions.rawToJson(res);
+			String token = js.get("Result");
+			
+			return token;
+	}
+	
+		
+	public static String getMemberToken(String barcodeId, String expirationTimeSpan) {
+	
+
+		String payload = "{\r\n"
+		+ "  \"BarcodeId\": \""+barcodeId+"\",\r\n"
+		+ "  \"ExpirationTimeSpan\": \""+expirationTimeSpan+"\"\r\n"
+		+ "}";
+		return payload;	
+		}
+	
 
 }

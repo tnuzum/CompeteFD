@@ -22,13 +22,13 @@ public class base {
 	public static WindowsDriver driver;
 	public static Properties prop;
 	static String projectPath = System.getenv("CompeteFD_HOME");
-
 	public static UpdateFoundPO uf = new UpdateFoundPO();
-
+		
 	public static WindowsDriver initializeDriver() throws Throwable {
 
 		prop = new Properties();
-		FileInputStream fis = new FileInputStream(projectPath + "\\src\\main\\java\\resources\\properties");
+		//System.out.println(System.getProperty("user.dir") + "\\src\\main\\java\\resources\\properties");
+		FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\resources\\properties");
 		prop.load(fis);
 
 		DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -37,6 +37,7 @@ public class base {
 		Thread.sleep(5000); // This wait helps avoid a SessionNotCreatedException
 		
 		WindowsDriver Session = new WindowsDriver(new URL("http://127.0.0.1:4723"), capabilities);
+
 
 
 		Session.manage().timeouts().implicitlyWait(35, TimeUnit.SECONDS);
@@ -50,7 +51,7 @@ public class base {
 
 		try {
 
-			WebDriverWait waitForUpdateFound = new WebDriverWait(driver, 5);
+			WebDriverWait waitForUpdateFound = new WebDriverWait(driver, 30);
 			waitForUpdateFound.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Update Found")));
 
 			if (uf.getPageLocator().isDisplayed()) {
@@ -75,9 +76,13 @@ public class base {
 
 		}
 
-		WebDriverWait waitForLogin = new WebDriverWait(driver, 30);
-		waitForLogin.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("Employee Login")));
-
+		
+		
+		  WebDriverWait waitForLogin = new WebDriverWait(driver, 30);
+		  waitForLogin.until(ExpectedConditions.presenceOfElementLocated(By.name("Employee Login")));
+		  //.presenceOfAllElementsLocatedBy(By.name("Employee Login")));
+		 
+		 
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 		return driver;
