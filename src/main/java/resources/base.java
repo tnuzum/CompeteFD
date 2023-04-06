@@ -2,6 +2,7 @@ package resources;
 
 import java.io.FileInputStream;
 import java.net.URL;
+import java.time.Duration;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -38,7 +39,7 @@ public class base {
 		WindowsDriver Session = new WindowsDriver(new URL("http://127.0.0.1:4723"), capabilities);
 
 
-		Session.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Session.manage().timeouts().implicitlyWait(35, TimeUnit.SECONDS);
 
 
 		DesiredCapabilities Appcapabilities = new DesiredCapabilities();

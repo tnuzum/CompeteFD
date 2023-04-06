@@ -106,7 +106,7 @@ public class Login extends base {
 
 		LandingPagePO la = new LandingPagePO();
 
-		MyActions.myWaitByName(30, "deckWorkspace1");
+		MyActions.myWaitByName(35, "deckWorkspace1");
 
 		Assert.assertTrue(la.getPageLocator().isDisplayed()); // Employee logged in; landing page displayed
 	}

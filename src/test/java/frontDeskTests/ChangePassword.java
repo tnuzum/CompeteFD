@@ -1,5 +1,7 @@
 package frontDeskTests;
 
+
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -93,7 +95,7 @@ public class ChangePassword extends base {
 		cp.getConfirmPasswordInputField().sendKeys(password);
 		cp.getOKButton().click();
 
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver,60);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name("deckWorkspace1")));
 
 		Assert.assertTrue(lp.getPageLocator().isDisplayed()); // Employee logged in; landing page displayed

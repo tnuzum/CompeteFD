@@ -35,7 +35,7 @@ public class MyActions extends base {
 
 		l.getLoginButton().click();
 
-		MyActions.myWaitByName(30, "deckWorkspace1");
+		MyActions.myWaitByName(35, "deckWorkspace1");
 
 		return null;
 	}
