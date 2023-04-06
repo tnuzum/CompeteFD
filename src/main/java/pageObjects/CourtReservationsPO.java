@@ -144,5 +144,8 @@ public class CourtReservationsPO extends base{
 	public WebElement getTextMsg() {
 		return driver.findElementByAccessibilityId("txtErrorMessages");
 	}
+	public WebElement getCancel() {
+		return driver.findElementByAccessibilityId("pbCancel");
+	}
 	
 }
