@@ -109,7 +109,7 @@ public class PointOfSale_Misc extends base {
 	}
 
 	@Test
-	public void ZOut() {
+	public void ZOut() throws InterruptedException {
 		
 		p.getZOutButton().click();
 		
@@ -152,7 +152,7 @@ public class PointOfSale_Misc extends base {
 	}
 	
 	@Test
-	public void TransactionHistory() {
+	public void TransactionHistory() throws InterruptedException {
 		
 		MyActions.purchaseItemWithCash(item1BarcodeId);
 		

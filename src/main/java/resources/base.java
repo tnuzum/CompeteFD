@@ -54,6 +54,7 @@ public class base {
 			if (uf.getPageLocator().isDisplayed()) {
 				System.out.println("INFO: Update Found");
 				uf.getOKButton().click();
+				Thread.sleep(5000);
 				WebDriverWait waitForCancelButton = new WebDriverWait(driver, 30);
 				waitForCancelButton.until(ExpectedConditions.visibilityOfElementLocated(By.name("Cancel")));
 				uf.getNextButton().click();

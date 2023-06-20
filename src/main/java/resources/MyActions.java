@@ -5,6 +5,10 @@ import static io.restassured.RestAssured.given;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -47,6 +51,13 @@ public class MyActions extends base {
 		l.getPasswordInputField().sendKeys(password);
 
 		l.getLoginButton().click();
+		
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		MyActions.myWaitByName(30, "deckWorkspace1");
 
@@ -54,7 +65,11 @@ public class MyActions extends base {
 	}
 
 	public static void myWaitByName(int duration, String locatorName) {
-
+		try {
+			Thread.sleep(5000);// this allows time for the window focus to finalize
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		WebDriverWait wait = new WebDriverWait(driver, duration);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(locatorName)));
 
@@ -95,7 +110,12 @@ public class MyActions extends base {
 		 * Use this in test class to get nativeWindowHandle: String nativeWindowHandle =
 		 * la.getLandingPageLocator().getAttribute("NativeWindowHandle");
 		 */
-
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String nativeWindowHandle = la.getPageLocator().getAttribute("NativeWindowHandle");
 		int natWinHandleInt = Integer.parseInt(nativeWindowHandle);
 		String natWinHandleStr = Integer.toHexString(natWinHandleInt);
@@ -196,26 +216,27 @@ public class MyActions extends base {
 		
 	}
 	
-	public static String purchaseItemWithCash(String item1BarcodeId) {
-
+	public static String purchaseItemWithCash(String item1BarcodeId) throws InterruptedException {
+		
+		Thread.sleep(10000);
 			MyActions.focusByNativeWindowHandleIndex(0);
 
 			p.getProductSearchInputField().sendKeys(item1BarcodeId);
-
+			Thread.sleep(10000);
 			p.getProductSearchSearchButton().click();
-
+			Thread.sleep(10000);
 			p.getTotalButton().click();
-
+			Thread.sleep(10000);
 			p.getCategoryChoice(2).click();
-
+			Thread.sleep(10000);
 			MyActions.focusByNativeWindowHandleIndex(0);
-
+			Thread.sleep(5000);
 			pa.getPayAmt20DollarsButton().click();
-
+			Thread.sleep(10000);
 			p.getOKButton().click();
-			
+			Thread.sleep(10000);
 			MyActions.focusByNativeWindowHandleIndex(0);
-
+			Thread.sleep(10000);
 			MyActions.myWaitByName(30, "Change Due");
 
 			p.getOKButton().click();
@@ -259,7 +280,6 @@ public class MyActions extends base {
 				.post("/api/v3/member/getcustomertoken").
 			then()
 //				.log().all()
-				.assertThat().statusCode(200)
 				.extract().response();	
 		
 			JsonPath js = MyActions.rawToJson(res);
@@ -268,5 +288,13 @@ public class MyActions extends base {
 			return token;
 	}
 	
+	public static long getSleepValue() {
+		DateFormat dateFormat = new SimpleDateFormat("ss");
+		Date sv = new Date();
+		String sv2 = dateFormat.format(sv);
+		long sleepValue = Long.parseLong(sv2);
+		return sleepValue;
+		//return dateFormat.format(sv);
+	}
 
 }

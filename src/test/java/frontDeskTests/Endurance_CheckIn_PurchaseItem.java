@@ -15,15 +15,13 @@ import pageObjects.MemberSearchPO;
 import resources.MyActions;
 import resources.base;
 
-public class perfTesting extends base {
+public class Endurance_CheckIn_PurchaseItem extends base {
 
 	static String barcodeId = "Todd";
-	static String password = "111";
-	
+	 static String password = "111";
+	//static String password = "Passw0rd!";
 
 	public static void main(String[] args) throws Throwable {
-		
-		
 		
 		LandingPagePO la = new LandingPagePO();
 		CheckInPO ci = new CheckInPO();
@@ -32,12 +30,14 @@ public class perfTesting extends base {
 		String searchString = "Manny";
 		
 		MyActions.startWAD();
+		
+		Thread.sleep(2000);
 
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("app", "C:\\Program Files (x86)\\JonasFitness\\Compete\\Front Desk.exe");
 		WindowsDriver Session = new WindowsDriver(new URL("http://127.0.0.1:4723"), capabilities);
 
-		Session.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Session.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 		DesiredCapabilities Appcapabilities = new DesiredCapabilities();
 		Appcapabilities.setCapability("app", "Root");
@@ -52,13 +52,17 @@ public class perfTesting extends base {
 		int i = 1;
 		while (i <= 2) {
 			
+			//Thread.sleep(30000);
+			
 		// ** Member CheckIn **
 			
 			la.getCheckInButton().click();
 			
 			ci.getMemberInputField().sendKeys(searchString);
-			
+			//Thread.sleep(5000);
 			ci.getSearchButton().click();
+			
+			Thread.sleep(10000);
 
 			MyActions.myWaitByName(30, "Member Quick Search");
 
@@ -66,14 +70,14 @@ public class perfTesting extends base {
 				try {
 					Thread.sleep(10000);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			ci.getFamilyCheckInButton().click();
 			try {
-				Thread.sleep(12000);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			
@@ -81,40 +85,40 @@ public class perfTesting extends base {
 			try {
 				Thread.sleep(12000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			
 			ci.getWarningYesButton().click();
 			try {
-				Thread.sleep(120000);
+				//Thread.sleep(120000);
+				Thread.sleep(10000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			
 	// ** Purchase Item with Cash **		
-			la.getPOSButton().click();
-			MyActions.purchaseItemWithCash(item1BarcodeId);
-			
-			MyActions.focusByNativeWindowHandleIndex(0);
-			
-			/*
+			//la.getPOSButton().click();			
+			//MyActions.focusByNativeWindowHandleIndex(0);
+						
 			la.getCheckInButton().click();
 			try {
 				Thread.sleep(10000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			la.getPOSButton().click();
 			try {
 				Thread.sleep(10000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
-			}*/
+			}
+			MyActions.purchaseItemWithCash(item1BarcodeId);
 		}
+		
 
 		return;
 	}

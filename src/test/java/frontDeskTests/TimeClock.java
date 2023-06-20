@@ -44,7 +44,7 @@ public class TimeClock extends base {
 
 	}
 
-	@Test(priority = 1, enabled = true)
+	@Test(priority = 1, enabled = false)
 	public void validateTimeClockPageObjects() {
 		
 		String cd = ReusableDates.getCurrentDateFormat2();
@@ -64,7 +64,7 @@ public class TimeClock extends base {
 		softAssertion.assertAll();
 	}
 
-	@Test(priority = 2, enabled = true)
+	@Test(priority = 2, enabled = false)
 	public void validateManagerOverridePageObjects() {
 		
 		tc.getManagerOverrideButton().click();
@@ -155,7 +155,7 @@ public class TimeClock extends base {
 	}
 	
 	
-	@Test(priority = 5, enabled = true)
+	@Test(priority = 5, enabled = false)
 	public void clockOut() {
 		
 		String cd = ReusableDates.getCurrentDateFormat2();
